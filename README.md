@@ -1,16 +1,4 @@
-# tobetomobileapp
+# Tobeto Mobil uygulama geliştirme
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Bu proje Ali Asker Turan (@aliaskerturan) , Tuğçe Kahya (@kahyatugce) ve Berke Erçin tarafından sürdürülmektedir. 
+![Screenshot_1702387380](https://github.com/berkeercin/tobetomobileapp/assets/66337552/59cafad1-09b8-4b26-9377-7a8f90a5408e)
