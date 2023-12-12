@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       color: Colors.white),
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                   width: 500,
                   height: 350,
                   child: Column(
@@ -55,18 +55,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              const Icon(Icons.person_2_outlined),
+                              Icon(
+                                Icons.person_2_outlined,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
                               const SizedBox(
                                 width: 5,
                               ),
                               Expanded(
                                 child: TextField(
                                   controller: usernameController,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                       hintText: "Kullanıcı Adı",
                                       border: InputBorder.none,
                                       hintStyle: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black.withOpacity(0.3),
                                       )),
                                 ),
                               )
@@ -86,7 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              const Icon(Icons.lock_outline),
+                              Icon(
+                                Icons.lock_outline,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
                               const SizedBox(
                                 width: 5,
                               ),
@@ -94,26 +100,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: TextField(
                                   controller: passwordController,
                                   obscureText: isPasswordShown,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                       hintText: "Şifre",
                                       border: InputBorder.none,
-                                      hintStyle:
-                                          TextStyle(color: Colors.black)),
+                                      hintStyle: TextStyle(
+                                          color:
+                                              Colors.black.withOpacity(0.3))),
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      if (isPasswordShown) {
-                                        isPasswordShown = false;
-                                      } else {
-                                        isPasswordShown = true;
-                                      }
-                                    });
-                                  },
-                                  icon: Icon(isPasswordShown
-                                      ? Icons.visibility
-                                      : Icons.visibility_off))
+                                onPressed: () {
+                                  setState(() {
+                                    if (isPasswordShown) {
+                                      isPasswordShown = false;
+                                    } else {
+                                      isPasswordShown = true;
+                                    }
+                                  });
+                                },
+                                icon: Icon(isPasswordShown
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                color: Colors.black.withOpacity(0.3),
+                              )
                             ],
                           )),
                       const Spacer(),

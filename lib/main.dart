@@ -15,7 +15,7 @@ void main() {
 
 // // Yeni bir flutter projesi oluşturalım, 
 // // Projemizin temel kurulumlarını yapalım.
-// Projemizde kullanılacak temel light-dark color paletini belirleyelim.
-// Projemizde varsa kullanacağımız farklı fontları projeye ekleyelim. ( Size kalmış bir durum isterseniz default fontla devam edin. Öneri: Tobeto'da kullanılan font premium, ona en yakın bulabildiğim font alternativi; https://fonts.google.com/specimen/Tinos)
+// // Projemizde kullanılacak temel light-dark color paletini belirleyelim.
+// // Projemizde varsa kullanacağımız farklı fontları projeye ekleyelim. ( Size kalmış bir durum isterseniz default fontla devam edin. Öneri: Tobeto'da kullanılan font premium, ona en yakın bulabildiğim font alternativi; https://fonts.google.com/specimen/Tinos)
 // Projenize güzel bir readme dosyası yazınız
-// Projenizde ilk olarak açılacak sayfayı (login) tasarlayınız; 
+// // Projenizde ilk olarak açılacak sayfayı (login) tasarlayınız; 
