@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,8 +12,21 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordShown = true;
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  late String assetImage;
+  late Color textColor;
+  late Color backgroundColor;
   @override
   Widget build(BuildContext context) {
+    var brightness = View.of(context).platformDispatcher.platformBrightness;
+    if (brightness == Brightness.dark) {
+      assetImage = 'assets/images/tobeto-logo.png';
+      textColor = Colors.white;
+      backgroundColor = Colors.black;
+    } else if (brightness == Brightness.light) {
+      assetImage = 'assets/images/tobeto-logo2.png';
+      textColor = Colors.black;
+      backgroundColor = Colors.white;
+    }
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(
@@ -27,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.white),
+                      color: Theme.of(context).colorScheme.background),
                   padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                   width: 500,
                   height: 350,
@@ -38,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30,
                       ),
                       Image.asset(
-                        'assets/images/tobeto-logo2.png',
+                        assetImage,
                         width: 150,
                       ),
                       const SizedBox(
@@ -46,8 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                           decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black.withOpacity(0.3)),
+                              border: Border.all(color: textColor),
                               borderRadius: BorderRadius.circular(8)),
                           height: 50,
                           child: Row(
@@ -57,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               Icon(
                                 Icons.person_2_outlined,
-                                color: Colors.black.withOpacity(0.3),
+                                color: textColor,
                               ),
                               const SizedBox(
                                 width: 5,
@@ -69,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Kullanıcı Adı",
                                       border: InputBorder.none,
                                       hintStyle: TextStyle(
-                                        color: Colors.black.withOpacity(0.3),
+                                        color: textColor.withOpacity(0.5),
                                       )),
                                 ),
                               )
@@ -80,8 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                           decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black.withOpacity(0.3)),
+                              border: Border.all(color: textColor),
                               borderRadius: BorderRadius.circular(8)),
                           height: 50,
                           child: Row(
@@ -91,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               Icon(
                                 Icons.lock_outline,
-                                color: Colors.black.withOpacity(0.3),
+                                color: textColor.withOpacity(0.5),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -104,8 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Şifre",
                                       border: InputBorder.none,
                                       hintStyle: TextStyle(
-                                          color:
-                                              Colors.black.withOpacity(0.3))),
+                                          color: textColor.withOpacity(0.5))),
                                 ),
                               ),
                               IconButton(
@@ -121,24 +132,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                 icon: Icon(isPasswordShown
                                     ? Icons.visibility
                                     : Icons.visibility_off),
-                                color: Colors.black.withOpacity(0.3),
+                                color: textColor.withOpacity(0.5),
                               )
                             ],
                           )),
                       const Spacer(),
                       ElevatedButton(
                           style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  Theme.of(context).primaryColor),
+                              backgroundColor:
+                                  MaterialStatePropertyAll(textColor),
                               shape: MaterialStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8))),
                               minimumSize: const MaterialStatePropertyAll(
                                   Size(300, 40))),
-                          onPressed: () {},
-                          child: const Text(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => HomeScreen()));
+                          },
+                          child: Text(
                             "GİRİŞ YAP",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: backgroundColor),
                           )),
                       const Spacer(),
                       const Divider(),
