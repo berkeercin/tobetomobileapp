@@ -1,9 +1,7 @@
-![Screenshot_1702926242](https://github.com/berkeercin/tobetomobileapp/assets/90865303/74d3bbbb-4c80-48f2-9526-816315a1bcd2)## Tobeto Mobil uygulama geliştirme
-
 Bu proje
-- [Ali Asker Turan] (https://www.github.com/aliaskerturan)
-- [Berke Erçin] (https://github.com/berkeercin)
-- [Tuğçe Kahya] (https://www.github.com/kahyatugce)
+- [Ali Asker Turan](https://www.github.com/aliaskerturan)
+- [Berke Erçin](https://github.com/berkeercin)
+- [Tuğçe Kahya](https://www.github.com/kahyatugce)
 kişileri tarafından sürdürülmektedir.
 
 # 12.12.2023 Tarihli Pair Görseli
