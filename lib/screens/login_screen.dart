@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
+import 'package:tobetomobileapp/widgets/tobeto_drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     darkLightTheme(context);
     return Scaffold(
+      drawer: TobetoDrawer(),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -170,15 +172,19 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void darkLightTheme(BuildContext context) {
-    var brightness = View.of(context).platformDispatcher.platformBrightness;
+    var brightness = MediaQuery.of(context).platformBrightness;
     if (brightness == Brightness.dark) {
-      assetImage = DarkThemeStyle().darkThemeImage;
-      textColor = DarkThemeStyle().darkTextColor;
-      backgroundColor = DarkThemeStyle().darkBackgroundColor;
+      setState(() {
+        assetImage = DarkThemeStyle().darkThemeImage;
+        textColor = DarkThemeStyle().darkTextColor;
+        backgroundColor = DarkThemeStyle().darkBackgroundColor;
+      });
     } else if (brightness == Brightness.light) {
-      assetImage = LightThemeStyle().lightThemeImage;
-      textColor = LightThemeStyle().lightTextColor;
-      backgroundColor = LightThemeStyle().lightBackgroundColor;
+      setState(() {
+        assetImage = LightThemeStyle().lightThemeImage;
+        textColor = LightThemeStyle().lightTextColor;
+        backgroundColor = LightThemeStyle().lightBackgroundColor;
+      });
     }
   }
 }
