@@ -49,64 +49,74 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget container1 = Padding(
     padding: const EdgeInsets.all(16.0),
-    child: Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text("İstanbul Kodluyor"), Text("Bilgilendirme")],
-                ),
-                Container(
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.green,
-                  ),
-                  child: Text("Kabul edildi"),
-                ),
-              ],
-            ),
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Icon(Icons.check),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    child: Container(
+      decoration: BoxDecoration(
+          border: Border(
+            left: BorderSide(color: Colors.green, width: 10),
+          ),
+          borderRadius: BorderRadius.circular(10)),
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "İstanbul Kodluyor Başvuru Formu",
-                    softWrap: true,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("İstanbul Kodluyor"),
+                      Text("Bilgilendirme")
+                    ],
                   ),
-                  Text(
-                    "onaylandı.",
+                  Container(
+                    height: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.green,
+                    ),
+                    child: Text("Kabul edildi"),
                   ),
                 ],
-              )
-            ]),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              ),
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Icon(Icons.check),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "İstanbul Kodluyor Belge Yükleme",
+                      "İstanbul Kodluyor Başvuru Formu",
                       softWrap: true,
                     ),
                     Text(
-                      "Formu onaylandı.",
-                      softWrap: true,
+                      "onaylandı.",
                     ),
                   ],
                 )
-              ],
-            ),
-          ],
+              ]),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(Icons.check),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "İstanbul Kodluyor Belge Yükleme",
+                        softWrap: true,
+                      ),
+                      Text(
+                        "Formu onaylandı.",
+                        softWrap: true,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     ),
