@@ -18,6 +18,7 @@ ColorScheme scheme2 = ColorScheme.fromSwatch(
 //     ColorScheme.fromSwatch(primarySwatch: MaterialColor(primary, swatch) );
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(
         useMaterial3: true, colorScheme: scheme, brightness: Brightness.light),
     darkTheme: ThemeData(

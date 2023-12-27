@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/constants/appBar_logo.dart';
+import 'package:tobetomobileapp/constants/text_const.dart';
+import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/widgets/gradiend_boxes.dart';
+import 'package:tobetomobileapp/widgets/swing.dart';
 import 'package:tobetomobileapp/widgets/tobeto_drawer.dart';
+import 'package:tobetomobileapp/widgets/toptext_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String user = "Kullanıcı";
   int selectedButton = 1;
   late Widget menu;
   late String assetImage;
@@ -48,17 +53,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget container1 = Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Container(
-      decoration: BoxDecoration(
-          border: Border(
-            left: BorderSide(color: Colors.green, width: 10),
+    padding: EdgeInsets.all(8),
+    child: Card(
+      elevation: 6,
+      child: ClipPath(
+        child: Container(
+          height: 150,
+          width: 350,
+          decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(color: TobetoColor().cardColor, width: 10),
+            ),
           ),
-          borderRadius: BorderRadius.circular(10)),
-      child: Card(
-        elevation: 5,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
@@ -67,22 +73,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: 5,
+                      ),
                       Text("İstanbul Kodluyor"),
                       Text("Bilgilendirme")
                     ],
                   ),
-                  Container(
-                    height: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.green,
-                    ),
-                    child: Text("Kabul edildi"),
-                  ),
+                  Card(
+                      elevation: 7,
+                      color: TobetoColor().cardColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topLeft: Radius.circular(10)),
+                          side: BorderSide(
+                              width: 5, color: TobetoColor().cardColor)),
+                      child: Text(
+                        " Kabul edildi. ",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                 ],
               ),
               Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Icon(Icons.check),
+                Icon(
+                  Icons.check,
+                  color: TobetoColor().cardColor,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -99,7 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check),
+                  Icon(
+                    Icons.check,
+                    color: TobetoColor().cardColor,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -118,6 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+        clipper: ShapeBorderClipper(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15))),
       ),
     ),
   );
@@ -239,54 +264,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
-        title: const Text("TOBETO Anasayfa"),
+        flexibleSpace: appBarLogo(),
       ),
+      drawer: const TobetoDrawer(),
+      floatingActionButton: swing_metod(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
             SizedBox(
-              height: 45,
+              height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "TOBETO",
-                  style: TextStyle(
-                    color: Colors.purpleAccent,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "'ya hoş geldin",
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              " $user",
-              style: TextStyle(
-                color: textColor,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
+            topTextWidget(textColor: textColor),
             SizedBox(
               height: 15,
             ),
@@ -295,81 +285,73 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: containerColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8,
-                  left: 16,
-                  right: 16,
-                  top: 8,
-                ),
-                child: Column(
-                  children: [
-                    Image(
-                      height: 200,
-                      width: 200,
-                      image: AssetImage(istanbulKodluyorImage),
+              child: Column(
+                children: [
+                  Image(
+                    height: 200,
+                    width: 200,
+                    image: AssetImage(istanbulKodluyorImage),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 32, right: 32),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Aradığın",
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            Text(
+                              " \"",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: TobetoColor().cardColor,
+                              ),
+                            ),
+                            Text(
+                              "İş",
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            Text(
+                              "\"",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: TobetoColor().cardColor,
+                              ),
+                            ),
+                            Text(
+                              " Burada",
+                              style: TextStyle(fontSize: 24),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            button("Başvurularım", 1),
+                            button("Eğitimlerim", 2),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            button("Duyuru ve Haberlerim", 3),
+                            button("Anketlerim", 4),
+                          ],
+                        ),
+                        menu,
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 32, right: 32),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Aradığın",
-                                style: TextStyle(fontSize: 24),
-                              ),
-                              Text(
-                                " \"",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              Text(
-                                "İş",
-                                style: TextStyle(fontSize: 24),
-                              ),
-                              Text(
-                                "\"",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              Text(
-                                " Burada",
-                                style: TextStyle(fontSize: 24),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              button("Başvurularım", 1),
-                              button("Eğitimlerim", 2),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              button("Duyuru ve Haberlerim", 3),
-                              button("Anketlerim", 4),
-                            ],
-                          ),
-                          menu,
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
@@ -400,7 +382,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                   "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
                               Spacer(),
-                              Icon(Icons.check_box)
+                              Icon(
+                                Icons.check_box,
+                                color: TobetoColor().iconColor,
+                              )
                             ],
                           ),
                           SizedBox(
@@ -414,9 +399,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Row(
                             children: [
-                              Icon(Icons.timer),
+                              Icon(
+                                Icons.timer_sharp,
+                                color: TobetoColor().logoTextColor,
+                              ),
                               Text(
-                                "45 Dakika",
+                                " 45 Dakika",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               )
                             ],
@@ -431,147 +419,70 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.purple, textColor],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomLeft),
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Profilini oluştur",
-                              style: TextStyle(
-                                  fontSize: 24, color: backgroundColor),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            FloatingActionButton(
-                              heroTag: Key("start1"),
-                              onPressed: () {},
-                              child: Text(
-                                "Başla",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
-                      ),
+
+            /************------GRADİEND -------****************** */
+            Column(
+              children: [
+                GradiendBoxes(
+                    boxText: Text(
+                      TobetoText().BoxText1,
+                      style: TextStyle(fontSize: 24, color: textColor),
+                      textAlign: TextAlign.center,
                     ),
-                  )
-                ],
-              ),
+                    boxButton: FloatingActionButton(
+                      backgroundColor: TobetoColor().boxButton,
+                      heroTag: Key("start1"),
+                      onPressed: () {},
+                      child: Text(TobetoText().BoxButtonText),
+                    ),
+                    boxColorBegin: TobetoColor().box1BeginColor,
+                    boxColorEnd: TobetoColor().box1EndColor),
+                //2
+                SizedBox(
+                  height: 10,
+                ),
+                GradiendBoxes(
+                    boxText: Text(
+                      TobetoText().BoxText2,
+                      style: TextStyle(fontSize: 24, color: backgroundColor),
+                      textAlign: TextAlign.center,
+                    ),
+                    boxButton: FloatingActionButton(
+                      backgroundColor: TobetoColor().boxButton,
+                      heroTag: Key("start2"),
+                      onPressed: () {},
+                      child: Text(TobetoText().BoxButtonText),
+                    ),
+                    boxColorBegin: TobetoColor().box2BeginColor,
+                    boxColorEnd: TobetoColor().box2EndColor),
+                //3
+                SizedBox(
+                  height: 10,
+                ),
+
+                GradiendBoxes(
+                    boxText: Text(
+                      TobetoText().BoxText3,
+                      style: TextStyle(fontSize: 24, color: backgroundColor),
+                      textAlign: TextAlign.center,
+                    ),
+                    boxButton: FloatingActionButton(
+                      backgroundColor: TobetoColor().boxButton,
+                      heroTag: Key("start3"),
+                      onPressed: () {},
+                      child: Text(TobetoText().BoxButtonText),
+                    ),
+                    boxColorBegin: TobetoColor().box3BeginColor,
+                    boxColorEnd: TobetoColor().box3EndColor),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
+            /************------GRADİEND -------****************** */
             Container(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.purple, textColor],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomLeft),
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Kendini değerlendir",
-                              style: TextStyle(
-                                  fontSize: 24, color: backgroundColor),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            FloatingActionButton(
-                              heroTag: Key("start2"),
-                              onPressed: () {},
-                              child: Text(
-                                "Başla",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.purple, textColor],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomLeft),
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Öğrenmeye başla",
-                              style: TextStyle(
-                                  fontSize: 24, color: backgroundColor),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            FloatingActionButton(
-                              heroTag: Key("start3"),
-                              onPressed: () {},
-                              child: Text(
-                                "Başla",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
                   Container(
                     color: Colors.purple,
                     child: Column(children: [
@@ -584,8 +495,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image(
                                   image: AssetImage(assetImage),
-                                  height: 150,
-                                  width: 150,
+                                  height: 100,
+                                  width: 100,
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -617,7 +528,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      drawer: const TobetoDrawer(),
     );
   }
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:tobetomobileapp/constants/text_const.dart';
+import 'package:tobetomobileapp/constants/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
-import 'package:tobetomobileapp/screens/test_screen.dart';
+import 'package:tobetomobileapp/theme/dark_light_theme.dart';
+import 'package:tobetomobileapp/widgets/swing.dart';
 import 'package:tobetomobileapp/widgets/tobeto_drawer.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,13 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late String assetImage;
   late Color textColor;
   late Color backgroundColor;
-  final String userHintText = "Kullanıcı Adı";
-  final String passwordHintText = "Şifre";
-  final String buttonText = "GİRİŞ YAP";
-  Text parolamiUnuttum = Text(
-    "Parolamı unuttum",
-    style: TextStyle(color: Colors.blue),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: TextField(
                                 controller: usernameController,
                                 decoration: InputDecoration(
-                                    hintText: userHintText,
+                                    hintText: TobetoText().userHintText,
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(
                                       color: textColor.withOpacity(0.5),
@@ -113,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: passwordController,
                                 obscureText: isPasswordShown,
                                 decoration: InputDecoration(
-                                    hintText: passwordHintText,
+                                    hintText: TobetoText().passwordHintText,
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(
                                         color: textColor.withOpacity(0.5))),
@@ -153,14 +150,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   builder: (ctx) => HomeScreen()));
                         },
                         child: Text(
-                          buttonText,
+                          TobetoText().buttonText,
                           style: TextStyle(color: backgroundColor),
                         )),
                     const Spacer(),
-                    const Divider(),
+                    Divider(color: textColor.withOpacity(.3)),
                     TextButton(
                       onPressed: () {},
-                      child: parolamiUnuttum,
+                      child: TobetoText().parolamiUnuttum,
                     ),
                   ],
                 ),
@@ -169,6 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+      floatingActionButton: swing_metod(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -196,41 +195,8 @@ class MyImages {
   final projectBackground = "assets/images/background.jpg";
 }
 
-class LightThemeStyle {
-  final lightTextColor = Colors.black;
-  final lightThemeImage = MyImages().lightThemeLogo;
-  final lightBackgroundColor = Colors.white;
-}
-
-class DarkThemeStyle {
-  final darkTextColor = Colors.white;
-  final darkThemeImage = MyImages().darkThemeLogo;
-  final darkBackgroundColor = Colors.black;
-}
-
 class MyTextFields extends TextField {
   final Icon icons; //icons iste
 
   MyTextFields(this.icons);
-}
-
-class MyIcons extends StatelessWidget {
-  final Color color;
-  final Icon icon;
-  MyIcons({super.key, required this.color, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      icon.icon,
-      color: color.withOpacity(0.5),
-    );
-  }
-}
-
-class MyIconsName {
-  final userNameIcon = Icon(Icons.person_2_outlined);
-  final passwordIcon = Icon(Icons.lock_outline);
-  final passVisibilityIcon = Icon(Icons.visibility);
-  final passVisibilityOffIcon = Icon(Icons.visibility_off);
 }
