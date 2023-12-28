@@ -74,7 +74,7 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
               Icons.chat,
               color: Colors.white,
             ),
-            backgroundColor: Colors.green)
+            backgroundColor: TobetoColor().cardColor)
       ],
       child: const Icon(Icons.chat_bubble_rounded),
     ));
@@ -114,7 +114,7 @@ class FABwithoutAnimation extends StatelessWidget {
               Icons.chat,
               color: Colors.white,
             ),
-            backgroundColor: Colors.green)
+            backgroundColor: TobetoColor().cardColor)
       ],
       child: const Icon(Icons.chat_bubble_rounded),
     );
