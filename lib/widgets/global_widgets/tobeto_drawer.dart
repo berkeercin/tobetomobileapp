@@ -8,10 +8,10 @@ class TobetoDrawer extends StatefulWidget {
 }
 
 class _TobetoDrawerState extends State<TobetoDrawer> {
-  @override
   bool isBorderOpen = false;
 
   Color border = Colors.grey.withOpacity(0.3);
+  @override
   Widget build(BuildContext context) {
     var brightness = View.of(context).platformDispatcher.platformBrightness;
     late String assetImage;
@@ -51,7 +51,9 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                 ),
               ),
               IconButton(
-                  onPressed: () {}, icon: Icon(Icons.close), iconSize: 32),
+                  onPressed: () {},
+                  icon: const Icon(Icons.close),
+                  iconSize: 32),
             ],
           ),
           Padding(
@@ -89,7 +91,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       "Takvim",
                       style: drawerStyle,
                     )),
-                Divider(),
+                const Divider(),
                 TextButton(
                   onPressed: () {},
                   child: Row(
@@ -131,8 +133,8 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                           border: Border.all(color: border, width: 2.0),
                           borderRadius: BorderRadius.circular(16)),
                       width: 250,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [Text("İsim Soyisim"), Icon(Icons.person)],

@@ -39,12 +39,12 @@ class GradientBoxes extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               child: boxButton,
               width: double.infinity,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             )
           ],

@@ -3,13 +3,11 @@ import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/text_const.dart';
 import 'package:tobetomobileapp/constants/tobeto_colors.dart';
 import 'package:tobetomobileapp/widgets/homepage/buttons.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 import 'package:tobetomobileapp/widgets/homepage/gradient_boxes.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/egitimlerim.dart';
 import 'package:tobetomobileapp/widgets/homepage/toptext_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -53,12 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
       containerColor = backgroundColor;
     }
 
-    // Initialize the menu with the first container
-    menu = Basvurularim();
+    menu = const Basvurularim();
   }
 
-  void updateMenu(Widget newMenu) {
+  void updateMenu(Widget newMenu, int id) {
     setState(() {
+      selectedButton = id;
       menu = newMenu;
     });
   }
@@ -72,17 +70,17 @@ class _HomeScreenState extends State<HomeScreen> {
         flexibleSpace: appBarLogo(brightness: brightness),
       ),
       drawer: const TobetoDrawer(),
-      floatingActionButton: swing_method(),
+      floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             topTextWidget(textColor: textColor),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
@@ -101,18 +99,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(left: 32, right: 32),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 18),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Aradığın",
                               style: TextStyle(fontSize: 24),
                             ),
@@ -123,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: tobetoColor.cardColor,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "İş",
                               style: TextStyle(fontSize: 24),
                             ),
@@ -134,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: tobetoColor.cardColor,
                               ),
                             ),
-                            Text(
+                            const Text(
                               " Burada",
                               style: TextStyle(fontSize: 24),
                             )
@@ -147,9 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               buttonId: 1,
                               textColor: textColor,
                               selectedButton: selectedButton,
-                              menu: menu,
-                              onPressed: (newWidget) {
-                                updateMenu(newWidget);
+                              onPressed: (newWidget, number) {
+                                updateMenu(newWidget, number);
                               },
                             ),
                             ButtonCreator(
@@ -157,9 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               buttonId: 2,
                               textColor: textColor,
                               selectedButton: selectedButton,
-                              menu: menu,
-                              onPressed: (newWidget) {
-                                updateMenu(newWidget);
+                              onPressed: (newWidget, number) {
+                                updateMenu(newWidget, number);
                               },
                             )
                           ],
@@ -171,9 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               buttonId: 3,
                               textColor: textColor,
                               selectedButton: selectedButton,
-                              menu: menu,
-                              onPressed: (newWidget) {
-                                updateMenu(newWidget);
+                              onPressed: (newWidget, number) {
+                                updateMenu(newWidget, number);
                               },
                             ),
                             ButtonCreator(
@@ -181,9 +176,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               buttonId: 4,
                               textColor: textColor,
                               selectedButton: selectedButton,
-                              menu: menu,
-                              onPressed: (newWidget) {
-                                updateMenu(newWidget);
+                              onPressed: (newWidget, number) {
+                                updateMenu(newWidget, number);
                               },
                             )
                           ],
@@ -195,14 +189,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               color: containerColor,
               width: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
@@ -213,47 +207,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Sınavlarım"),
+                    const Text("Sınavlarım"),
                     Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                  "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
-                              Spacer(),
-                              Icon(
-                                Icons.check_box,
-                                color: tobetoColor.iconColor,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Herkes için Kodlama - 1D",
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.timer_sharp,
-                                color: tobetoColor.logoTextColor,
-                              ),
-                              Text(
-                                " 45 Dakika",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                    "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
+                                const Spacer(),
+                                Icon(
+                                  Icons.check_box,
+                                  color: tobetoColor.iconColor,
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              "Herkes için Kodlama - 1D",
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.timer_sharp,
+                                  color: tobetoColor.logoTextColor,
+                                ),
+                                const Text(
+                                  " 45 Dakika",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -270,48 +267,51 @@ class _HomeScreenState extends State<HomeScreen> {
                   verticalDirection: VerticalDirection.up,
                   children: [
                     GradientBoxes(
-                        text: TobetoText().BoxText1,
-                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        text: TobetoText().boxText1,
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.boxButton,
-                          heroTag: Key("start1"),
+                          heroTag: const Key("start1"),
                           onPressed: () {},
-                          child: Text(TobetoText().BoxButtonText),
+                          child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box1BeginColor,
                         boxColorEnd: tobetoColor.box1EndColor),
                     //2
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     GradientBoxes(
-                        text: TobetoText().BoxText2,
-                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        text: TobetoText().boxText2,
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.boxButton,
-                          heroTag: Key("start2"),
+                          heroTag: const Key("start2"),
                           onPressed: () {},
-                          child: Text(TobetoText().BoxButtonText),
+                          child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box2BeginColor,
                         boxColorEnd: tobetoColor.box2EndColor),
                     //3
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
 
                     GradientBoxes(
-                        text: TobetoText().BoxText3,
-                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        text: TobetoText().boxText3,
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.boxButton,
-                          heroTag: Key("start3"),
+                          heroTag: const Key("start3"),
                           onPressed: () {},
-                          child: Text(TobetoText().BoxButtonText),
+                          child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box3BeginColor,
                         boxColorEnd: tobetoColor.box3EndColor),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                   ],
@@ -319,49 +319,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             /************------GRADİENT -------****************** */
-            Container(
-              child: Column(
-                children: [
-                  Container(
-                    height: 150,
-                    color: tobetoColor.logoTextColor,
-                    child: Column(children: [
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image(
-                                image: AssetImage(assetImage),
-                                height: 100,
-                                width: 100,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: backgroundColor,
-                                    borderRadius: BorderRadius.circular(16)),
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text("Bize Ulaşın",
-                                      style: TextStyle(color: textColor)),
-                                ),
-                              )
-                            ],
-                          ),
-                          Text("© 2022 Tobeto",
-                              style: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
-                                  fontSize: 18)),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      )
-                    ]),
-                  ),
-                ],
-              ),
-            ),
+            TobetoFooter(
+              assetImage: assetImage,
+              backgroundColor: backgroundColor,
+              textColor: textColor,
+            )
           ],
         ),
       ),

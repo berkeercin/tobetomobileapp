@@ -5,30 +5,28 @@ import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/egitimlerim.dart';
 
 class ButtonCreator extends StatefulWidget {
-  ButtonCreator(
+  const ButtonCreator(
       {Key? key,
       required this.name,
       required this.buttonId,
       required this.textColor,
       required this.selectedButton,
-      required this.menu,
       required this.onPressed})
       : super(key: key);
   final String name;
   final int buttonId;
   final Color textColor;
   final int selectedButton;
-  final void Function(Widget newWidget) onPressed;
-  Widget menu;
+  final void Function(Widget newWidget, int number) onPressed;
   @override
   State<ButtonCreator> createState() => _ButtonCreatorState();
 }
 
 class _ButtonCreatorState extends State<ButtonCreator> {
-  Widget container1 = Basvurularim();
-  Widget container2 = Egitimlerim();
-  Widget container3 = Duyurular();
-  Widget container4 = Anketlerim();
+  Widget container1 = const Basvurularim();
+  Widget container2 = const Egitimlerim();
+  Widget container3 = const Duyurular();
+  Widget container4 = const Anketlerim();
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +39,16 @@ class _ButtonCreatorState extends State<ButtonCreator> {
           onPressed: () {
             setState(() {
               selectedButton = widget.buttonId;
-              print(selectedButton);
               if (selectedButton == 1) {
-                widget.onPressed(Basvurularim());
+                widget.onPressed(const Basvurularim(), selectedButton);
               } else if (selectedButton == 2) {
-                widget.onPressed(Egitimlerim());
+                widget.onPressed(const Egitimlerim(), selectedButton);
               } else if (selectedButton == 3) {
-                widget.onPressed(Duyurular());
+                widget.onPressed(const Duyurular(), selectedButton);
               } else if (selectedButton == 4) {
-                widget.onPressed(Anketlerim());
+                widget.onPressed(const Anketlerim(), selectedButton);
               } else {
-                widget.onPressed(Container());
+                widget.onPressed(Container(), 1);
               }
             });
           },

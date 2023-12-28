@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     darkLightTheme(context);
     return Scaffold(
-      drawer: TobetoDrawer(),
+      drawer: const TobetoDrawer(),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (ctx) => HomeScreen()));
+                                  builder: (ctx) => const HomeScreen()));
                         },
                         child: Text(
                           TobetoText().buttonText,
@@ -165,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      floatingActionButton: swing_method(),
+      floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -197,5 +197,5 @@ class MyImages {
 class MyTextFields extends TextField {
   final Icon icons; //icons iste
 
-  MyTextFields(this.icons);
+  const MyTextFields(this.icons, {super.key});
 }
