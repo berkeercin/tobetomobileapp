@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/appBar_logo.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/text_const.dart';
 import 'package:tobetomobileapp/constants/tobeto_colors.dart';
-import 'package:tobetomobileapp/widgets/gradiend_boxes.dart';
-import 'package:tobetomobileapp/widgets/swing.dart';
-import 'package:tobetomobileapp/widgets/tobeto_drawer.dart';
-import 'package:tobetomobileapp/widgets/toptext_widget.dart';
+import 'package:tobetomobileapp/widgets/homepage/buttons.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
+import 'package:tobetomobileapp/widgets/homepage/gradient_boxes.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/egitimlerim.dart';
+import 'package:tobetomobileapp/widgets/homepage/toptext_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedButton = 1;
   late Widget menu;
   late String assetImage;
+  late Brightness brightness;
   Color textColor = Colors.white;
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
   late String istanbulKodluyorImage;
-
   @override
   void initState() {
     super.initState();
@@ -32,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // Access context-dependent values or do context-dependent initialization here
-    var brightness = MediaQuery.of(context).platformBrightness;
+    brightness = MediaQuery.of(context).platformBrightness;
 
     if (brightness == Brightness.dark) {
       assetImage = 'assets/images/tobeto-logo.png';
@@ -49,225 +54,25 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     // Initialize the menu with the first container
-    menu = container1;
+    menu = Basvurularim();
   }
 
-  Widget container1 = Padding(
-    padding: EdgeInsets.all(8),
-    child: Card(
-      elevation: 6,
-      child: ClipPath(
-        child: Container(
-          height: 150,
-          width: 350,
-          decoration: BoxDecoration(
-            border: Border(
-              left: BorderSide(color: TobetoColor().cardColor, width: 10),
-            ),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("İstanbul Kodluyor"),
-                      Text("Bilgilendirme")
-                    ],
-                  ),
-                  Card(
-                      elevation: 7,
-                      color: TobetoColor().cardColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              topLeft: Radius.circular(10)),
-                          side: BorderSide(
-                              width: 5, color: TobetoColor().cardColor)),
-                      child: Text(
-                        " Kabul edildi. ",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      )),
-                ],
-              ),
-              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Icon(
-                  Icons.check,
-                  color: TobetoColor().cardColor,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "İstanbul Kodluyor Başvuru Formu",
-                      softWrap: true,
-                    ),
-                    Text(
-                      "onaylandı.",
-                    ),
-                  ],
-                )
-              ]),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.check,
-                    color: TobetoColor().cardColor,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "İstanbul Kodluyor Belge Yükleme",
-                        softWrap: true,
-                      ),
-                      Text(
-                        "Formu onaylandı.",
-                        softWrap: true,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-        clipper: ShapeBorderClipper(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15))),
-      ),
-    ),
-  );
-
-  Widget container2 = Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Card(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text("Eğitimlerim"),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.green,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
-
-  Widget container3 = Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text("Duyuru ve Haberlerim"),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.green,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
-
-  Widget container4 = Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text("Anketlerim"),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.green,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
-
-  Widget buildMenu(int id) {
-    if (id == 1) {
-      return container1;
-    } else if (id == 2) {
-      return container2;
-    } else if (id == 3) {
-      return container3;
-    } else if (id == 4) {
-      return container4;
-    } else {
-      return Container();
-    }
-  }
-
-  Widget button(String name, int buttonId) {
-    Color notSelectedTextColor = textColor.withOpacity(0.3);
-    Color selectedTextColor = textColor;
-
-    return Column(
-      children: [
-        TextButton(
-          onPressed: () {
-            setState(() {
-              selectedButton = buttonId;
-              print(selectedButton);
-              menu = buildMenu(selectedButton);
-            });
-          },
-          child: Text(
-            name,
-            style: TextStyle(
-              color: (selectedButton == buttonId)
-                  ? selectedTextColor
-                  : notSelectedTextColor,
-            ),
-          ),
-        ),
-        if (selectedButton == buttonId)
-          SizedBox(
-            height: 1,
-            width: 120,
-            child: Container(
-              color: textColor,
-            ),
-          ),
-      ],
-    );
+  void updateMenu(Widget newMenu) {
+    setState(() {
+      menu = newMenu;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    TobetoColor tobetoColor = TobetoColor();
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
-        flexibleSpace: appBarLogo(),
+        flexibleSpace: appBarLogo(brightness: brightness),
       ),
       drawer: const TobetoDrawer(),
-      floatingActionButton: swing_metod(),
+      floatingActionButton: swing_method(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -315,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               " \"",
                               style: TextStyle(
                                 fontSize: 24,
-                                color: TobetoColor().cardColor,
+                                color: tobetoColor.cardColor,
                               ),
                             ),
                             Text(
@@ -326,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               "\"",
                               style: TextStyle(
                                 fontSize: 24,
-                                color: TobetoColor().cardColor,
+                                color: tobetoColor.cardColor,
                               ),
                             ),
                             Text(
@@ -337,14 +142,50 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Row(
                           children: [
-                            button("Başvurularım", 1),
-                            button("Eğitimlerim", 2),
+                            ButtonCreator(
+                              name: "Başvurularım",
+                              buttonId: 1,
+                              textColor: textColor,
+                              selectedButton: selectedButton,
+                              menu: menu,
+                              onPressed: (newWidget) {
+                                updateMenu(newWidget);
+                              },
+                            ),
+                            ButtonCreator(
+                              name: "Eğitimlerim",
+                              buttonId: 2,
+                              textColor: textColor,
+                              selectedButton: selectedButton,
+                              menu: menu,
+                              onPressed: (newWidget) {
+                                updateMenu(newWidget);
+                              },
+                            )
                           ],
                         ),
                         Row(
                           children: [
-                            button("Duyuru ve Haberlerim", 3),
-                            button("Anketlerim", 4),
+                            ButtonCreator(
+                              name: "Duyuru ve Haberlerim",
+                              buttonId: 3,
+                              textColor: textColor,
+                              selectedButton: selectedButton,
+                              menu: menu,
+                              onPressed: (newWidget) {
+                                updateMenu(newWidget);
+                              },
+                            ),
+                            ButtonCreator(
+                              name: "Anketlerim",
+                              buttonId: 4,
+                              textColor: textColor,
+                              selectedButton: selectedButton,
+                              menu: menu,
+                              onPressed: (newWidget) {
+                                updateMenu(newWidget);
+                              },
+                            )
                           ],
                         ),
                         menu,
@@ -384,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Spacer(),
                               Icon(
                                 Icons.check_box,
-                                color: TobetoColor().iconColor,
+                                color: tobetoColor.iconColor,
                               )
                             ],
                           ),
@@ -401,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Icon(
                                 Icons.timer_sharp,
-                                color: TobetoColor().logoTextColor,
+                                color: tobetoColor.logoTextColor,
                               ),
                               Text(
                                 " 45 Dakika",
@@ -421,104 +262,100 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             /************------GRADİEND -------****************** */
-            Column(
-              children: [
-                GradiendBoxes(
-                    boxText: Text(
-                      TobetoText().BoxText1,
-                      style: TextStyle(fontSize: 24, color: textColor),
-                      textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  verticalDirection: VerticalDirection.up,
+                  children: [
+                    GradientBoxes(
+                        text: TobetoText().BoxText1,
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        boxButton: FloatingActionButton(
+                          backgroundColor: tobetoColor.boxButton,
+                          heroTag: Key("start1"),
+                          onPressed: () {},
+                          child: Text(TobetoText().BoxButtonText),
+                        ),
+                        boxColorBegin: tobetoColor.box1BeginColor,
+                        boxColorEnd: tobetoColor.box1EndColor),
+                    //2
+                    SizedBox(
+                      width: 10,
                     ),
-                    boxButton: FloatingActionButton(
-                      backgroundColor: TobetoColor().boxButton,
-                      heroTag: Key("start1"),
-                      onPressed: () {},
-                      child: Text(TobetoText().BoxButtonText),
+                    GradientBoxes(
+                        text: TobetoText().BoxText2,
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        boxButton: FloatingActionButton(
+                          backgroundColor: tobetoColor.boxButton,
+                          heroTag: Key("start2"),
+                          onPressed: () {},
+                          child: Text(TobetoText().BoxButtonText),
+                        ),
+                        boxColorBegin: tobetoColor.box2BeginColor,
+                        boxColorEnd: tobetoColor.box2EndColor),
+                    //3
+                    SizedBox(
+                      width: 10,
                     ),
-                    boxColorBegin: TobetoColor().box1BeginColor,
-                    boxColorEnd: TobetoColor().box1EndColor),
-                //2
-                SizedBox(
-                  height: 10,
-                ),
-                GradiendBoxes(
-                    boxText: Text(
-                      TobetoText().BoxText2,
-                      style: TextStyle(fontSize: 24, color: backgroundColor),
-                      textAlign: TextAlign.center,
-                    ),
-                    boxButton: FloatingActionButton(
-                      backgroundColor: TobetoColor().boxButton,
-                      heroTag: Key("start2"),
-                      onPressed: () {},
-                      child: Text(TobetoText().BoxButtonText),
-                    ),
-                    boxColorBegin: TobetoColor().box2BeginColor,
-                    boxColorEnd: TobetoColor().box2EndColor),
-                //3
-                SizedBox(
-                  height: 10,
-                ),
 
-                GradiendBoxes(
-                    boxText: Text(
-                      TobetoText().BoxText3,
-                      style: TextStyle(fontSize: 24, color: backgroundColor),
-                      textAlign: TextAlign.center,
+                    GradientBoxes(
+                        text: TobetoText().BoxText3,
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        boxButton: FloatingActionButton(
+                          backgroundColor: tobetoColor.boxButton,
+                          heroTag: Key("start3"),
+                          onPressed: () {},
+                          child: Text(TobetoText().BoxButtonText),
+                        ),
+                        boxColorBegin: tobetoColor.box3BeginColor,
+                        boxColorEnd: tobetoColor.box3EndColor),
+                    SizedBox(
+                      width: 10,
                     ),
-                    boxButton: FloatingActionButton(
-                      backgroundColor: TobetoColor().boxButton,
-                      heroTag: Key("start3"),
-                      onPressed: () {},
-                      child: Text(TobetoText().BoxButtonText),
-                    ),
-                    boxColorBegin: TobetoColor().box3BeginColor,
-                    boxColorEnd: TobetoColor().box3EndColor),
-                SizedBox(
-                  height: 10,
+                  ],
                 ),
-              ],
+              ),
             ),
-            /************------GRADİEND -------****************** */
+            /************------GRADİENT -------****************** */
             Container(
               child: Column(
                 children: [
                   Container(
-                    color: Colors.purple,
+                    height: 150,
+                    color: tobetoColor.logoTextColor,
                     child: Column(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Image(
-                                  image: AssetImage(assetImage),
-                                  height: 100,
-                                  width: 100,
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image(
+                                image: AssetImage(assetImage),
+                                height: 100,
+                                width: 100,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: backgroundColor,
+                                    borderRadius: BorderRadius.circular(16)),
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text("Bize Ulaşın",
+                                      style: TextStyle(color: textColor)),
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: backgroundColor,
-                                      borderRadius: BorderRadius.circular(16)),
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: Text("Bize Ulaşın",
-                                        style: TextStyle(color: textColor)),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Text("© 2022 Tobeto",
-                                style: TextStyle(
-                                    color: backgroundColor.withOpacity(0.5),
-                                    fontSize: 18)),
-                            SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
+                              )
+                            ],
+                          ),
+                          Text("© 2022 Tobeto",
+                              style: TextStyle(
+                                  color: Colors.white.withOpacity(0.5),
+                                  fontSize: 18)),
+                          SizedBox(
+                            height: 15,
+                          )
+                        ],
                       )
                     ]),
                   ),

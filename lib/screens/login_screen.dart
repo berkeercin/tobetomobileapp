@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:tobetomobileapp/constants/text_const.dart';
 import 'package:tobetomobileapp/constants/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/theme/dark_light_theme.dart';
-import 'package:tobetomobileapp/widgets/swing.dart';
-import 'package:tobetomobileapp/widgets/tobeto_drawer.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -166,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      floatingActionButton: swing_metod(),
+      floatingActionButton: swing_method(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }

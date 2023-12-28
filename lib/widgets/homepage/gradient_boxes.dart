@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-class GradiendBoxes extends StatelessWidget {
-  const GradiendBoxes(
+class GradientBoxes extends StatelessWidget {
+  const GradientBoxes(
       {super.key,
-      required this.boxText,
+      required this.text,
+      required this.style,
       required this.boxButton,
       required this.boxColorBegin,
       required this.boxColorEnd});
-  final Text boxText;
   final FloatingActionButton boxButton;
   final Color boxColorBegin;
   final Color boxColorEnd;
-
+  final String text;
+  final TextStyle style;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +31,14 @@ class GradiendBoxes extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            boxText,
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Text(
+                text,
+                style: style,
+                textAlign: TextAlign.center,
+              ),
+            ),
             Spacer(),
             SizedBox(
               child: boxButton,
