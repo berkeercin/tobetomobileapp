@@ -1,28 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/model/video.dart';
 
 class Egitimlerim extends StatelessWidget {
-  const Egitimlerim({Key? key}) : super(key: key);
-
+  const Egitimlerim({Key? key, required this.videoList}) : super(key: key);
+  final List<Video> videoList;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Card(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text("Eğitimlerim"),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.green,
+    return SizedBox(
+      height: 350,
+      width: 400,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: videoList.length + 1,
+        itemBuilder: ((context, index) {
+          if (index > videoList.length - 1) {
+            return InkWell(
+              onTap: () {},
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_circle_right_sharp,
+                    color: TobetoColor().cardColor,
+                    size: 50,
+                  ),
+                  Text("Daha Fazla Göster")
+                ],
+              ),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {},
+                child: Card(
+                  elevation: 20,
+                  child: Container(
+                    height: 250,
+                    width: 350,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: ClipPath(
+                            clipper: ShapeBorderClipper(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            child: Image.network(
+                              videoList[index].videoThumbnail,
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                videoList[index].videoName,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(videoList[index].videoDate.toString()),
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+                        FloatingActionButton.small(
+                          heroTag: Key("${videoList[index].videoId}"),
+                          onPressed: () {},
+                          child: Text("Eğitime Git"),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            );
+          }
+        }),
       ),
     );
   }

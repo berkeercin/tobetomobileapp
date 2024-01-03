@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/dummydata/video_list.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
@@ -24,7 +25,9 @@ class ButtonCreator extends StatefulWidget {
 
 class _ButtonCreatorState extends State<ButtonCreator> {
   Widget container1 = const Basvurularim();
-  Widget container2 = const Egitimlerim();
+  Widget container2 = Egitimlerim(
+    videoList: [...videoList],
+  );
   Widget container3 = const Duyurular();
   Widget container4 = const Anketlerim();
 
@@ -42,7 +45,11 @@ class _ButtonCreatorState extends State<ButtonCreator> {
               if (selectedButton == 1) {
                 widget.onPressed(const Basvurularim(), selectedButton);
               } else if (selectedButton == 2) {
-                widget.onPressed(const Egitimlerim(), selectedButton);
+                widget.onPressed(
+                    Egitimlerim(
+                      videoList: [...videoList],
+                    ),
+                    selectedButton);
               } else if (selectedButton == 3) {
                 widget.onPressed(const Duyurular(), selectedButton);
               } else if (selectedButton == 4) {
