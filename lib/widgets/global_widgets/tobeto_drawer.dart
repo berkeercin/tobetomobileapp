@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/screens/profile_screen.dart';
+import 'package:tobetomobileapp/screens/reviews_screen.dart';
 
 class TobetoDrawer extends StatefulWidget {
   const TobetoDrawer({Key? key}) : super(key: key);
@@ -51,7 +53,11 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                 ),
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pop(context, true);
+                    });
+                  },
                   icon: const Icon(Icons.close),
                   iconSize: 32),
             ],
@@ -68,17 +74,32 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       style: drawerStyle,
                     )),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Navigator.push(
+                            (context),
+                            MaterialPageRoute(
+                                builder: (context) => ReviewsScreen()));
+                      });
+                    },
                     child: Text(
                       "Değerlendirmeler",
                       style: drawerStyle,
                     )),
                 TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Profilim",
-                      style: drawerStyle,
-                    )),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileScreen()));
+                    });
+                  },
+                  child: Text(
+                    "Profilim",
+                    style: drawerStyle,
+                  ),
+                ),
                 TextButton(
                     onPressed: () {},
                     child: Text(

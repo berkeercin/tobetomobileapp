@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/screens/profile_screen.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/text_const.dart';
 import 'package:tobetomobileapp/constants/tobeto_colors.dart';
@@ -273,7 +274,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.boxButton,
                           heroTag: const Key("start1"),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileScreen()));
+                          },
                           child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box1BeginColor,
