@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/profile_drop_city.dart';
 
 class CityDropDown extends StatefulWidget {
@@ -25,7 +25,9 @@ class _CityDropDownState extends State<CityDropDown> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(style: BorderStyle.solid, color: Colors.black38)),
-      child: DropdownButton<String>(
+      child: DropdownButton<String>(  underline: Container(
+          color: Colors.transparent,
+        ),
         value: secilenSehir,
         items: sehirler.map<DropdownMenuItem<String>>((String city) {
           return DropdownMenuItem<String>(

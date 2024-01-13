@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/socialmedia.dart';
 
 class SocialDropDown extends StatefulWidget {
@@ -26,6 +26,9 @@ class _SocialDropDownState extends State<SocialDropDown> {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(style: BorderStyle.solid, color: Colors.black38)),
       child: DropdownButton<String>(
+        underline: Container(
+          color: Colors.transparent,
+        ),
         value: secilenMedia,
         items: media.map<DropdownMenuItem<String>>((String media1) {
           return DropdownMenuItem<String>(

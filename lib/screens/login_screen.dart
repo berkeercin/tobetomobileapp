@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/text_const.dart';
-import 'package:tobetomobileapp/constants/tobeto_icons.dart';
+import 'package:tobetomobileapp/constants/global/text_const.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/theme/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
 class TobetoFooter extends StatelessWidget {
   const TobetoFooter(
@@ -29,7 +29,7 @@ class TobetoFooter extends StatelessWidget {
                       Image(
                         image: AssetImage(assetImage),
                         height: 100,
-                        width: 100,
+                        width: 125,
                       ),
                       Container(
                         decoration: BoxDecoration(

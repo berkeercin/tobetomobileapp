@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
+import 'package:tobetomobileapp/screens/home_screen.dart';
+import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:tobetomobileapp/screens/profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 
@@ -42,7 +45,12 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    Navigator.push((context),
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  });
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 24),
                   child: Image(
@@ -68,7 +76,15 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),
+                            ));
+                      });
+                    },
                     child: Text(
                       "Anasayfa",
                       style: drawerStyle,
@@ -146,25 +162,48 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
               });
             },
             child: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: border, width: 2.0),
-                          borderRadius: BorderRadius.circular(16)),
-                      width: 250,
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text("İsim Soyisim"), Icon(Icons.person)],
-                        ),
-                      )),
-                )),
+                padding: const EdgeInsets.only(left: 16, bottom: 20),
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: border, width: 2.0),
+                        borderRadius: BorderRadius.circular(8)),
+                    width: 250,
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [Text("İsim Soyisim"), Icon(Icons.person)],
+                      ),
+                    ))),
           ),
+          const Divider(),
           Padding(
-            padding: const EdgeInsets.only(top: 12, left: 24),
+            padding: const EdgeInsets.only(left: 20, top: 20),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(250, 20),
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: color.cardColor),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              onPressed: () {
+                setState(() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ));
+                });
+              },
+              child: Text("Çıkış Yap",
+                  style: TextStyle(color: color.logoTextColor)),
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(25),
             child: Text("© 2022 Tobeto",
                 style: TextStyle(color: textColor.withOpacity(0.5))),
           )

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
+import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
+import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
+import 'package:tobetomobileapp/widgets/reviews_page/reviews_boxes_5.dart';
+import 'package:tobetomobileapp/widgets/reviews_page/reviews_boxes_buttons.dart';
 
 class ReviewsScreen extends StatefulWidget {
   const ReviewsScreen({Key? key}) : super(key: key);
@@ -37,9 +41,10 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double phoneWidth = MediaQuery.of(context).size.width;
-
-    final colorTab = TobetoColor();
+    final reviewText = ReviewsText();
+    var sizedBox = SizedBox(
+      height: 25,
+    );
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
@@ -48,36 +53,73 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 25,
-          ),
-          Center(
-            widthFactor: phoneWidth,
-            child: RichText(
-              text: TextSpan(
-                text: "Yetkinliklerini ",
-                style: TextStyle(color: colorTab.logoTextColor, fontSize: 25),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: " ücretsiz ölç,\n",
-                    style: TextStyle(color: textColor),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            sizedBox,
+            Container(
+                // width: 200,
+                child: Column(
+              children: [
+                reviewText.topText1,
+                reviewText.topText2,
+                reviewText.topText3,
+                reviewText.topText4,
+              ],
+            )),
+            sizedBox,
+            // Box1(reviewText: reviewText, colorTab: colorTab),
+            ReviewsBoxesButtons(
+              baslik: reviewText.box1Baslik,
+              metin: reviewText.box1Metin,
+              reviewButton: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: color.cardColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
-                  TextSpan(
-                    text: "bilgilerini ",
-                    style: TextStyle(color: colorTab.logoTextColor),
-                  ),
-                  TextSpan(
-                    text: " test et.\n",
-                    style: TextStyle(color: textColor),
-                  )
-                ],
-              ),
+                  onPressed: () {
+                    BoxesAlert(
+                      errorMes: "Rapor Görüntülemek İçin Sınava Girmelisiniz.",
+                    ).errormessage(context);
+                  },
+                  child: reviewText.boxbutton1),
             ),
-          ),
-        
-        ],
+            sizedBox,
+            ReviewsBoxesButtons(
+                baslik: reviewText.box2Baslik, metin: reviewText.box2Metin),
+            sizedBox,
+            ReviewsBoxes5(
+              baslik: reviewText.b1Baslik,
+            ),
+            ReviewsBoxes5(baslik: reviewText.b2Baslik),
+            ReviewsBoxes5(baslik: reviewText.b3Baslik),
+            ReviewsBoxes5(baslik: reviewText.b4Baslik),
+            ReviewsBoxes5(baslik: reviewText.b5Baslik),
+            Container(
+                // width: 200,
+                child: Column(
+              children: [
+                reviewText.body1,
+                reviewText.body2,
+              ],
+            )),
+            sizedBox,
+            ReviewsBoxesButtons(
+                baslik: reviewText.box3Baslik, metin: reviewText.box3Metin),
+            sizedBox,
+            ReviewsBoxesButtons(
+                baslik: reviewText.box4Baslik, metin: reviewText.box4Metin),
+            sizedBox,
+            TobetoFooter(
+              assetImage: assetImage,
+              backgroundColor: backgroundColor,
+              textColor: textColor,
+            )
+          ],
+        ),
       ),
     );
   }

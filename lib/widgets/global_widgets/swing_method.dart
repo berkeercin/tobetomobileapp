@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing.dart';
 
 class SwingMethod extends StatefulWidget {

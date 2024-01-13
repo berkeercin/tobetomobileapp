@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 
 class appBarLogo extends StatelessWidget {
@@ -17,11 +18,20 @@ class appBarLogo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 48),
-          child: Image.asset(
-            logo,
-            width: 150,
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ));
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 48),
+            child: Image.asset(
+              logo,
+              width: 150,
+            ),
           ),
         ),
       ],

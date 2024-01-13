@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
 import 'package:tobetomobileapp/screens/profile_screen.dart';
+import 'package:tobetomobileapp/screens/reviews_screen.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
-import 'package:tobetomobileapp/constants/text_const.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/text_const.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/widgets/homepage/buttons.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
@@ -258,8 +260,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
-            /************------GRADİEND -------****************** */
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
@@ -268,11 +268,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   verticalDirection: VerticalDirection.up,
                   children: [
                     GradientBoxes(
-                        text: TobetoText().boxText1,
-                        style:
-                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.boxButton,
+                          backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start1"),
                           onPressed: () {
                             Navigator.push(
@@ -289,13 +286,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 10,
                     ),
                     GradientBoxes(
-                        text: TobetoText().boxText2,
-                        style:
-                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.boxButton,
+                          backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start2"),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ReviewsScreen()));
+                          },
                           child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box2BeginColor,
@@ -306,13 +305,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     GradientBoxes(
-                        text: TobetoText().boxText3,
-                        style:
-                            const TextStyle(fontSize: 24, color: Colors.white),
                         boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.boxButton,
+                          backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start3"),
-                          onPressed: () {},
+                          onPressed: () {
+                            BoxesAlert(errorMes: "404 Sayfa Bulunamadı",).errormessage(context);
+                          },
                           child: Text(TobetoText().boxButtonText),
                         ),
                         boxColorBegin: tobetoColor.box3BeginColor,
@@ -324,7 +322,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            /************------GRADİENT -------****************** */
             TobetoFooter(
               assetImage: assetImage,
               backgroundColor: backgroundColor,

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab1_person_info.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab2_experiences.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab3_edu_life.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab4_competencies.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab5_certificates.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab6_media.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab7_foreign_lang.dart';
+import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_tab/tab8_settings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -91,9 +99,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ]),
         ),
-        body: TabBarView(
-          children: [
-     
+        body: const TabBarView(children: [
+          ProfileTabPersonalInfo(),
+          ProfileTabExperiences(),
+          ProfileTabEduLife(),
+          ProfileTabCompetencies(),
+          ProfileTabCertificates(),
+          ProfileTabMedia(),
+          ProfileTabForeignLang(),
+          ProfileTabSettings(),
         ]),
       ),
     );

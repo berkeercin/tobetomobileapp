@@ -13,4 +13,6 @@ class TobetoColor {
   final box3BeginColor = const Color.fromRGBO(60, 11, 140, 1);
   final box3EndColor = const Color.fromRGBO(227, 166, 254, 1);
   final iconColor = const Color.fromRGBO(227, 166, 254, 1);
+  final Color textColorbox = Colors.white;
+  final Color textColorText = Colors.brown;
 }

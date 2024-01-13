@@ -1,1 +1,1 @@
-List<String> languageScore = ["SQL", "Flutter", "Aktif Öğrenme", ".NET", "C#"];
+List<String> yetkinlikAd = ["SQL", "Flutter", "Aktif Öğrenme", ".NET", "C#"];

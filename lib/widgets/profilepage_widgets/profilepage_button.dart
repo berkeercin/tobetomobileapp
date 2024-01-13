@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
 class ProfileSaveButton extends StatefulWidget {
   const ProfileSaveButton({super.key, required this.butonName});

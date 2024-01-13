@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/language_score.dart';
 
 class LanguageScoreDropDown extends StatefulWidget {
@@ -18,7 +18,7 @@ class _LanguageScoreDropDownState extends State<LanguageScoreDropDown> {
   Widget build(BuildContext context) {
     final double phoneWidth = MediaQuery.of(context).size.width;
     final double phoneHeight = MediaQuery.of(context).size.height;
-   return Container(
+    return Container(
       width: phoneWidth * 0.9,
       height: phoneHeight * 0.07,
       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -26,6 +26,9 @@ class _LanguageScoreDropDownState extends State<LanguageScoreDropDown> {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(style: BorderStyle.solid, color: Colors.black38)),
       child: DropdownButton<String>(
+        underline: Container(
+          color: Colors.transparent,
+        ),
         value: secilenSeviye,
         items: seviye.map<DropdownMenuItem<String>>((String beceri) {
           return DropdownMenuItem<String>(
