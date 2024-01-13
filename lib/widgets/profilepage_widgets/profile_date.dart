@@ -32,13 +32,13 @@ class _ProfileDateState extends State<ProfileDate> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
               "${selectedDate.day} . ${selectedDate.month} . ${selectedDate.year}",
             ),
           ),
-          Spacer(),
+          const Spacer(),
           InkWell(
             onTap: () async {
               final DateTime? dateTime = await showDatePicker(

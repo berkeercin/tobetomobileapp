@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
-        flexibleSpace: appBarLogo(brightness: brightness),
+        flexibleSpace: AppBarLogo(brightness: brightness),
       ),
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 20,
             ),
-            topTextWidget(textColor: textColor),
+            TopTextWidget(textColor: textColor),
             const SizedBox(
               height: 15,
             ),
@@ -275,7 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ProfileScreen()));
+                                    builder: (context) =>
+                                        const ProfileScreen()));
                           },
                           child: Text(TobetoText().boxButtonText),
                         ),
@@ -293,7 +294,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ReviewsScreen()));
+                                    builder: (context) =>
+                                        const ReviewsScreen()));
                           },
                           child: Text(TobetoText().boxButtonText),
                         ),
@@ -309,7 +311,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start3"),
                           onPressed: () {
-                            BoxesAlert(errorMes: "404 Sayfa Bulunamadı",).errormessage(context);
+                            const BoxesAlert(
+                              errorMes: "404 Sayfa Bulunamadı",
+                            ).errormessage(context);
                           },
                           child: Text(TobetoText().boxButtonText),
                         ),

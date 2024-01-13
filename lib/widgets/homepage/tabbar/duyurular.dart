@@ -51,18 +51,18 @@ class Duyurular extends StatelessWidget {
                             Text(newsList[index].projectName)
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Text(
                           newsList[index].notifTitle,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.calendar_month),
+                                const Icon(Icons.calendar_month),
                                 Text(DateFormat("dd.MM.yyyy")
                                     .format(newsList[index].notifTime))
                               ],

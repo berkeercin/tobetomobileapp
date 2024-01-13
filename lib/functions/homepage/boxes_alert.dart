@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
 class BoxesAlert extends StatelessWidget {
-  const BoxesAlert({Key? key, required this.errorMes});
+  const BoxesAlert({super.key, required this.errorMes});
   final String errorMes;
   Future<void> errormessage(BuildContext context) {
     return showDialog(

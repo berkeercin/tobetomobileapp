@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
-class topTextWidget extends StatefulWidget {
-  const topTextWidget({
+class TopTextWidget extends StatefulWidget {
+  const TopTextWidget({
     super.key,
     required this.textColor,
   });
@@ -11,10 +11,10 @@ class topTextWidget extends StatefulWidget {
   final Color textColor;
 
   @override
-  State<topTextWidget> createState() => _topTextWidgetState();
+  State<TopTextWidget> createState() => _TopTextWidgetState();
 }
 
-class _topTextWidgetState extends State<topTextWidget> {
+class _TopTextWidgetState extends State<TopTextWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -49,10 +49,10 @@ class _topTextWidgetState extends State<topTextWidget> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Text(
+          const Text(
             "Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!",
             textAlign: TextAlign.center,
             style: TextStyle(

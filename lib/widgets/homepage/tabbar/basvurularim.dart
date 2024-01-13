@@ -98,12 +98,12 @@ class Basvurularim extends StatelessWidget {
                             Icons.check,
                             color: tobetoColor.cardColor,
                           ),
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 180,
-                                child: const Text(
+                                child: Text(
                                   "İstanbul Kodluyor Belge Yükleme Formu onaylandı.",
                                   softWrap: true,
                                 ),

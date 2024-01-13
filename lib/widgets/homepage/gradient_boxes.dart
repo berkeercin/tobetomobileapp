@@ -37,12 +37,12 @@ class GradientBoxes extends StatelessWidget {
               padding: const EdgeInsets.only(top: 16),
               child: Text(
                 TobetoText().boxButtonText,
-                style: TextStyle(fontSize: 24, color: Colors.white),
+                style: const TextStyle(fontSize: 24, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
             const Spacer(),
-            SizedBox(child: boxButton, width: 200),
+            SizedBox(width: 200, child: boxButton),
             const SizedBox(
               height: 15,
             )

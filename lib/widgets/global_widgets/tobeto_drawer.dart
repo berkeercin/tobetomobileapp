@@ -48,7 +48,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                 onTap: () {
                   setState(() {
                     Navigator.push((context),
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => const HomeScreen()));
                   });
                 },
                 child: Padding(
@@ -81,7 +81,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
+                              builder: (context) => const HomeScreen(),
                             ));
                       });
                     },
@@ -95,7 +95,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                         Navigator.push(
                             (context),
                             MaterialPageRoute(
-                                builder: (context) => ReviewsScreen()));
+                                builder: (context) => const ReviewsScreen()));
                       });
                     },
                     child: Text(
@@ -108,7 +108,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProfileScreen()));
+                              builder: (context) => const ProfileScreen()));
                     });
                   },
                   child: Text(
@@ -181,7 +181,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
             padding: const EdgeInsets.only(left: 20, top: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                fixedSize: Size(250, 20),
+                fixedSize: const Size(250, 20),
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(color: color.cardColor),
@@ -193,7 +193,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ));
                 });
               },
@@ -201,7 +201,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                   style: TextStyle(color: color.logoTextColor)),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(25),
             child: Text("© 2022 Tobeto",

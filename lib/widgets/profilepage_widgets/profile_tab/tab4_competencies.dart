@@ -22,7 +22,7 @@ class ProfileTabCompetencies extends StatelessWidget {
                 color: TobetoColor().logoTextColor,
               ),
             ),
-            YetkinlikDropDown(),
+            const YetkinlikDropDown(),
             const SizedBox(
               height: 5,
             ),

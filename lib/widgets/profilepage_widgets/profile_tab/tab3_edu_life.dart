@@ -32,7 +32,7 @@ class ProfileTabEduLife extends StatelessWidget {
                 color: TobetoColor().logoTextColor,
               ),
             ),
-            ProfileDate(),
+            const ProfileDate(),
             const SizedBox(
               height: 15,
             ),
@@ -43,8 +43,8 @@ class ProfileTabEduLife extends StatelessWidget {
                 color: TobetoColor().logoTextColor,
               ),
             ),
-            ProfileDate(),
-            ProfileCheckBox(chechboxText: "Devam Ediyorum"),
+            const ProfileDate(),
+            const ProfileCheckBox(chechboxText: "Devam Ediyorum"),
             const SizedBox(
               height: 5,
             ),

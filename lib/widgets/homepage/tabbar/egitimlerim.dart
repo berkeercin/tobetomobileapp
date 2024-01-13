@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/model/video.dart';
+import 'package:tobetomobileapp/screens/edu_screen.dart';
 
 class Egitimlerim extends StatelessWidget {
   const Egitimlerim({Key? key, required this.videoList}) : super(key: key);
@@ -16,7 +17,13 @@ class Egitimlerim extends StatelessWidget {
         itemBuilder: ((context, index) {
           if (index > videoList.length - 1) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EduScreen(),
+                    ));
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -25,7 +32,7 @@ class Egitimlerim extends StatelessWidget {
                     color: TobetoColor().cardColor,
                     size: 50,
                   ),
-                  Text("Daha Fazla Göster")
+                  const Text("Daha Fazla Göster")
                 ],
               ),
             );
@@ -36,7 +43,7 @@ class Egitimlerim extends StatelessWidget {
                 onTap: () {},
                 child: Card(
                   elevation: 20,
-                  child: Container(
+                  child: SizedBox(
                     height: 250,
                     width: 350,
                     child: Column(
@@ -60,23 +67,24 @@ class Egitimlerim extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 videoList[index].videoName,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(videoList[index].videoDate.toString()),
                             ],
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         FloatingActionButton.small(
                           heroTag: Key("${videoList[index].videoId}"),
                           onPressed: () {},
-                          child: Text("Eğitime Git"),
+                          child: const Text("Eğitime Git"),
                         ),
                       ],
                     ),

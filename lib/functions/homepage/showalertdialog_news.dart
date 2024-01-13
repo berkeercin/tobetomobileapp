@@ -17,7 +17,7 @@ class ShowAlertDialogNews {
           content: Text(content),
           actions: <Widget>[
             TextButton(
-              child: Text("Onayla"),
+              child: const Text("Onayla"),
               onPressed: () {
                 Navigator.of(context).pop();
               },

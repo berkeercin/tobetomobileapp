@@ -28,7 +28,7 @@ class _ProfileSaveButtonState extends State<ProfileSaveButton> {
           },
           child: Text(
             widget.butonName,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       ),

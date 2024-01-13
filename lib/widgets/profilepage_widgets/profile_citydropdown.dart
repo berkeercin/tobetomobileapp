@@ -21,7 +21,7 @@ class _CityDropDownState extends State<CityDropDown> {
     return Container(
       width: phoneWidth * 0.9,
       height: phoneHeight * 0.07,
-      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(style: BorderStyle.solid, color: Colors.black38)),
@@ -38,7 +38,7 @@ class _CityDropDownState extends State<CityDropDown> {
             ),
           );
         }).toList(),
-        icon: Icon(Icons.arrow_drop_down_circle_outlined),
+        icon: const Icon(Icons.arrow_drop_down_circle_outlined),
         onChanged: (String? secilenVeri) {
           if (secilenVeri != null) {
             setState(() {

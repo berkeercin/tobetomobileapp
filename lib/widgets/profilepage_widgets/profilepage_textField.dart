@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:tobetomobileapp/constants/tobeto_colors.dart';
 
 class ProfileTextField extends StatelessWidget {
   const ProfileTextField(
@@ -20,16 +19,16 @@ class ProfileTextField extends StatelessWidget {
         controller: TextEditingController(),
         decoration: InputDecoration(
           enabledBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.black38)),
+              const OutlineInputBorder(borderSide: BorderSide(color: Colors.black38)),
           filled: true,
           labelText: profileLabelText,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             fontSize: 16,
             //color: TobetoColor().logoTextColor,
           ),
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
-            borderSide: BorderSide(
+            borderSide:  BorderSide(
               width: 1.0,
             ),
           ),

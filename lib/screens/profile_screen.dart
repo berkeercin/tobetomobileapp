@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       length: 8,
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: appBarLogo(brightness: brightness),
+          flexibleSpace: AppBarLogo(brightness: brightness),
           bottom: TabBar(tabs: [
             Tab(
                 icon: Icon(

@@ -23,14 +23,14 @@ class Anketlerim extends StatelessWidget {
                         "assets/images/no-survey-found.png",
                         height: 250,
                       ),
-                      Text(
+                      const Text(
                         "Atanmış herhangi bir anketiniz bulunmamaktadır",
                         softWrap: true,
                       )
                     ],
                   );
                 } else if (index < surveyList.length) {
-                  return Column(
+                  return const Column(
                     children: [],
                   );
                 } else {

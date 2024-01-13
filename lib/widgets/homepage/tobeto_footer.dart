@@ -14,7 +14,7 @@ class TobetoFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TobetoColor tobetoColor = TobetoColor();
-    return Container(
+    return SizedBox(
       child: Column(
         children: [
           Container(
@@ -46,7 +46,7 @@ class TobetoFooter extends StatelessWidget {
                   Text("© 2022 Tobeto",
                       style: TextStyle(
                           color: Colors.white.withOpacity(0.5), fontSize: 18)),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   )
                 ],

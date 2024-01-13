@@ -4,14 +4,14 @@ import 'package:tobetomobileapp/constants/global/tobeto_size.dart';
 import 'package:tobetomobileapp/functions/reviewspage/reviews_lessonsbox_alert.dart';
 
 class ReviewsBoxes5 extends StatelessWidget {
-  ReviewsBoxes5({
+  const ReviewsBoxes5({
     super.key,
     required this.baslik,
   });
   final Text baslik;
   @override
   Widget build(BuildContext context) {
-    var sizedBox = SizedBox(
+    var sizedBox = const SizedBox(
       height: 25,
     );
     final double phoneHeight = MediaQuery.of(context).size.height;

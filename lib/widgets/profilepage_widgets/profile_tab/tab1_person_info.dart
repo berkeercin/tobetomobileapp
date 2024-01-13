@@ -28,7 +28,7 @@ class ProfileTabPersonalInfo extends StatelessWidget {
             const ProfileTextField(
                 profileLabelText: "Telefon Numaranız*",
                 myKeyboardType: TextInputType.phone),
-            ProfileDate(),
+            const ProfileDate(),
             const SizedBox(
               height: 15,
             ),

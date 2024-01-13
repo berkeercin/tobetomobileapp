@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Swing extends StatefulWidget {
-  const Swing({required this.button});
+  const Swing({super.key, required this.button});
   final Widget button;
   @override
   _SwingState createState() => _SwingState();
@@ -22,7 +22,7 @@ class _SwingState extends State<Swing> with TickerProviderStateMixin {
     _rotationAnimation =
         Tween<double>(begin: -0.3, end: 0.3).animate(_controller);
     _movementAnimation =
-        Tween<Offset>(begin: Offset(-20, 0.0), end: Offset(20, 0.0))
+        Tween<Offset>(begin: const Offset(-20, 0.0), end: const Offset(20, 0.0))
             .animate(_controller);
   }
 

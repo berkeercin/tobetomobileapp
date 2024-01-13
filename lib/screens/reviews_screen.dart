@@ -42,13 +42,13 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   @override
   Widget build(BuildContext context) {
     final reviewText = ReviewsText();
-    var sizedBox = SizedBox(
+    var sizedBox = const SizedBox(
       height: 25,
     );
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
-        flexibleSpace: appBarLogo(brightness: brightness),
+        flexibleSpace: AppBarLogo(brightness: brightness),
       ),
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
@@ -58,7 +58,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         child: Column(
           children: [
             sizedBox,
-            Container(
+            SizedBox(
                 // width: 200,
                 child: Column(
               children: [
@@ -81,7 +81,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                     ),
                   ),
                   onPressed: () {
-                    BoxesAlert(
+                    const BoxesAlert(
                       errorMes: "Rapor Görüntülemek İçin Sınava Girmelisiniz.",
                     ).errormessage(context);
                   },
@@ -98,7 +98,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             ReviewsBoxes5(baslik: reviewText.b3Baslik),
             ReviewsBoxes5(baslik: reviewText.b4Baslik),
             ReviewsBoxes5(baslik: reviewText.b5Baslik),
-            Container(
+            SizedBox(
                 // width: 200,
                 child: Column(
               children: [

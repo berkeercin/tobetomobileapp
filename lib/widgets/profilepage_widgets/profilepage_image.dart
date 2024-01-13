@@ -5,13 +5,13 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: CircleAvatar(
         backgroundColor: Colors.white,
 
         radius: 50, // Dairenin yarıçapı
         backgroundImage:
-            AssetImage('assets/images/profile_photo.png'), // Profil resmi
+             AssetImage('assets/images/profile_photo.png'), // Profil resmi
       ),
     );
   }
