@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/global/text_const.dart';
 
 class GradientBoxes extends StatelessWidget {
   const GradientBoxes(
       {super.key,
-    
       required this.boxButton,
       required this.boxColorBegin,
-      required this.boxColorEnd});
+      required this.boxColorEnd,
+      required this.boxName});
   final FloatingActionButton boxButton;
   final Color boxColorBegin;
   final Color boxColorEnd;
+  final String boxName;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +36,7 @@ class GradientBoxes extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Text(
-                TobetoText().boxButtonText,
+                boxName,
                 style: const TextStyle(fontSize: 24, color: Colors.white),
                 textAlign: TextAlign.center,
               ),

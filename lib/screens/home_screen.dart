@@ -268,6 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   verticalDirection: VerticalDirection.up,
                   children: [
                     GradientBoxes(
+                        boxName: TobetoText().boxText1,
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start1"),
@@ -287,6 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 10,
                     ),
                     GradientBoxes(
+                        boxName: TobetoText().boxText2,
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start2"),
@@ -307,6 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     GradientBoxes(
+                        boxName: TobetoText().boxText3,
                         boxButton: FloatingActionButton(
                           backgroundColor: tobetoColor.iconColor,
                           heroTag: const Key("start3"),
