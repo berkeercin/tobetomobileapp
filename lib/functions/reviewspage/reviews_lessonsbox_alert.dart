@@ -10,9 +10,9 @@ class LessonsBoxAlert extends StatelessWidget {
     return AlertDialog(
       backgroundColor: TobetoColor().cardColor.withOpacity(0.8),
       title: lessonName,
-      content: Column(
+      content: const Column(
         children: [
-          SizedBox(
+           SizedBox(
             height: 50,
           ),
           Text(
@@ -34,7 +34,7 @@ class LessonsBoxAlert extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(
+          child: const Text(
             'Sınava Başla',
             style: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
