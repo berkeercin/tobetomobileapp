@@ -1,3 +1,3 @@
-import 'package:tobetomobileapp/model/survey.dart';
+import 'package:tobetomobileapp/models/survey.dart';
 
 List<Survey> surveyList = [];

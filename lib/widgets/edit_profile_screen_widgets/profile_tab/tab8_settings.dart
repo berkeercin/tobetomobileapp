@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_size.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profilepage_button.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profilepage_textField.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_button.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textField.dart';
 
 class ProfileTabSettings extends StatelessWidget {
   const ProfileTabSettings({super.key});

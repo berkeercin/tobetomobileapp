@@ -1,4 +1,4 @@
-import 'package:tobetomobileapp/model/news.dart';
+import 'package:tobetomobileapp/models/news.dart';
 
 List<News> newsList = [
   News(

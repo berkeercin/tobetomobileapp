@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
-import 'package:tobetomobileapp/model/video.dart';
+import 'package:tobetomobileapp/models/video.dart';
 import 'package:tobetomobileapp/screens/edu_screen.dart';
 
 class Egitimlerim extends StatelessWidget {
@@ -21,7 +21,7 @@ class Egitimlerim extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EduScreen(),
+                      builder: (context) => EduScreen(videoList: videoList),
                     ));
               },
               child: Column(

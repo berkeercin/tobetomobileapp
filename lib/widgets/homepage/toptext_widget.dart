@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/models/user.dart';
 
 class TopTextWidget extends StatefulWidget {
-  const TopTextWidget({
-    super.key,
-    required this.textColor,
-  });
+  const TopTextWidget({super.key, required this.textColor, required this.user});
 
   final Color textColor;
-
+  final UserData user;
   @override
   State<TopTextWidget> createState() => _TopTextWidgetState();
 }
@@ -42,7 +40,7 @@ class _TopTextWidgetState extends State<TopTextWidget> {
       Column(
         children: [
           Text(
-            " ${TobetoText().userName}",
+            " ${widget.user.name}",
             style: TextStyle(
               color: widget.textColor,
               fontSize: 24,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
-import 'package:tobetomobileapp/screens/profile_screen.dart';
+import 'package:tobetomobileapp/models/user.dart';
+import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
@@ -14,8 +15,8 @@ import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/toptext_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  const HomeScreen({Key? key, required this.user}) : super(key: key);
+  final UserData user;
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -82,7 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 20,
             ),
-            TopTextWidget(textColor: textColor),
+            TopTextWidget(
+              textColor: textColor,
+              user: widget.user,
+            ),
             const SizedBox(
               height: 15,
             ),
@@ -277,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ProfileScreen()));
+                                        const EditProfileScreen()));
                           },
                           child: Text(TobetoText().boxButtonText),
                         ),

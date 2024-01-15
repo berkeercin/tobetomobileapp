@@ -11,7 +11,7 @@ class ProfileImage extends StatelessWidget {
 
         radius: 50, // Dairenin yarıçapı
         backgroundImage:
-             AssetImage('assets/images/profile_photo.png'), // Profil resmi
+            AssetImage('assets/images/profile-photo.png'), // Profil resmi
       ),
     );
   }

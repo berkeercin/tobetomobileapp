@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_size.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_chechbox.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_date.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profile_citydropdown.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profilepage_button.dart';
-import 'package:tobetomobileapp/widgets/profilepage_widgets/profilepage_textField.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_chechbox.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_date.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_citydropdown.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_button.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textField.dart';
 
 class ProfileTabExperiences extends StatelessWidget {
   const ProfileTabExperiences({super.key});

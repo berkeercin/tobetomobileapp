@@ -1,4 +1,4 @@
-import 'package:tobetomobileapp/model/video.dart';
+import 'package:tobetomobileapp/models/video.dart';
 
 List<Video> videoList = [
   Video(
