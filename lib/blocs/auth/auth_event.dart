@@ -1,9 +1,11 @@
-abstract class LoginScreenEvent {}
+abstract class AuthEvent {}
 
-class LoginUser extends LoginScreenEvent {
+class CheckLogin extends AuthEvent {}
+
+class LoginUser extends AuthEvent {
   final String email;
   final String password;
   LoginUser({required this.email, required this.password});
 }
 
-class ReturnLoginScreen extends LoginScreenEvent {}
+class ReturnLoginScreen extends AuthEvent {}

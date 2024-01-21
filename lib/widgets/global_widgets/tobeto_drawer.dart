@@ -6,7 +6,6 @@ import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
-import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 
@@ -41,7 +40,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
       });
     }
     TextStyle drawerStyle = TextStyle(color: textColor);
-    return BlocListener<LoginScreenBloc, LoginScreenState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LogIn) {
           Navigator.pushReplacement(
@@ -51,7 +50,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
               ));
         }
       },
-      child: BlocBuilder<LoginScreenBloc, LoginScreenState>(
+      child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           print(state);
           if (state is LoadedUser) {
@@ -221,9 +220,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       ),
                       onPressed: () {
                         setState(() {
-                          context
-                              .read<LoginScreenBloc>()
-                              .add(ReturnLoginScreen());
+                          context.read<AuthBloc>().add(ReturnLoginScreen());
                         });
                       },
                       child: Text("Çıkış Yap",

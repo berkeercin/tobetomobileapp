@@ -17,7 +17,7 @@ class AppBarLogo extends StatelessWidget {
     } else {
       logo = myImages.lightThemeLogo;
     }
-    return BlocBuilder<LoginScreenBloc, LoginScreenState>(
+    return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is LoadedUser) {
           return Row(

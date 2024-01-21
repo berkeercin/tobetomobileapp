@@ -8,9 +8,19 @@ class UserRepostory {
     print(email);
     print(password);
     if (email == "1" && password == "2") {
-      return UserData(id: "321312312", name: "Tuğçe", surname: "Kahya");
+      return UserData(
+          id: "321312312",
+          name: "Tuğçe",
+          surname: "Kahya",
+          username: "tugce",
+          email: "tugce@gmail.com");
     } else if (email == "2" && password == "1") {
-      return UserData(id: "3413215612", name: "Berke", surname: "Erçin");
+      return UserData(
+          id: "3413215612",
+          name: "Berke",
+          surname: "Erçin",
+          email: "berke@gmail.com",
+          username: "berke");
     } else {
       return loginUserData;
     }

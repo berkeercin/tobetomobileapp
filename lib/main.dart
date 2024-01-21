@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/blocs/home_screen/homescreen.bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
+import 'package:tobetomobileapp/firebase_options.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,16 +21,20 @@ ColorScheme scheme2 = ColorScheme.fromSwatch(
 );
 // ColorScheme scheme =
 //     ColorScheme.fromSwatch(primarySwatch: MaterialColor(primary, swatch) );
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   UserRepostory userRepostory = UserRepostory();
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider<LoginScreenBloc>(
-        create: (context) => LoginScreenBloc(userRepostory: userRepostory),
+      BlocProvider<AuthBloc>(
+        create: (context) => AuthBloc(userRepostory: userRepostory),
       ),
-      // BlocProvider(
-      //   create: (context) => HomeScreenBloc(userRepostory: userRepostory),
-      // )
+      BlocProvider(
+        create: (context) => HomeScreenBloc(userRepostory: userRepostory),
+      )
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,

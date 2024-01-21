@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/models/user.dart';
 

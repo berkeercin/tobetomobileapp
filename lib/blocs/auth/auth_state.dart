@@ -1,14 +1,14 @@
 import 'package:tobetomobileapp/models/user.dart';
 
-abstract class LoginScreenState {}
+abstract class AuthState {}
 
-class CheckUserLoginData extends LoginScreenState {}
+class CheckUserLoginData extends AuthState {}
 
-class LogIn extends LoginScreenState {}
+class LogIn extends AuthState {}
 
-class LoadingUser extends LoginScreenState {}
+class LoadingUser extends AuthState {}
 
-class LoadedUser extends LoginScreenState {
+class LoadedUser extends AuthState {
   final UserData user;
   LoadedUser({required this.user});
 }

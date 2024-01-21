@@ -28,8 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     darkLightTheme(context);
-    return BlocListener<LoginScreenBloc, LoginScreenState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        if (state is CheckUserLoginData) {
+          // context.read<>()
+        }
+
         if (state is LoadedUser) {
           Navigator.pushReplacement(
               context,
@@ -40,11 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ));
         }
       },
-      child: BlocBuilder<LoginScreenBloc, LoginScreenState>(
+      child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is CheckUserLoginData) {
             //TODO Eğer Kullanıcı verisi varsa direkt uyuglamaya User datası ile geçiş yapılacak.
-            context.read<LoginScreenBloc>().add(ReturnLoginScreen());
+            context.read<AuthBloc>().add(ReturnLoginScreen());
             return Scaffold(
               appBar: AppBar(title: const Text("Uygulama yükleniyor...")),
               body: const Center(child: CircularProgressIndicator()),
@@ -170,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     minimumSize: const MaterialStatePropertyAll(
                                         Size(300, 40))),
                                 onPressed: () {
-                                  context.read<LoginScreenBloc>().add(LoginUser(
+                                  context.read<AuthBloc>().add(LoginUser(
                                       email: usernameController.text,
                                       password: passwordController.text));
                                 },
