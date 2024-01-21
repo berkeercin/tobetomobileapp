@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/blocs/home_screen/homescreen.bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_bloc.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_event.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_state.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               body: const Center(child: CircularProgressIndicator()),
             );
           }
-          if (state is LoginPage) {
+          if (state is LogIn) {
             return Scaffold(
               drawer: const TobetoDrawer(),
               body: Container(

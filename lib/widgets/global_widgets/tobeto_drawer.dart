@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_event.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_state.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
@@ -43,7 +43,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
     TextStyle drawerStyle = TextStyle(color: textColor);
     return BlocListener<LoginScreenBloc, LoginScreenState>(
       listener: (context, state) {
-        if (state is LoginPage) {
+        if (state is LogIn) {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(

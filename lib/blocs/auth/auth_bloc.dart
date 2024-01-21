@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_event.dart';
-import 'package:tobetomobileapp/blocs/login_screen/loginscreen_state.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 
 class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
@@ -16,6 +16,6 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
   }
 
   void _loginPage(LoginScreenEvent event, Emitter<LoginScreenState> emit) {
-    emit(LoginPage());
+    emit(LogIn());
   }
 }

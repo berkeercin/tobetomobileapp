@@ -4,7 +4,7 @@ abstract class LoginScreenState {}
 
 class CheckUserLoginData extends LoginScreenState {}
 
-class LoginPage extends LoginScreenState {}
+class LogIn extends LoginScreenState {}
 
 class LoadingUser extends LoginScreenState {}
 
