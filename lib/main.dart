@@ -26,9 +26,9 @@ void main() {
       BlocProvider<LoginScreenBloc>(
         create: (context) => LoginScreenBloc(userRepostory: userRepostory),
       ),
-      BlocProvider(
-        create: (context) => HomeScreenBloc(userRepostory: userRepostory),
-      )
+      // BlocProvider(
+      //   create: (context) => HomeScreenBloc(userRepostory: userRepostory),
+      // )
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
