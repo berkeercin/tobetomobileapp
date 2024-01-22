@@ -15,6 +15,7 @@ class MyIcons extends StatelessWidget {
 }
 
 class MyIconsName {
+  final mailIcon = const Icon(Icons.mail_outline);
   final userNameIcon = const Icon(Icons.person_2_outlined);
   final passwordIcon = const Icon(Icons.lock_outline);
   final passVisibilityIcon = const Icon(Icons.visibility);

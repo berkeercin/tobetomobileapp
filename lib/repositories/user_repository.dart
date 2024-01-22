@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/dummydata/user_data.dart';
 import 'package:tobetomobileapp/models/user.dart';
 
 class UserRepostory {
+  final firebaseAuthInstance = FirebaseAuth.instance;
+  final firebaseFireStore = FirebaseFirestore.instance;
+
   //TODO: Eklenecek Login fonksiyonu.
   //! Geçici olarak bir veri eklendi.
   loginUser(String email, String password) {
@@ -24,6 +30,25 @@ class UserRepostory {
     } else {
       return loginUserData;
     }
+  }
+
+  signUpUser(String username, String name, String surname, String email,
+      String password) async {
+    final userCredentials = await firebaseAuthInstance
+        .createUserWithEmailAndPassword(email: email, password: password);
+    var user =
+        firebaseFireStore.collection("users").doc(userCredentials.user!.uid);
+    await user.set({
+      "username": username,
+      "userId": userCredentials.user!.uid,
+      "name": name,
+      "surname": surname,
+      "email": email,
+    });
+  }
+
+  logoutUser() {
+    firebaseAuthInstance.signOut();
   }
   //TODO: Eklenecek Logout fonksiyonu.
 }

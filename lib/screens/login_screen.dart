@@ -6,9 +6,9 @@ import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
+import 'package:tobetomobileapp/screens/signup_screen.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late String assetImage;
   late Color textColor;
   late Color backgroundColor;
-
   @override
   Widget build(BuildContext context) {
     darkLightTheme(context);
@@ -56,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           if (state is LogIn) {
             return Scaffold(
-              drawer: const TobetoDrawer(),
               body: Container(
                 color: backgroundColor,
                 child: Column(
@@ -70,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Theme.of(context).colorScheme.background),
                         padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                         width: 500,
-                        height: 350,
+                        height: 450,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -188,6 +186,22 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () {},
                               child: TobetoText().parolamiUnuttum,
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Hesabınız yok mu?"),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignupScreen(),
+                                          ));
+                                    },
+                                    child: Text("Kayıt Ol"))
+                              ],
+                            )
                           ],
                         ),
                       ),

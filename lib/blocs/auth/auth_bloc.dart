@@ -1,8 +1,10 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
+import 'package:tobetomobileapp/constants/x.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,6 +36,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<LoginUser>(_loginUser);
     on<ReturnLoginScreen>(_loginPage);
+    on<SignUpUser>(_signUpUser);
+  }
+
+  void _signUpUser(SignUpUser event, Emitter<AuthState> emit) async {
+    try {
+      await userRepostory.signUpUser(event.username, event.name, event.surname,
+          event.email, event.password);
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(event.context)
+          .showSnackBar(SnackBar(content: Text(e.message!)));
+    }
   }
 
   void _loginUser(LoginUser event, Emitter<AuthState> emit) async {
@@ -41,7 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(LoadedUser(user: userData));
   }
 
-  void _loginPage(ReturnLoginScreen event, Emitter<AuthState> emit) {
+  void _loginPage(ReturnLoginScreen event, Emitter<AuthState> emit) async {
+    await userRepostory.logoutUser();
     emit(LogIn());
   }
 }
