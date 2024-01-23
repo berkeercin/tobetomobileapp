@@ -45,14 +45,14 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          if (state is CheckUserLoginData) {
-            //TODO Eğer Kullanıcı verisi varsa direkt uyuglamaya User datası ile geçiş yapılacak.
-            context.read<AuthBloc>().add(ReturnLoginScreen());
-            return Scaffold(
-              appBar: AppBar(title: const Text("Uygulama yükleniyor...")),
-              body: const Center(child: CircularProgressIndicator()),
-            );
-          }
+          // if (state is CheckUserLoginData) {
+          //   //TODO Eğer Kullanıcı verisi varsa direkt uyuglamaya User datası ile geçiş yapılacak.
+          //   // context.read<AuthBloc>().add(ReturnLoginScreen());
+          //   return Scaffold(
+          //     appBar: AppBar(title: const Text("Uygulama yükleniyor...")),
+          //     body: const Center(child: CircularProgressIndicator()),
+          //   );
+          // }
           if (state is LogIn) {
             return Scaffold(
               body: Container(
@@ -173,6 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         Size(300, 40))),
                                 onPressed: () {
                                   context.read<AuthBloc>().add(LoginUser(
+                                      context: context,
                                       email: usernameController.text,
                                       password: passwordController.text));
                                 },
@@ -213,10 +214,35 @@ class _LoginScreenState extends State<LoginScreen> {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.endFloat,
             );
+          } else if (state is CheckUserLoginData) {
+            return const Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Uygulama yükleniyor"),
+                    CircularProgressIndicator()
+                  ],
+                ),
+              ),
+            );
+          } else if (state is LoadedUser) {
+            return const Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Uygulama yükleniyor"),
+                    CircularProgressIndicator()
+                  ],
+                ),
+              ),
+            );
           } else {
+            // print(state);
             return Scaffold(
-              appBar: AppBar(title: Text("Hata")),
-              body: Center(child: Text("Bilinmedik durum")),
+              appBar: AppBar(title: const Text("Hata")),
+              body: const Center(child: Text("Bilinmedik durum")),
             );
           }
         },

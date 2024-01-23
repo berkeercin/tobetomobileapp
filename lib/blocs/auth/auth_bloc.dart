@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
-import 'package:tobetomobileapp/constants/x.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +50,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _loginUser(LoginUser event, Emitter<AuthState> emit) async {
     final userData = await userRepostory.loginUser(event.email, event.password);
-    emit(LoadedUser(user: userData));
+    // emit(LoadedUser(user: userData));
+    if (userData[0] == "success") {
+      final userFromDb =
+          await _firebaseFireStore.collection("users").doc(userData[1]).get();
+      UserData _user = UserData.fromFireStore(userFromDb);
+      emit(LoadedUser(user: _user));
+    } else {
+      ScaffoldMessenger.of(event.context)
+          .showSnackBar(SnackBar(content: Text(userData[1]!)));
+    }
   }
 
   void _loginPage(ReturnLoginScreen event, Emitter<AuthState> emit) async {
