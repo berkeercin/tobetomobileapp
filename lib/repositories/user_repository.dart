@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
-import 'package:tobetomobileapp/dummydata/user_data.dart';
-import 'package:tobetomobileapp/models/user.dart';
 
 class UserRepostory {
   final firebaseAuthInstance = FirebaseAuth.instance;

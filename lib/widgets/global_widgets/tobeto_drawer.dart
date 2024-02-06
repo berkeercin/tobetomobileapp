@@ -4,6 +4,8 @@ import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
+import 'package:tobetomobileapp/screens/calendar_screen.dart';
+import 'package:tobetomobileapp/screens/catalog_screen.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:tobetomobileapp/screens/profile_screen.dart';
@@ -142,13 +144,23 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                           ),
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CatalogScreen()));
+                            },
                             child: Text(
                               "Katolog",
                               style: drawerStyle,
                             )),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CalendarScreen()));
+                            },
                             child: Text(
                               "Takvim",
                               style: drawerStyle,

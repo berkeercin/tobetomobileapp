@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/dummydata/video_list.dart';
+import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/egitimlerim.dart';
 
-class ButtonCreator extends StatefulWidget {
-  const ButtonCreator(
+class HomeButtonCreator extends StatefulWidget {
+  const HomeButtonCreator(
       {Key? key,
       required this.name,
       required this.buttonId,
       required this.textColor,
       required this.selectedButton,
-      required this.onPressed})
+      required this.onPressed,
+      this.applicationList = const []})
       : super(key: key);
   final String name;
   final int buttonId;
   final Color textColor;
   final int selectedButton;
+  final List<Application> applicationList;
   final void Function(Widget newWidget, int number) onPressed;
   @override
-  State<ButtonCreator> createState() => _ButtonCreatorState();
+  State<HomeButtonCreator> createState() => _HomeButtonCreatorState();
 }
 
-class _ButtonCreatorState extends State<ButtonCreator> {
-  Widget container1 = const Basvurularim();
+class _HomeButtonCreatorState extends State<HomeButtonCreator> {
+  Widget container1 = Basvurularim(
+    applicationsList: [],
+  );
   Widget container2 = Egitimlerim(
     videoList: [...videoList],
   );
@@ -43,7 +48,9 @@ class _ButtonCreatorState extends State<ButtonCreator> {
             setState(() {
               selectedButton = widget.buttonId;
               if (selectedButton == 1) {
-                widget.onPressed(const Basvurularim(), selectedButton);
+                widget.onPressed(
+                    Basvurularim(applicationsList: widget.applicationList),
+                    selectedButton);
               } else if (selectedButton == 2) {
                 widget.onPressed(
                     Egitimlerim(

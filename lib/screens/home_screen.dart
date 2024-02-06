@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
+import 'package:tobetomobileapp/blocs/home/home_event.dart';
+import 'package:tobetomobileapp/blocs/home/home_state.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
+import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
-import 'package:tobetomobileapp/widgets/homepage/buttons.dart';
+import 'package:tobetomobileapp/widgets/homepage/homebutton_create.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 import 'package:tobetomobileapp/widgets/homepage/gradient_boxes.dart';
@@ -23,13 +29,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedButton = 1;
-  late Widget menu;
+  Widget menu = Container();
   late String assetImage;
   late Brightness brightness;
   Color textColor = Colors.white;
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
   late String istanbulKodluyorImage;
+  List<Application> applicationList = [];
   @override
   void initState() {
     super.initState();
@@ -55,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
       containerColor = backgroundColor;
     }
 
-    menu = const Basvurularim();
+    menu = Basvurularim(applicationsList: applicationList);
   }
 
   void updateMenu(Widget newMenu, int id) {
@@ -65,280 +72,335 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // void updateItems(List<Application> applicationList) {
+  //   setState(() {
+  //     menu = Basvurularim(applicationsList: applicationList);
+  //   });
+  // }
+  void refreshPage() {
+    context.read<HomeBloc>().add(RefreshPage());
+  }
+
   @override
   Widget build(BuildContext context) {
     TobetoColor tobetoColor = TobetoColor();
-    return Scaffold(
-      backgroundColor: backgroundColor.withOpacity(0.95),
-      appBar: AppBar(
-        flexibleSpace: AppBarLogo(brightness: brightness),
-      ),
-      drawer: const TobetoDrawer(),
-      floatingActionButton: const SwingMethod(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            TopTextWidget(
-              textColor: textColor,
-              user: widget.user,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: containerColor,
-              ),
-              child: Column(
-                children: [
-                  Image(
-                    height: 200,
-                    width: 200,
-                    image: AssetImage(istanbulKodluyorImage),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 32),
-                    child: Column(
+
+    return BlocListener<HomeBloc, HomeState>(
+      listener: (context, state) {
+        if (state is LoadedPage) {
+          setState(() {
+            print(applicationList);
+            applicationList = state.applicationList;
+            print(applicationList);
+            menu = Basvurularim(applicationsList: applicationList);
+          });
+        }
+      },
+      child: Scaffold(
+        backgroundColor: backgroundColor.withOpacity(0.95),
+        appBar: AppBar(
+          flexibleSpace: AppBarLogo(brightness: brightness),
+        ),
+        drawer: const TobetoDrawer(),
+        floatingActionButton: const SwingMethod(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        body: RefreshIndicator(
+          onRefresh: () async {
+            refreshPage();
+          },
+          child: BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              if (state is InitializePage) {
+                context.read<HomeBloc>().add(LoadPage());
+                return const Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 18),
+                        CircularProgressIndicator(),
+                        Text("Sayfa yükleniyor")
+                      ]),
+                );
+              }
+              if (state is LoadedPage) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TopTextWidget(
+                        textColor: textColor,
+                        user: widget.user,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: containerColor,
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Aradığın",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                            Text(
-                              " \"",
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: tobetoColor.cardColor,
-                              ),
-                            ),
-                            const Text(
-                              "İş",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                            Text(
-                              "\"",
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: tobetoColor.cardColor,
-                              ),
-                            ),
-                            const Text(
-                              " Burada",
-                              style: TextStyle(fontSize: 24),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            ButtonCreator(
-                              name: "Başvurularım",
-                              buttonId: 1,
-                              textColor: textColor,
-                              selectedButton: selectedButton,
-                              onPressed: (newWidget, number) {
-                                updateMenu(newWidget, number);
-                              },
-                            ),
-                            ButtonCreator(
-                              name: "Eğitimlerim",
-                              buttonId: 2,
-                              textColor: textColor,
-                              selectedButton: selectedButton,
-                              onPressed: (newWidget, number) {
-                                updateMenu(newWidget, number);
-                              },
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            ButtonCreator(
-                              name: "Duyuru ve Haberlerim",
-                              buttonId: 3,
-                              textColor: textColor,
-                              selectedButton: selectedButton,
-                              onPressed: (newWidget, number) {
-                                updateMenu(newWidget, number);
-                              },
-                            ),
-                            ButtonCreator(
-                              name: "Anketlerim",
-                              buttonId: 4,
-                              textColor: textColor,
-                              selectedButton: selectedButton,
-                              onPressed: (newWidget, number) {
-                                updateMenu(newWidget, number);
-                              },
-                            )
-                          ],
-                        ),
-                        menu,
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              color: containerColor,
-              width: 150,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              color: containerColor,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Sınavlarım"),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                const Text(
-                                    "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
-                                const Spacer(),
-                                Icon(
-                                  Icons.check_box,
-                                  color: tobetoColor.iconColor,
-                                )
-                              ],
+                            Image(
+                              height: 200,
+                              width: 200,
+                              image: AssetImage(istanbulKodluyorImage),
                             ),
-                            const SizedBox(
-                              height: 15,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 32, right: 32),
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        "Aradığın",
+                                        style: TextStyle(fontSize: 24),
+                                      ),
+                                      Text(
+                                        " \"",
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          color: tobetoColor.cardColor,
+                                        ),
+                                      ),
+                                      const Text(
+                                        "İş",
+                                        style: TextStyle(fontSize: 24),
+                                      ),
+                                      Text(
+                                        "\"",
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          color: tobetoColor.cardColor,
+                                        ),
+                                      ),
+                                      const Text(
+                                        " Burada",
+                                        style: TextStyle(fontSize: 24),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      HomeButtonCreator(
+                                        applicationList: state.applicationList,
+                                        name: "Başvurularım",
+                                        buttonId: 1,
+                                        textColor: textColor,
+                                        selectedButton: selectedButton,
+                                        onPressed: (newWidget, number) {
+                                          updateMenu(newWidget, number);
+                                        },
+                                      ),
+                                      HomeButtonCreator(
+                                        applicationList: applicationList,
+                                        name: "Eğitimlerim",
+                                        buttonId: 2,
+                                        textColor: textColor,
+                                        selectedButton: selectedButton,
+                                        onPressed: (newWidget, number) {
+                                          updateMenu(newWidget, number);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      HomeButtonCreator(
+                                        applicationList: applicationList,
+                                        name: "Duyuru ve Haberlerim",
+                                        buttonId: 3,
+                                        textColor: textColor,
+                                        selectedButton: selectedButton,
+                                        onPressed: (newWidget, number) {
+                                          updateMenu(newWidget, number);
+                                        },
+                                      ),
+                                      HomeButtonCreator(
+                                        applicationList: applicationList,
+                                        name: "Anketlerim",
+                                        buttonId: 4,
+                                        textColor: textColor,
+                                        selectedButton: selectedButton,
+                                        onPressed: (newWidget, number) {
+                                          updateMenu(newWidget, number);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                  menu,
+                                ],
+                              ),
                             ),
-                            const Text(
-                              "Herkes için Kodlama - 1D",
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.timer_sharp,
-                                  color: tobetoColor.logoTextColor,
-                                ),
-                                const Text(
-                                  " 45 Dakika",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            )
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  verticalDirection: VerticalDirection.up,
-                  children: [
-                    GradientBoxes(
-                        boxName: TobetoText().boxText1,
-                        boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.iconColor,
-                          heroTag: const Key("start1"),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditProfileScreen()));
-                          },
-                          child: Text(TobetoText().boxButtonText),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        color: containerColor,
+                        width: 150,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        color: containerColor,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Sınavlarım"),
+                              Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Text(
+                                              "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
+                                          const Spacer(),
+                                          Icon(
+                                            Icons.check_box,
+                                            color: tobetoColor.iconColor,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text(
+                                        "Herkes için Kodlama - 1D",
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.timer_sharp,
+                                            color: tobetoColor.logoTextColor,
+                                          ),
+                                          const Text(
+                                            " 45 Dakika",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        boxColorBegin: tobetoColor.box1BeginColor,
-                        boxColorEnd: tobetoColor.box1EndColor),
-                    //2
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    GradientBoxes(
-                        boxName: TobetoText().boxText2,
-                        boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.iconColor,
-                          heroTag: const Key("start2"),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ReviewsScreen()));
-                          },
-                          child: Text(TobetoText().boxButtonText),
-                        ),
-                        boxColorBegin: tobetoColor.box2BeginColor,
-                        boxColorEnd: tobetoColor.box2EndColor),
-                    //3
-                    const SizedBox(
-                      width: 10,
-                    ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            verticalDirection: VerticalDirection.up,
+                            children: [
+                              GradientBoxes(
+                                  boxName: TobetoText().boxText1,
+                                  boxButton: FloatingActionButton(
+                                    backgroundColor: tobetoColor.iconColor,
+                                    heroTag: const Key("start1"),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const EditProfileScreen()));
+                                    },
+                                    child: Text(TobetoText().boxButtonText),
+                                  ),
+                                  boxColorBegin: tobetoColor.box1BeginColor,
+                                  boxColorEnd: tobetoColor.box1EndColor),
+                              //2
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              GradientBoxes(
+                                  boxName: TobetoText().boxText2,
+                                  boxButton: FloatingActionButton(
+                                    backgroundColor: tobetoColor.iconColor,
+                                    heroTag: const Key("start2"),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const ReviewsScreen()));
+                                    },
+                                    child: Text(TobetoText().boxButtonText),
+                                  ),
+                                  boxColorBegin: tobetoColor.box2BeginColor,
+                                  boxColorEnd: tobetoColor.box2EndColor),
+                              //3
+                              const SizedBox(
+                                width: 10,
+                              ),
 
-                    GradientBoxes(
-                        boxName: TobetoText().boxText3,
-                        boxButton: FloatingActionButton(
-                          backgroundColor: tobetoColor.iconColor,
-                          heroTag: const Key("start3"),
-                          onPressed: () {
-                            const BoxesAlert(
-                              errorMes: "404 Sayfa Bulunamadı",
-                            ).errormessage(context);
-                          },
-                          child: Text(TobetoText().boxButtonText),
+                              GradientBoxes(
+                                  boxName: TobetoText().boxText3,
+                                  boxButton: FloatingActionButton(
+                                    backgroundColor: tobetoColor.iconColor,
+                                    heroTag: const Key("start3"),
+                                    onPressed: () {
+                                      const BoxesAlert(
+                                        errorMes: "404 Sayfa Bulunamadı",
+                                      ).errormessage(context);
+                                    },
+                                    child: Text(TobetoText().boxButtonText),
+                                  ),
+                                  boxColorBegin: tobetoColor.box3BeginColor,
+                                  boxColorEnd: tobetoColor.box3EndColor),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
                         ),
-                        boxColorBegin: tobetoColor.box3BeginColor,
-                        boxColorEnd: tobetoColor.box3EndColor),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            TobetoFooter(
-              assetImage: assetImage,
-              backgroundColor: backgroundColor,
-              textColor: textColor,
-            )
-          ],
+                      ),
+                      TobetoFooter(
+                        assetImage: assetImage,
+                        backgroundColor: backgroundColor,
+                        textColor: textColor,
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: Text("Beklenmedik hata"),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

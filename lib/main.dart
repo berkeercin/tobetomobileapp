@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/blocs/home_screen/homescreen.bloc.dart';
+import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
+import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/firebase_options.dart';
+import 'package:tobetomobileapp/repositories/home_repository.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,13 +29,18 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   UserRepostory userRepostory = UserRepostory();
+  HomeRepository homeRepository = HomeRepository();
+
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<AuthBloc>(
         create: (context) => AuthBloc(userRepostory: userRepostory),
       ),
       BlocProvider(
-        create: (context) => HomeScreenBloc(userRepostory: userRepostory),
+        create: (context) => HomeBloc(homeRepository: homeRepository),
+      ),
+      BlocProvider(
+        create: (context) => CatalogBloc(userRepostory: userRepostory),
       )
     ],
     child: MaterialApp(
