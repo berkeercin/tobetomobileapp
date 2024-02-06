@@ -70,7 +70,6 @@ class HomeRepository {
                 applicationStatus: element['applicationStatus'],
                 subAppliactionList: subApplicationList);
             applicationList_.add(item);
-
             // print(element['applicationTitle']);
           }
         }

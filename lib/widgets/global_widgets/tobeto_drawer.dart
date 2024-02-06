@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
+import 'package:tobetomobileapp/blocs/calendar/calendar_bloc.dart';
+import 'package:tobetomobileapp/blocs/calendar/calendar_event.dart';
+import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
+import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/calendar_screen.dart';
 import 'package:tobetomobileapp/screens/catalog_screen.dart';
@@ -145,6 +149,10 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                         ),
                         TextButton(
                             onPressed: () {
+                              context
+                                  .read<CatalogBloc>()
+                                  .add(RefreshCatalogPage());
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -156,6 +164,9 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                             )),
                         TextButton(
                             onPressed: () {
+                              context
+                                  .read<CalendarBloc>()
+                                  .add(RefreshCalendarPage());
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

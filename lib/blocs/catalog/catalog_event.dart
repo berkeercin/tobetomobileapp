@@ -8,6 +8,8 @@ class LoadCatalog extends CatalogEvent {
   LoadCatalog(this.brightness, this.filter);
 }
 
+class RefreshCatalogPage extends CatalogEvent {}
+
 class LoadFilteredCatalog extends CatalogEvent {
   final String? category;
   final String? eduTitle;

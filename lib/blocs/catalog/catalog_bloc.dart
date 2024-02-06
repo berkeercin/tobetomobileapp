@@ -57,37 +57,38 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
           catalogArray[7],
           catalogArray[8]));
     });
-    on(
-      (LoadFilteredCatalog event, Emitter<CatalogState> emit) async {
-        final CatalogRepository catalogRepository =
-            CatalogRepository(brightness: event.brightness);
-        catalogItems.clear();
-        await loadCatalogItems();
-        print(catalogItems.length);
-        filteredCatalogArray = catalogRepository.loadFilteredCatalogItems(
-            event.category,
-            event.eduTitle,
-            event.eduType,
-            event.eduLevel,
-            event.eduTopic,
-            event.eduSoftware,
-            event.instructor,
-            event.status,
-            catalogItems);
-        // print(filteredCatalogArray.toString());
+    on((LoadFilteredCatalog event, Emitter<CatalogState> emit) async {
+      final CatalogRepository catalogRepository =
+          CatalogRepository(brightness: event.brightness);
+      catalogItems.clear();
+      await loadCatalogItems();
+      print(catalogItems.length);
+      filteredCatalogArray = catalogRepository.loadFilteredCatalogItems(
+          event.category,
+          event.eduTitle,
+          event.eduType,
+          event.eduLevel,
+          event.eduTopic,
+          event.eduSoftware,
+          event.instructor,
+          event.status,
+          catalogItems);
+      // print(filteredCatalogArray.toString());
 
-        emit(LoadedPage(
-            filteredCatalogArray[0],
-            catalogItems,
-            catalogArray[1],
-            catalogArray[2],
-            catalogArray[3],
-            catalogArray[4],
-            catalogArray[5],
-            catalogArray[6],
-            catalogArray[7],
-            catalogArray[8]));
-      },
-    );
+      emit(LoadedPage(
+          filteredCatalogArray[0],
+          catalogItems,
+          catalogArray[1],
+          catalogArray[2],
+          catalogArray[3],
+          catalogArray[4],
+          catalogArray[5],
+          catalogArray[6],
+          catalogArray[7],
+          catalogArray[8]));
+    });
+    on((RefreshCatalogPage event, Emitter<CatalogState> emit) {
+      emit(Initialize());
+    });
   }
 }
