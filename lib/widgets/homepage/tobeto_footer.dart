@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/screens/contact_info.dart';
 
 class TobetoFooter extends StatelessWidget {
   const TobetoFooter(
@@ -18,7 +19,7 @@ class TobetoFooter extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 150,
+            height: 120,
             color: tobetoColor.logoTextColor,
             child: Column(children: [
               Column(
@@ -28,15 +29,21 @@ class TobetoFooter extends StatelessWidget {
                     children: [
                       Image(
                         image: AssetImage(assetImage),
-                        height: 100,
-                        width: 125,
+                        height: 75,
+                        width: 100,
                       ),
                       Container(
                         decoration: BoxDecoration(
                             color: backgroundColor,
                             borderRadius: BorderRadius.circular(16)),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ContactInfo(),
+                                ));
+                          },
                           child: Text("Bize Ulaşın",
                               style: TextStyle(color: textColor)),
                         ),
@@ -47,7 +54,7 @@ class TobetoFooter extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white.withOpacity(0.5), fontSize: 18)),
                   const SizedBox(
-                    height: 15,
+                    height: 10,
                   )
                 ],
               )

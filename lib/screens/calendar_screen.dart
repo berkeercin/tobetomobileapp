@@ -4,7 +4,7 @@ import 'package:tobetomobileapp/blocs/calendar/calendar_bloc.dart';
 import 'package:tobetomobileapp/blocs/calendar/calendar_event.dart';
 import 'package:tobetomobileapp/blocs/calendar/calendar_state.dart';
 import 'package:tobetomobileapp/packages/cell_calendar/cell_calendar.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -171,7 +171,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return BlocListener<CalendarBloc, CalendarBlocState>(
       listener: (context, state) {},
       child: Scaffold(
-        appBar: AppBar(flexibleSpace: AppBarLogo(brightness: brightness)),
+        appBar: AppBar(flexibleSpace: TobetoAppBar(brightness: brightness)),
         body: BlocBuilder<CalendarBloc, CalendarBlocState>(
           builder: (context, state) {
             if (state is InitializePage) {

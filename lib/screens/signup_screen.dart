@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
@@ -26,6 +24,11 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final size30 = const SizedBox(height: 30);
+  final size10 = const SizedBox(height: 10);
+  final iconsax = MyIconsax();
+  final constText = TobetoText();
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -34,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void setBoolShown(bool item, String string) {
     setState(() {
-      if (string == "Şifre" || string == "Şifreyi tekrarla") {
+      if (string == "Şifre" || string == "Şifreyi Tekrarla") {
         if (item == true) {
           isPasswordShown = true;
         } else {
@@ -68,24 +71,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      size30,
                       Image.asset(
                         assetImage,
                         width: 150,
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      size30,
                       Row(
                         children: [
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 3,
                             child: textBox(
                                 textColor,
-                                "İsim",
-                                MyIconsName().userNameIcon,
+                                constText.name,
+                                iconsax.usericon,
                                 nameController,
                                 null,
                                 setBoolShown),
@@ -95,52 +94,34 @@ class _SignupScreenState extends State<SignupScreen> {
                             width: MediaQuery.of(context).size.width / 3,
                             child: textBox(
                                 textColor,
-                                "Soyisim",
-                                MyIconsName().userNameIcon,
+                                constText.surname,
+                                iconsax.usericon,
                                 surnameController,
                                 null,
                                 null),
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      textBox(
-                          textColor,
-                          TobetoText().userHintText,
-                          MyIconsName().userNameIcon,
-                          usernameController,
-                          null,
-                          null),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      textBox(textColor, "E-posta", MyIconsName().mailIcon,
+                      size10,
+                      textBox(textColor, constText.email, iconsax.emailIcon,
                           emailController, null, null),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      size10,
                       textBox(
                           textColor,
-                          TobetoText().passwordHintText,
-                          MyIconsName().passwordIcon,
+                          constText.passwordHintText,
+                          iconsax.passwordicon,
                           passwordController,
                           isPasswordShown,
                           setBoolShown),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      size10,
                       textBox(
                           textColor,
                           "Şifreyi tekrarla",
-                          MyIconsName().passwordIcon,
+                          iconsax.passwordicon,
                           passwordConfirmController,
                           isPasswordShown,
                           setBoolShown),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      size10,
                       const Spacer(),
                       buttonCreate(
                           context,
@@ -156,19 +137,25 @@ class _SignupScreenState extends State<SignupScreen> {
                       Divider(color: textColor.withOpacity(.3)),
                       TextButton(
                         onPressed: () {},
-                        child: TobetoText().parolamiUnuttum,
+                        child: constText.parolamiUnuttum,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Hesabınız var mı?"),
+                          Text(
+                            constText.hesapVar,
+                            style: TextStyle(fontSize: 16),
+                          ),
                           TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text("Giriş Yap"))
+                              child: Text(
+                                constText.girisYap,
+                                style: TextStyle(fontSize: 16),
+                              )),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -244,7 +231,7 @@ Widget textBox(
             const SizedBox(
               width: 10,
             ),
-            MyIcons(color: color, icon: MyIconsName().passwordIcon),
+            MyIcons(color: color, icon: MyIconsax().passwordicon),
             const SizedBox(
               width: 5,
             ),
@@ -266,7 +253,9 @@ Widget textBox(
                   buttonFunc!(true, hintText);
                 }
               },
-              icon: Icon(isShown ? Icons.visibility : Icons.visibility_off),
+              icon: Icon(isShown
+                  ? MyIconsax().passVisibilityOffIcon
+                  : MyIconsax().passVisibilityIcon),
               color: color.withOpacity(0.5),
             )
           ],
@@ -313,7 +302,7 @@ Widget buttonCreate(
         }
       },
       child: Text(
-        "Kayıt Ol",
-        style: TextStyle(color: backgroundColor),
+        TobetoText().kayitol,
+        style: TextStyle(color: backgroundColor, fontSize: 18),
       ));
 }

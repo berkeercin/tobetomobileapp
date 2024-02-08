@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 
 class ProfileDate extends StatefulWidget {
   const ProfileDate({Key? key}) : super(key: key);
@@ -53,18 +53,8 @@ class _ProfileDateState extends State<ProfileDate> {
                 });
               }
             },
-            child: Icon(
-              color: TobetoColor().iconColor,
-              Icons.date_range,
-            ),
+            child: MyIconsax().calendar,
           ),
-          // Spacer(),
-          // Expanded(
-          //   child: Icon(
-          //     color: TobetoColor().iconColor,
-          //     Icons.date_range,
-          //   ),
-          // ),
         ],
       ),
     );

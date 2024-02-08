@@ -5,8 +5,8 @@ import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 
-class AppBarLogo extends StatelessWidget {
-  const AppBarLogo({super.key, required this.brightness});
+class TobetoAppBar extends StatelessWidget {
+  const TobetoAppBar({super.key, required this.brightness});
   final Brightness brightness;
   @override
   Widget build(BuildContext context) {

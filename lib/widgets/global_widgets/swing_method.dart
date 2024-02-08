@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing.dart';
 
 class SwingMethod extends StatefulWidget {
@@ -37,8 +39,9 @@ class _SwingMethodState extends State<SwingMethod> {
 }
 
 class FABwithAnimation extends StatefulWidget {
-  const FABwithAnimation({super.key, required this.isOpen});
+  FABwithAnimation({super.key, required this.isOpen});
   final void Function(bool val) isOpen;
+  final color = TobetoColor();
 
   @override
   State<FABwithAnimation> createState() => _FABwithAnimationState();
@@ -50,7 +53,7 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
     return Swing(
         button: SpeedDial(
       shape: const CircleBorder(),
-      backgroundColor: TobetoColor().boxButton,
+      backgroundColor: color.logoTextColor, //animasyon rengi
       foregroundColor: Colors.white,
       elevation: 20,
       overlayOpacity: 0,
@@ -60,23 +63,10 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
         });
       },
       childPadding: const EdgeInsets.all(8),
-      children: [
-        SpeedDialChild(
-          backgroundColor: TobetoColor().boxButton,
-          child: const Icon(
-            Icons.chat_outlined,
-            color: Colors.white,
-          ),
-          onTap: () {},
-        ),
-        SpeedDialChild(
-            child: const Icon(
-              Icons.chat,
-              color: Colors.white,
-            ),
-            backgroundColor: TobetoColor().cardColor)
-      ],
-      child: const Icon(Icons.chat_bubble_rounded),
+      child: const Icon(
+        size: 30,
+        Iconsax.message,
+      ),
     ));
   }
 }
@@ -92,7 +82,7 @@ class FABwithoutAnimation extends StatelessWidget {
     return SpeedDial(
       isOpenOnStart: true,
       shape: const CircleBorder(),
-      backgroundColor: TobetoColor().boxButton,
+      backgroundColor: color.logoTextColor,
       foregroundColor: Colors.white,
       elevation: 20,
       overlayOpacity: 0,
@@ -102,21 +92,24 @@ class FABwithoutAnimation extends StatelessWidget {
       childPadding: const EdgeInsets.all(8),
       children: [
         SpeedDialChild(
-          backgroundColor: TobetoColor().boxButton,
+          backgroundColor: color.logoTextColor,
           child: const Icon(
-            Icons.chat_outlined,
+            Iconsax.message,
             color: Colors.white,
           ),
           onTap: () {},
         ),
         SpeedDialChild(
             child: const Icon(
-              Icons.chat,
+              Iconsax.messages_2,
               color: Colors.white,
             ),
-            backgroundColor: TobetoColor().cardColor)
+            backgroundColor: color.cardColor)
       ],
-      child: const Icon(Icons.chat_bubble_rounded),
+      child: const Icon(
+        size: 30,
+        Iconsax.message,
+      ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_state.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/dropdown_creator.dart';
 
 class CatalogScreen extends StatefulWidget {
@@ -68,7 +68,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
       listener: (context, state) {},
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: AppBarLogo(brightness: brightness),
+          flexibleSpace: TobetoAppBar(brightness: brightness),
           actions: [
             Padding(
               padding: const EdgeInsets.only(bottom: 2, right: 16),

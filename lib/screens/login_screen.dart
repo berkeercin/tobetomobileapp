@@ -24,6 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
   late String assetImage;
   late Color textColor;
   late Color backgroundColor;
+  MyIconsax iconsax = MyIconsax();
+  final constText = TobetoText();
+
   @override
   Widget build(BuildContext context) {
     darkLightTheme(context);
@@ -94,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     MyIcons(
                                         color: textColor,
-                                        icon: MyIconsName().passVisibilityIcon),
+                                        icon: iconsax.usericon),
                                     const SizedBox(
                                       width: 5,
                                     ),
@@ -102,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       child: TextField(
                                         controller: usernameController,
                                         decoration: InputDecoration(
-                                            hintText: TobetoText().userHintText,
+                                            hintText: constText.userHintText,
                                             border: InputBorder.none,
                                             hintStyle: TextStyle(
                                               color: textColor.withOpacity(0.5),
@@ -126,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     MyIcons(
                                         color: textColor,
-                                        icon: MyIconsName().passwordIcon),
+                                        icon: iconsax.passwordicon),
                                     const SizedBox(
                                       width: 5,
                                     ),
@@ -136,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         obscureText: isPasswordShown,
                                         decoration: InputDecoration(
                                             hintText:
-                                                TobetoText().passwordHintText,
+                                                constText.passwordHintText,
                                             border: InputBorder.none,
                                             hintStyle: TextStyle(
                                                 color: textColor
@@ -154,10 +157,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         });
                                       },
                                       icon: Icon(isPasswordShown
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
+                                          ? iconsax.passVisibilityOffIcon
+                                          : iconsax.passVisibilityIcon),
                                       color: textColor.withOpacity(0.5),
-                                    )
+                                    ),
                                   ],
                                 )),
                             const Spacer(),
@@ -178,19 +181,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                       password: passwordController.text));
                                 },
                                 child: Text(
-                                  TobetoText().buttonText,
+                                  constText.girisYap,
                                   style: TextStyle(color: backgroundColor),
                                 )),
                             const Spacer(),
                             Divider(color: textColor.withOpacity(.3)),
                             TextButton(
                               onPressed: () {},
-                              child: TobetoText().parolamiUnuttum,
+                              child: constText.parolamiUnuttum,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Hesabınız yok mu?"),
+                                Text(constText.hesapYok),
                                 TextButton(
                                     onPressed: () {
                                       Navigator.push(
@@ -200,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 SignupScreen(),
                                           ));
                                     },
-                                    child: Text("Kayıt Ol"))
+                                    child: Text(constText.kayitol)),
                               ],
                             )
                           ],

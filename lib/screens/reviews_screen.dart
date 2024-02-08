@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
@@ -48,7 +48,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: AppBar(
-        flexibleSpace: AppBarLogo(brightness: brightness),
+        flexibleSpace: TobetoAppBar(brightness: brightness),
       ),
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),

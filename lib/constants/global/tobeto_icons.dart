@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 
 class MyIcons extends StatelessWidget {
   final Color color;
@@ -14,10 +16,50 @@ class MyIcons extends StatelessWidget {
   }
 }
 
-class MyIconsName {
-  final mailIcon = const Icon(Icons.mail_outline);
-  final userNameIcon = const Icon(Icons.person_2_outlined);
-  final passwordIcon = const Icon(Icons.lock_outline);
-  final passVisibilityIcon = const Icon(Icons.visibility);
-  final passVisibilityOffIcon = const Icon(Icons.visibility_off);
+class MyIconsax {
+  final usericon = const Icon(Iconsax.user);
+  final passwordicon = const Icon(Iconsax.lock4);
+  final IconData passVisibilityIcon = Iconsax.eye;
+  final IconData passVisibilityOffIcon = Iconsax.eye_slash;
+  final emailIcon = Icon(Iconsax.sms);
+  final examtimer =
+      Icon(size: 25, Iconsax.timer_pause, color: tobetoColor.iconColor);
+  final examtick =
+      Icon(size: 25, Iconsax.tick_square, color: tobetoColor.iconColor);
+  final usericons = Icon(
+    Iconsax.user,
+    color: tobetoColor.iconColor,
+  );
+  final kurumIcon = Icon(
+    Iconsax.dollar_circle,
+    color: tobetoColor.iconColor,
+  );
+  final eduIcon = Icon(
+    Iconsax.teacher,
+    color: tobetoColor.iconColor,
+  );
+  final yetkinlikIcon = Icon(
+    Iconsax.notification_favorite,
+    color: tobetoColor.iconColor,
+  );
+  final certificateIcon = Icon(
+    Iconsax.award,
+    color: tobetoColor.iconColor,
+  );
+  final socialIcon = Icon(
+    Iconsax.instagram,
+    color: tobetoColor.iconColor,
+  );
+  final languIcon = Icon(
+    Iconsax.language_circle,
+    color: tobetoColor.iconColor,
+  );
+  final settingIcon = Icon(
+    Iconsax.setting,
+    color: tobetoColor.iconColor,
+  );
+  final calendar = Icon(
+    Iconsax.calendar_edit,
+    color: tobetoColor.iconColor,
+  );
 }

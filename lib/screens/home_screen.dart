@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_state.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/appBar_logo.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
-import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
+import 'package:tobetomobileapp/widgets/homepage/home_exam.dart';
+import 'package:tobetomobileapp/widgets/homepage/home_toptext.dart';
 import 'package:tobetomobileapp/widgets/homepage/homebutton_create.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
@@ -37,6 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late Color containerColor = Colors.black;
   late String istanbulKodluyorImage;
   List<Application> applicationList = [];
+  final iconsax = MyIconsax();
+  final constText = TobetoText();
   @override
   void initState() {
     super.initState();
@@ -72,19 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // void updateItems(List<Application> applicationList) {
-  //   setState(() {
-  //     menu = Basvurularim(applicationsList: applicationList);
-  //   });
-  // }
   void refreshPage() {
     context.read<HomeBloc>().add(RefreshPage());
   }
 
   @override
   Widget build(BuildContext context) {
-    TobetoColor tobetoColor = TobetoColor();
-
     return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is LoadedPage) {
@@ -99,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: backgroundColor.withOpacity(0.95),
         appBar: AppBar(
-          flexibleSpace: AppBarLogo(brightness: brightness),
+          flexibleSpace: TobetoAppBar(brightness: brightness),
         ),
         drawer: const TobetoDrawer(),
         floatingActionButton: const SwingMethod(),
@@ -153,45 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   const EdgeInsets.only(left: 32, right: 32),
                               child: Column(
                                 children: [
-                                  const Text(
-                                    "Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        "Aradığın",
-                                        style: TextStyle(fontSize: 24),
-                                      ),
-                                      Text(
-                                        " \"",
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          color: tobetoColor.cardColor,
-                                        ),
-                                      ),
-                                      const Text(
-                                        "İş",
-                                        style: TextStyle(fontSize: 24),
-                                      ),
-                                      Text(
-                                        "\"",
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          color: tobetoColor.cardColor,
-                                        ),
-                                      ),
-                                      const Text(
-                                        " Burada",
-                                        style: TextStyle(fontSize: 24),
-                                      )
-                                    ],
-                                  ),
+                                  HomeToptext(),
                                   Row(
                                     children: [
                                       HomeButtonCreator(
@@ -260,62 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         color: containerColor,
                         width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("Sınavlarım"),
-                              Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                              "Herkes için Kodlama 1D \nDeğerlendirme Sınavı"),
-                                          const Spacer(),
-                                          Icon(
-                                            Icons.check_box,
-                                            color: tobetoColor.iconColor,
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      const Text(
-                                        "Herkes için Kodlama - 1D",
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.timer_sharp,
-                                            color: tobetoColor.logoTextColor,
-                                          ),
-                                          const Text(
-                                            " 45 Dakika",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        child: HomeExam(),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -325,9 +228,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             verticalDirection: VerticalDirection.up,
                             children: [
                               GradientBoxes(
-                                  boxName: TobetoText().boxText1,
+                                  boxName: constText.boxText1,
                                   boxButton: FloatingActionButton(
-                                    backgroundColor: tobetoColor.iconColor,
+                                    backgroundColor:
+                                        tobetoColor.cardColor.withOpacity(0.70),
                                     heroTag: const Key("start1"),
                                     onPressed: () {
                                       Navigator.push(
@@ -336,7 +240,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                               builder: (context) =>
                                                   const EditProfileScreen()));
                                     },
-                                    child: Text(TobetoText().boxButtonText),
+                                    child: Text(
+                                      constText.boxButtonText,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   boxColorBegin: tobetoColor.box1BeginColor,
                                   boxColorEnd: tobetoColor.box1EndColor),
@@ -345,9 +254,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 10,
                               ),
                               GradientBoxes(
-                                  boxName: TobetoText().boxText2,
+                                  boxName: constText.boxText2,
                                   boxButton: FloatingActionButton(
-                                    backgroundColor: tobetoColor.iconColor,
+                                    backgroundColor:
+                                        tobetoColor.cardColor.withOpacity(0.70),
                                     heroTag: const Key("start2"),
                                     onPressed: () {
                                       Navigator.push(
@@ -356,7 +266,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                               builder: (context) =>
                                                   const ReviewsScreen()));
                                     },
-                                    child: Text(TobetoText().boxButtonText),
+                                    child: Text(
+                                      constText.boxButtonText,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   boxColorBegin: tobetoColor.box2BeginColor,
                                   boxColorEnd: tobetoColor.box2EndColor),
@@ -366,16 +281,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
 
                               GradientBoxes(
-                                  boxName: TobetoText().boxText3,
+                                  boxName: constText.boxText3,
                                   boxButton: FloatingActionButton(
-                                    backgroundColor: tobetoColor.iconColor,
+                                    backgroundColor:
+                                        tobetoColor.cardColor.withOpacity(0.70),
                                     heroTag: const Key("start3"),
                                     onPressed: () {
                                       const BoxesAlert(
                                         errorMes: "404 Sayfa Bulunamadı",
                                       ).errormessage(context);
                                     },
-                                    child: Text(TobetoText().boxButtonText),
+                                    child: Text(
+                                      constText.boxButtonText,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   boxColorBegin: tobetoColor.box3BeginColor,
                                   boxColorEnd: tobetoColor.box3EndColor),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
-import 'package:tobetomobileapp/dummydata/application_list.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
 
 TobetoColor tobetoColor = TobetoColor();
@@ -31,7 +30,7 @@ Widget noApplicationFound() {
       child: Column(
         children: [
           Image.asset(
-            "assets/images/no-survey-found.png",
+            "assets/images/basvuru.png",
             height: 250,
           ),
           const Text(
@@ -48,8 +47,6 @@ Widget loadAppliaction(BuildContext context, Application application) {
   late String applicationText;
   late Icon applicationIcon;
   late Color applicationColor;
-  List<String> subApplicationTitle = [];
-  List<int> subApplicationStatus = [];
   if (application.applicationStatus == 1) {
     applicationText = "Başvuru Sürecinde";
     applicationIcon = const Icon(Icons.remove);
@@ -79,147 +76,97 @@ Widget loadAppliaction(BuildContext context, Application application) {
               left: BorderSide(color: applicationColor, width: 10),
             ),
           ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        SizedBox(
-                            width: 180,
-                            child: Text(
-                              application.applicationTitle,
-                              softWrap: true,
-                            )),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    // height: MediaQuery.of(context).size.height / 22,
-                    // width: MediaQuery.of(context).size.width / 4.1,
-                    child: Card(
-                        elevation: 7,
-                        color: applicationColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                topLeft: Radius.circular(10)),
-                            side:
-                                BorderSide(width: 0, color: applicationColor)),
-                        child: Padding(
-                          padding: EdgeInsets.all(5),
+          child: Column(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      SizedBox(
+                          width: 180,
                           child: Text(
-                            applicationText,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 10,
-                  width: MediaQuery.of(context).size.width / 1,
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: application.subAppliactionList.map((e) {
-                      late Icon statusIcon;
-                      if (e['status'] == 1) {
-                        statusIcon = Icon(
-                          Icons.remove,
-                          color: Colors.amber.shade700,
-                        );
-                      } else if (e['status'] == 2) {
-                        statusIcon = const Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        );
-                      } else if (e['status'] == 3) {
-                        statusIcon = Icon(
-                          Icons.check,
-                          color: tobetoColor.cardColor,
-                        );
-                      }
-
-                      return Row(
-                        children: [
-                          statusIcon,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.5,
-                                child: Text(
-                                  e['title'],
-                                  softWrap: true,
-                                ),
-                              ),
-                              // Text(
-                              //   "",
-                              // ),
-                            ],
-                          )
-                        ],
-                      );
-                    }).toList(),
+                            application.applicationTitle,
+                            softWrap: true,
+                          )),
+                    ],
                   ),
                 ),
+                SizedBox(
+                  child: Card(
+                      elevation: 7,
+                      color: applicationColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topLeft: Radius.circular(10)),
+                          side: BorderSide(width: 0, color: applicationColor)),
+                      child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          applicationText,
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      )),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 10,
+                width: MediaQuery.of(context).size.width / 1,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: application.subAppliactionList.map((e) {
+                    late Icon statusIcon;
+                    if (e['status'] == 1) {
+                      statusIcon = Icon(
+                        Icons.remove,
+                        color: Colors.amber.shade700,
+                      );
+                    } else if (e['status'] == 2) {
+                      statusIcon = const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      );
+                    } else if (e['status'] == 3) {
+                      statusIcon = Icon(
+                        Icons.check,
+                        color: tobetoColor.cardColor,
+                      );
+                    }
+
+                    return Row(
+                      children: [
+                        statusIcon,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.5,
+                              child: Text(
+                                e['title'],
+                                softWrap: true,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
-              // Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              //   Icon(
-              //     Icons.check,
-              //     color: applicationColor,
-              //   ),
-              //   const Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       SizedBox(
-              //         width: 180,
-              //         child: Text(
-              //           "İstanbul Kodluyor Başvuru Formu onaylandı.",
-              //           softWrap: true,
-              //         ),
-              //       ),
-              //       // Text(
-              //       //   "",
-              //       // ),
-              //     ],
-              //   )
-              // ]),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Icon(
-              //       Icons.check,
-              //       color: applicationColor,
-              //     ),
-              //     const Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         SizedBox(
-              //           width: 180,
-              //           child: Text(
-              //             "İstanbul Kodluyor Belge Yükleme Formu onaylandı.",
-              //             softWrap: true,
-              //           ),
-              //         ),
-              //       ],
-              //     )
-              //   ],
-              // ),
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
     ),

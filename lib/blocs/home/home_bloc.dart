@@ -3,8 +3,6 @@ import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_state.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/repositories/home_repository.dart';
-import 'package:tobetomobileapp/repositories/user_repository.dart';
-
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository homeRepository;
   HomeBloc({required this.homeRepository}) : super(InitializePage()) {
