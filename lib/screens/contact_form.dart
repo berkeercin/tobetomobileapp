@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
+import 'package:tobetomobileapp/widgets/contact_textfield.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
@@ -20,7 +21,10 @@ class _ContactFormState extends State<ContactForm> {
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
   final iconsax = MyIconsax();
-  final textEditingController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final messageController = TextEditingController();
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -55,13 +59,18 @@ class _ContactFormState extends State<ContactForm> {
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+        child: Container(
+          height: MediaQuery.of(context).size.height / 2,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                style: BorderStyle.solid,
+                color: TobetoColor().box3EndColor,
+              )),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: Text(
@@ -72,72 +81,22 @@ class _ContactFormState extends State<ContactForm> {
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: Colors.brown, // Kenarlık rengi burada belirleniyor
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: textEditingController,
-                    decoration: InputDecoration(
-                      iconColor: TobetoColor().box3EndColor,
-                      hintText: "Adınız Soyadınız",
-                      hintStyle: TextStyle(color: TobetoColor().textColorText),
-                      icon: Icon(Iconsax.user),
-                      // border: InputBorder.none, // Kenarlık olmayacaksa bu satırı ekleyin
-                    ),
-                  ),
-                ),
+              ContactTextF(
+                controllerAdd: nameController,
+                text: "Adınız Soyadınız",
+                icon: Icon(Iconsax.user),
               ),
-              SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: Colors.brown, // Kenarlık rengi burada belirleniyor
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: textEditingController,
-                    decoration: InputDecoration(
-                      iconColor: TobetoColor().box3EndColor,
-                      hintText: "E-Mail",
-                      hintStyle: TextStyle(color: TobetoColor().textColorText),
-                      icon: Icon(Iconsax.direct_right),
-                      // border: InputBorder.none, // Kenarlık olmayacaksa bu satırı ekleyin
-                    ),
-                  ),
-                ),
+              ContactTextF(
+                controllerAdd: emailController,
+                text: "E-Mail",
+                icon: Icon(Iconsax.direct_right),
               ),
-              SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: Colors.brown, // Kenarlık rengi burada belirleniyor
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: textEditingController,
-                    decoration: InputDecoration(
-                      iconColor: TobetoColor().box3EndColor,
-                      hintText: "Mesajınız",
-                      hintStyle: TextStyle(color: TobetoColor().textColorText),
-                      icon: Icon(Iconsax.message_add),
-                      // border: InputBorder.none, // Kenarlık olmayacaksa bu satırı ekleyin
-                    ),
-                  ),
-                ),
+              ContactTextF(
+                controllerAdd: messageController,
+                text: "Mesajınız",
+                icon: Icon(Iconsax.message_add),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               Center(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.height / 3,

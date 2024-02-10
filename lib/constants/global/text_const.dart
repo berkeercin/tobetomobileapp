@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TobetoText {
-  final String userHintText = "Kullanıcı Adı";
   final String passwordHintText = "Şifre";
   final String email = "E-posta";
   final String name = "İsim";

@@ -222,17 +222,6 @@ class CatalogRepository {
     List<String> eduInstructors_ = [];
     List<String> eduStatus_ = [];
 
-    // catalogItems.forEach((element) {
-    //   print(element.toString());
-    // });
-    // print(catalogItems.length);
-    // print((category != null ? category : "category ") +
-    //     (eduTitle != null ? eduTitle : "eduTitle ") +
-    //     (eduLevel != null ? eduLevel : "eduLevel ") +
-    //     (eduTopic != null ? eduTopic : "eduTopic ") +
-    //     (eduSoftwareLang != null ? eduSoftwareLang : "eduSoftwareLang ") +
-    //     (eduInstructor != null ? eduInstructor : "eduInstructor ") +
-    //     (eduStatus != null ? eduStatus : "eduStatus "));
     for (var element in catalogItems) {
       if (((category == null || category == "") ||
               category == element.category) &&

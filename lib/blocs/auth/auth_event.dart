@@ -14,7 +14,6 @@ class LoginUser extends AuthEvent {
 
 class SignUpUser extends AuthEvent {
   final BuildContext context;
-  final String username;
   final String name;
   final String surname;
   final String password;
@@ -25,7 +24,7 @@ class SignUpUser extends AuthEvent {
       required this.name,
       required this.password,
       required this.surname,
-      required this.username});
+    });
 }
 
 class ReturnLoginScreen extends AuthEvent {}

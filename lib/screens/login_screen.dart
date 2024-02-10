@@ -19,7 +19,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordShown = true;
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   late String assetImage;
   late Color textColor;
@@ -32,9 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     darkLightTheme(context);
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is CheckUserLoginData) {
-          // context.read<>()
-        }
+        if(state is CheckUserLoginData) {}
 
         if (state is LoadedUser) {
           Navigator.pushReplacement(
@@ -48,14 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          // if (state is CheckUserLoginData) {
-          //   //TODO Eğer Kullanıcı verisi varsa direkt uyuglamaya User datası ile geçiş yapılacak.
-          //   // context.read<AuthBloc>().add(ReturnLoginScreen());
-          //   return Scaffold(
-          //     appBar: AppBar(title: const Text("Uygulama yükleniyor...")),
-          //     body: const Center(child: CircularProgressIndicator()),
-          //   );
-          // }
+         
           if (state is LogIn) {
             return Scaffold(
               body: Container(
@@ -103,9 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     Expanded(
                                       child: TextField(
-                                        controller: usernameController,
+                                        controller: emailController,
                                         decoration: InputDecoration(
-                                            hintText: constText.userHintText,
+                                            hintText: constText.email,
                                             border: InputBorder.none,
                                             hintStyle: TextStyle(
                                               color: textColor.withOpacity(0.5),
@@ -177,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () {
                                   context.read<AuthBloc>().add(LoginUser(
                                       context: context,
-                                      email: usernameController.text,
+                                      email: emailController.text,
                                       password: passwordController.text));
                                 },
                                 child: Text(

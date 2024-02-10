@@ -12,22 +12,7 @@ class HomeRepository {
       : _firebaseFireStore = firebaseFirestore ?? FirebaseFirestore.instance,
         _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
   List<News> loadNews() {
-    return [
-      // News(
-      //     isNews: false,
-      //     projectName: "projectName",
-      //     notifTitle: "notifTitle",
-      //     notifContent: "notifContent",
-      //     notifTime: DateTime(2024),
-      //     notifId: "notifId"),
-      // News(
-      //     isNews: false,
-      //     projectName: "projectName",
-      //     notifTitle: "notifTitle",
-      //     notifContent: "notifContent",
-      //     notifTime: DateTime(2024),
-      //     notifId: "notifId")
-    ];
+    return [];
   }
 
   List<Survey> loadSurveys() {
@@ -38,11 +23,9 @@ class HomeRepository {
     try {
       print("loadApplications running");
       List<Application> applicationList_ = [];
-      // print(FirebaseAuth.instance.currentUser?.uid);
       final snapshot =
           await _firebaseFireStore.collection("applicationList").get();
       for (var doc in snapshot.docs) {
-        // print(doc.data());
         if (doc.data().containsKey("userID") &&
             doc.get("userID") == FirebaseAuth.instance.currentUser?.uid) {
           var array = doc.get("applicationListArray");
@@ -50,7 +33,6 @@ class HomeRepository {
           for (var element in array_) {
             List<Map<dynamic, dynamic>> subApplicationList = [];
             List rawSubApplicationList_ = element['subApplicationList'];
-            // print(rawSubApplicationList_);
             for (var element in rawSubApplicationList_) {
               Map item = {};
               if (element['title'] == null) {}
@@ -70,7 +52,6 @@ class HomeRepository {
                 applicationStatus: element['applicationStatus'],
                 subAppliactionList: subApplicationList);
             applicationList_.add(item);
-            // print(element['applicationTitle']);
           }
         }
       }

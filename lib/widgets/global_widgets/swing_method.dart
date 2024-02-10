@@ -3,6 +3,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
+import 'package:tobetomobileapp/screens/contact_form.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing.dart';
 
 class SwingMethod extends StatefulWidget {
@@ -51,23 +52,25 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
   @override
   Widget build(BuildContext context) {
     return Swing(
-        button: SpeedDial(
-      shape: const CircleBorder(),
-      backgroundColor: color.logoTextColor, //animasyon rengi
-      foregroundColor: Colors.white,
-      elevation: 20,
-      overlayOpacity: 0,
-      onOpen: () {
-        setState(() {
-          widget.isOpen(true);
-        });
-      },
-      childPadding: const EdgeInsets.all(8),
-      child: const Icon(
-        size: 30,
-        Iconsax.message,
+      button: SpeedDial(
+        shape: const CircleBorder(),
+        backgroundColor: color.logoTextColor, //animasyon rengi
+        foregroundColor: Colors.white,
+        elevation: 20,
+        overlayOpacity: 0,
+        onOpen: () {
+          setState(() {
+            widget.isOpen(true);
+          });
+        },
+        childPadding: const EdgeInsets.all(8),
+
+        child: const Icon(
+          size: 30,
+          Iconsax.message,
+        ),
       ),
-    ));
+    );
   }
 }
 
@@ -93,11 +96,17 @@ class FABwithoutAnimation extends StatelessWidget {
       children: [
         SpeedDialChild(
           backgroundColor: color.logoTextColor,
-          child: const Icon(
+          child: Icon(
             Iconsax.message,
             color: Colors.white,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ContactForm(),
+                ));
+          },
         ),
         SpeedDialChild(
             child: const Icon(

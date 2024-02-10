@@ -29,20 +29,39 @@ class CalendarBloc extends Bloc<CalendarBlocEvent, CalendarBlocState> {
 
       var backgroundColor = element['eventBackgroundColor'];
       if (backgroundColor == "pink") {
+        //mobil
         color = Colors.pink;
       } else if (backgroundColor == "orange") {
+        //iş
         color = Colors.orange;
-      } else if (backgroundColor == "blue") {
-        color = Colors.blue;
+      } else if (backgroundColor == "red") {
+        //veri
+        color = Colors.red;
       } else if (backgroundColor == "cyan") {
+        //siber
         color = Colors.cyan;
+      } else if (backgroundColor == "purple") {
+        //test
+        color = Colors.purple;
+      } else if (backgroundColor == "green") {
+        //java
+        color = Colors.green;
+      } else if (backgroundColor == "brown") {
+        //oyun
+        color = Colors.brown;
+      } else if (backgroundColor == "grey") {
+        //dijital p
+        color = Colors.grey;
+      }else if (backgroundColor == "teal") {
+        //mentor
+        color = Colors.teal;
       }
       print(eventTime_);
       CalendarEvent calendarEvent = CalendarEvent(
           eventName: element['eventName'],
           eventDate: eventTime_,
           eventBackgroundColor: color,
-          eventTextStyle: const TextStyle());
+          eventTextStyle: TextStyle());
       // CatalogItem item = CatalogItem.fromMap(element.data());
       calendarEvents.add(calendarEvent);
     }

@@ -36,14 +36,13 @@ class UserRepostory {
     }
   }
 
-  signUpUser(String username, String name, String surname, String email,
+  signUpUser( String name, String surname, String email,
       String password) async {
     final userCredentials = await firebaseAuthInstance
         .createUserWithEmailAndPassword(email: email, password: password);
     var user =
         firebaseFireStore.collection("users").doc(userCredentials.user!.uid);
     await user.set({
-      "username": username,
       "userId": userCredentials.user!.uid,
       "name": name,
       "surname": surname,

@@ -6,6 +6,7 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_state.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/dropdown_creator.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
@@ -103,6 +104,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                     Column(
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               decoration: const BoxDecoration(
@@ -110,12 +112,12 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                       image: AssetImage(
                                 "assets/images/catalog-screen-top.png",
                               ))),
-                              height: MediaQuery.of(context).size.height / 2.5,
+                              height: MediaQuery.of(context).size.height / 3,
                               width: MediaQuery.of(context).size.width,
                               child: Center(
                                   child: Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(.5)),
+                                    color: backgroundColor.withOpacity(.5)),
                                 child: SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height / 7.5,
@@ -166,9 +168,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                             brightness,
                                                             filterController
                                                                 .text));
-                                                    // loadCatalogItems(
-                                                    //     filterController.text,
-                                                    //     state.catalogItems);
                                                   }
                                                 },
                                                 child: const Icon(Icons.search),
@@ -188,6 +187,8 @@ class _CatalogScreenState extends State<CatalogScreen> {
                           height: 50,
                           width: MediaQuery.of(context).size.width / 1.2,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: tobetoColor.iconColor),
                             onPressed: () {
                               setState(() {
                                 category = null;
@@ -252,6 +253,9 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                       .width /
                                                   1.2,
                                               child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        tobetoColor.iconColor),
                                                 onPressed: () {
                                                   context
                                                       .read<CatalogBloc>()
@@ -267,7 +271,12 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                           brightness));
                                                   Navigator.pop(context);
                                                 },
-                                                child: const Text("Filtrele"),
+                                                child: Text(
+                                                  "Filtrele",
+                                                  style: TextStyle(
+                                                      color: tobetoColor
+                                                          .cardColor),
+                                                ),
                                               ))
                                         ],
                                       )),
@@ -276,7 +285,10 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                 },
                               );
                             },
-                            child: const Text("Filtrele"),
+                            child: Text(
+                              "Filtrele",
+                              style: TextStyle(color: tobetoColor.cardColor),
+                            ),
                           ),
                         ),
                         Column(children: state.catalogWidgets)
@@ -314,215 +326,4 @@ class _CatalogScreenState extends State<CatalogScreen> {
       });
     }
   }
-
-  // void loadCatalogItems(String filter, List<CatalogItem> catalogItem) {
-  //   List<Widget> itemList = [];
-  //   print("test");
-  //   List<String> _categories = [];
-  //   List<String> _educations = [];
-  //   List<String> _eduLevel = [];
-  //   List<String> _eduTopic = [];
-  //   List<String> _eduSoftware = [];
-  //   List<String> _instructiors = [];
-  //   List<String> _status = [];
-  //   catalogItem.forEach(
-  //     (element) {
-  //       if (filter == "") {
-  //         _categories.add(element.category);
-  //         _educations.add(element.eduType);
-  //         _eduLevel.add(element.eduLevel);
-  //         _eduTopic.add(element.eduTopic);
-  //         _eduSoftware.add(element.softwareLang);
-  //         _instructiors.add(element.instructor);
-  //         _status.add(element.status);
-  //         Widget item = InkWell(
-  //           onTap: () {},
-  //           child: Padding(
-  //             padding: const EdgeInsets.all(12),
-  //             child: Container(
-  //               height: 250,
-  //               width: 400,
-  //               child: Card(
-  //                 child: Container(
-  //                   decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.circular(16),
-  //                       image: DecorationImage(
-  //                           fit: BoxFit.cover,
-  //                           image: NetworkImage(element.imgURL))),
-  //                   // color: Colors.red,
-  //                   child: Align(
-  //                     alignment: Alignment.bottomCenter,
-  //                     child: Container(
-  //                       color: backgroundColor.withOpacity(.9),
-  //                       width: double.infinity,
-  //                       height: 250 / 4,
-  //                       child: Column(
-  //                         children: [
-  //                           Text(
-  //                             element.title,
-  //                           ),
-  //                           const Spacer(),
-  //                           Row(
-  //                             mainAxisAlignment: MainAxisAlignment.start,
-  //                             children: [
-  //                               const Icon(Icons.person),
-  //                               Text(element.instructor),
-  //                               const SizedBox(
-  //                                 width: 15,
-  //                               ),
-  //                               const Icon(Icons.alarm_sharp),
-  //                               Text(element.duration)
-  //                             ],
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         );
-  //         itemList.add(item);
-  //       } else {
-  //         if (element.title.contains(filter)) {
-  //           Widget item = InkWell(
-  //             onTap: () {},
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(12),
-  //               child: Container(
-  //                 height: 250,
-  //                 width: 400,
-  //                 child: Card(
-  //                   child: Container(
-  //                     decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(16),
-  //                         image: DecorationImage(
-  //                             fit: BoxFit.cover,
-  //                             image: NetworkImage(element.imgURL))),
-  //                     // color: Colors.red,
-  //                     child: Align(
-  //                       alignment: Alignment.bottomCenter,
-  //                       child: Container(
-  //                         color: backgroundColor.withOpacity(.9),
-  //                         width: double.infinity,
-  //                         height: 250 / 4,
-  //                         child: Column(
-  //                           children: [
-  //                             Text(
-  //                               element.title,
-  //                             ),
-  //                             const Spacer(),
-  //                             Row(
-  //                               mainAxisAlignment: MainAxisAlignment.start,
-  //                               children: [
-  //                                 const Icon(Icons.person),
-  //                                 Text(element.instructor),
-  //                                 const SizedBox(
-  //                                   width: 15,
-  //                                 ),
-  //                                 const Icon(Icons.alarm_sharp),
-  //                                 Text(element.duration)
-  //                               ],
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           );
-  //           itemList.add(item);
-  //         }
-  //       }
-  //     },
-  //   );
-  //   setState(() {
-  //     _catalogItems = itemList;
-  //     categoryList = _categories;
-  //     educationList = _educations;
-  //     eduLevelList = _eduLevel;
-  //     eduTopicList = _eduTopic;
-  //     eduSoftwareList = _eduSoftware;
-  //     instructiorsList = _instructiors;
-  //     statusList = _status;
-  //   });
-  // }
 }
-
-// List<CatalogItem> rawCatalogItems = [
-  // CatalogItem(
-  //     author: "test",
-  //     duration: "2 Hr 2 min",
-  //     title: "Test Video",
-  //     imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-  //     category: "Ücretli Eğitimler",
-  //     eduLevel: "Medium",
-  //     eduTopic: "Topic",
-  //     eduType: "Type",
-  //     instructor: "A",
-  //     softwareLang: "C++",
-  //     status: "Active"),
-//   CatalogItem(
-//       // author: "example",
-//       duration: "1 Hr 30 min",
-//       title: "Example Course",
-//       imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-//       category: "Ücretli Eğitimler",
-//       eduLevel: "Beginner",
-//       eduTopic: "Programming",
-//       eduType: "Video Lecture",
-//       instructor: "B",
-//       softwareLang: "Java",
-//       status: "Active"),
-//   CatalogItem(
-//       author: "instructorX",
-//       duration: "3 Hr 45 min",
-//       title: "Advanced Programming",
-//       imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-//       category: "Ücretli Eğitimler",
-//       eduLevel: "Advanced",
-//       eduTopic: "Software Development",
-//       eduType: "Workshop",
-//       instructor: "X",
-//       softwareLang: "C++",
-//       status: "Upcoming"),
-//   CatalogItem(
-//       author: "educator123",
-//       duration: "1 Hr",
-//       title: "Introduction to Python",
-//       imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-//       category: "Ücretli Eğitimler",
-//       eduLevel: "Beginner",
-//       eduTopic: "Python Programming",
-//       eduType: "Tutorial",
-//       instructor: "C",
-//       softwareLang: "Python",
-//       status: "Active"),
-//   CatalogItem(
-//       author: "codingMaster",
-//       duration: "2 Hr 30 min",
-//       title: "Web Development Essentials",
-//       imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-//       category: "Ücretli Eğitimler",
-//       eduLevel: "Intermediate",
-//       eduTopic: "Web Development",
-//       eduType: "Online Course",
-//       instructor: "D",
-//       softwareLang: "HTML, CSS, JavaScript",
-//       status: "Active"),
-//   CatalogItem(
-//       author: "test",
-//       duration: "2 Hr 2 min",
-//       title: "Test Video",
-//       imgURL: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg",
-//       category: "Ücretsiz Eğitimler",
-//       eduLevel: "Medium",
-//       eduTopic: "Topic",
-//       eduType: "Type",
-//       instructor: "A",
-//       softwareLang: "C++",
-//       status: "Active")
-// ];

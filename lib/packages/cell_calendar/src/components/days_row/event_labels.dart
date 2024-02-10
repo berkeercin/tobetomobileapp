@@ -99,8 +99,8 @@ class _EventLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 4, bottom: 3),
-      height: 13,
-      width: double.infinity,
+      height: 20,
+      // width: double.infinity,
       color: event.eventBackgroundColor,
       child: Text(
         event.eventName,

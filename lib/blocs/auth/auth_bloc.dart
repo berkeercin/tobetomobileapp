@@ -40,7 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _signUpUser(SignUpUser event, Emitter<AuthState> emit) async {
     try {
-      await userRepostory.signUpUser(event.username, event.name, event.surname,
+      await userRepostory.signUpUser(event.name, event.surname,
           event.email, event.password);
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(event.context)

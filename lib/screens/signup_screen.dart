@@ -17,7 +17,6 @@ class _SignupScreenState extends State<SignupScreen> {
   late String assetImage;
   late Color textColor;
   bool isPasswordShown = true;
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
       TextEditingController();
@@ -127,7 +126,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           context,
                           textColor,
                           backgroundColor,
-                          usernameController,
                           emailController,
                           passwordController,
                           passwordConfirmController,
@@ -267,7 +265,6 @@ Widget buttonCreate(
     BuildContext context,
     Color textColor,
     Color backgroundColor,
-    TextEditingController username,
     TextEditingController email,
     TextEditingController password,
     TextEditingController passwordConfirm,
@@ -280,7 +277,7 @@ Widget buttonCreate(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
           minimumSize: const MaterialStatePropertyAll(Size(300, 40))),
       onPressed: () {
-        if (username.text == "" ||
+        if (
             email.text == "" ||
             password.text == "" ||
             passwordConfirm.text == "" ||
@@ -298,7 +295,7 @@ Widget buttonCreate(
               name: name.text,
               password: password.text,
               surname: surname.text,
-              username: username.text));
+            ));
         }
       },
       child: Text(
