@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/dummydata/video_list.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
+import 'package:tobetomobileapp/models/home_page/news.dart';
+import 'package:tobetomobileapp/models/home_page/page_content.dart';
+import 'package:tobetomobileapp/models/home_page/survey.dart';
+import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
@@ -14,13 +18,13 @@ class HomeButtonCreator extends StatefulWidget {
       required this.textColor,
       required this.selectedButton,
       required this.onPressed,
-      this.applicationList = const []})
+      required this.pagecontent})
       : super(key: key);
   final String name;
   final int buttonId;
   final Color textColor;
   final int selectedButton;
-  final List<Application> applicationList;
+  final PageContent pagecontent;
   final void Function(Widget newWidget, int number) onPressed;
   @override
   State<HomeButtonCreator> createState() => _HomeButtonCreatorState();
@@ -31,10 +35,14 @@ class _HomeButtonCreatorState extends State<HomeButtonCreator> {
     applicationsList: [],
   );
   Widget container2 = Egitimlerim(
-    videoList: [...videoList],
+    videoList: [],
   );
-  Widget container3 = const Duyurular();
-  Widget container4 = const Anketlerim();
+  Widget container3 = const Duyurular(
+    newsList: [],
+  );
+  Widget container4 = const Anketlerim(
+    surveyList: [],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +57,23 @@ class _HomeButtonCreatorState extends State<HomeButtonCreator> {
               selectedButton = widget.buttonId;
               if (selectedButton == 1) {
                 widget.onPressed(
-                    Basvurularim(applicationsList: widget.applicationList),
+                    Basvurularim(
+                        applicationsList: widget.pagecontent.applicationList),
                     selectedButton);
               } else if (selectedButton == 2) {
                 widget.onPressed(
                     Egitimlerim(
-                      videoList: [...videoList],
+                      videoList: widget.pagecontent.educationList,
                     ),
                     selectedButton);
               } else if (selectedButton == 3) {
-                widget.onPressed(const Duyurular(), selectedButton);
+                widget.onPressed(
+                    Duyurular(newsList: widget.pagecontent.newsList),
+                    selectedButton);
               } else if (selectedButton == 4) {
-                widget.onPressed(const Anketlerim(), selectedButton);
+                widget.onPressed(
+                    Anketlerim(surveyList: widget.pagecontent.surveyList),
+                    selectedButton);
               } else {
                 widget.onPressed(Container(), 1);
               }

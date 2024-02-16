@@ -24,7 +24,6 @@ class CalendarBloc extends Bloc<CalendarBlocEvent, CalendarBlocState> {
     for (var element in snapshot.docs) {
       Color color = Colors.greenAccent;
       Timestamp timestamp = element['eventDate'];
-      print(timestamp);
       DateTime eventTime_ = timestamp.toDate().toLocal();
 
       var backgroundColor = element['eventBackgroundColor'];
@@ -52,7 +51,7 @@ class CalendarBloc extends Bloc<CalendarBlocEvent, CalendarBlocState> {
       } else if (backgroundColor == "grey") {
         //dijital p
         color = Colors.grey;
-      }else if (backgroundColor == "teal") {
+      } else if (backgroundColor == "teal") {
         //mentor
         color = Colors.teal;
       }

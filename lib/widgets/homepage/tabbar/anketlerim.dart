@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/dummydata/survey_list.dart';
+import 'package:tobetomobileapp/models/home_page/survey.dart';
 
 class Anketlerim extends StatelessWidget {
-  const Anketlerim({Key? key}) : super(key: key);
-
+  const Anketlerim({Key? key, required this.surveyList}) : super(key: key);
+  final List<Survey> surveyList;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

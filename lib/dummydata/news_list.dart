@@ -1,6 +1,6 @@
 import 'package:tobetomobileapp/models/home_page/news.dart';
 
-List<News> newsList = [
+List<News> dummyNewsList = [
   News(
       isNews: false,
       projectName: "İstanbul Kodluyor",

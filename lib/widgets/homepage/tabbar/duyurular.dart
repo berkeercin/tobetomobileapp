@@ -3,10 +3,11 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/news_list.dart';
 import 'package:intl/intl.dart';
 import 'package:tobetomobileapp/functions/homepage/showalertdialog_news.dart';
+import 'package:tobetomobileapp/models/home_page/news.dart';
 
 class Duyurular extends StatelessWidget {
-  const Duyurular({Key? key}) : super(key: key);
-
+  const Duyurular({Key? key, required this.newsList}) : super(key: key);
+  final List<News> newsList;
   @override
   Widget build(BuildContext context) {
     TobetoColor tobetoColor = TobetoColor();

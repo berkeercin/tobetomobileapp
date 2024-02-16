@@ -6,7 +6,11 @@ import 'package:tobetomobileapp/blocs/home/home_state.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
+import 'package:tobetomobileapp/models/home_page/news.dart';
+import 'package:tobetomobileapp/models/home_page/page_content.dart';
+import 'package:tobetomobileapp/models/home_page/survey.dart';
 import 'package:tobetomobileapp/models/user.dart';
+import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
@@ -37,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
   late String istanbulKodluyorImage;
-  List<Application> applicationList = [];
+  PageContent pageContent = PageContent(
+      applicationList: [], newsList: [], surveyList: [], educationList: []);
   final iconsax = MyIconsax();
   final constText = TobetoText();
   @override
@@ -65,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       containerColor = backgroundColor;
     }
 
-    menu = Basvurularim(applicationsList: applicationList);
+    menu = Basvurularim(applicationsList: pageContent.applicationList);
   }
 
   void updateMenu(Widget newMenu, int id) {
@@ -85,10 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
       listener: (context, state) {
         if (state is LoadedPage) {
           setState(() {
-            print(applicationList);
-            applicationList = state.applicationList;
-            print(applicationList);
-            menu = Basvurularim(applicationsList: applicationList);
+            pageContent = PageContent(
+                applicationList: state.pageContent.applicationList,
+                newsList: state.pageContent.newsList,
+                surveyList: state.pageContent.surveyList,
+                educationList: state.pageContent.educationList);
+            menu = Basvurularim(applicationsList: pageContent.applicationList);
           });
         }
       },
@@ -153,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Row(
                                     children: [
                                       HomeButtonCreator(
-                                        applicationList: state.applicationList,
+                                        pagecontent: pageContent,
                                         name: "Başvurularım",
                                         buttonId: 1,
                                         textColor: textColor,
@@ -163,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         },
                                       ),
                                       HomeButtonCreator(
-                                        applicationList: applicationList,
+                                        pagecontent: pageContent,
                                         name: "Eğitimlerim",
                                         buttonId: 2,
                                         textColor: textColor,
@@ -177,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Row(
                                     children: [
                                       HomeButtonCreator(
-                                        applicationList: applicationList,
+                                        pagecontent: pageContent,
                                         name: "Duyuru ve Haberlerim",
                                         buttonId: 3,
                                         textColor: textColor,
@@ -187,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         },
                                       ),
                                       HomeButtonCreator(
-                                        applicationList: applicationList,
+                                        pagecontent: pageContent,
                                         name: "Anketlerim",
                                         buttonId: 4,
                                         textColor: textColor,

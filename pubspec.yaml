@@ -43,6 +43,8 @@ dependencies:
   cloud_firestore: ^4.14.0
   hooks_riverpod: ^2.4.10
   iconsax: ^0.0.8
+  video_player: ^2.8.2
+  flick_video_player: ^0.7.0
 
 dev_dependencies:
   flutter_test:
