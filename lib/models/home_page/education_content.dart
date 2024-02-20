@@ -5,11 +5,13 @@ class EducationContent {
   final String title;
   final String videoDuration;
   final String videoURL;
+  final String videoId;
   final bool isFinished;
   EducationContent({
     required this.title,
     required this.videoDuration,
     required this.videoURL,
+    required this.videoId,
     required this.isFinished,
   });
 
@@ -17,12 +19,14 @@ class EducationContent {
     String? title,
     String? videoDuration,
     String? videoURL,
+    String? videoId,
     bool? isFinished,
   }) {
     return EducationContent(
       title: title ?? this.title,
       videoDuration: videoDuration ?? this.videoDuration,
       videoURL: videoURL ?? this.videoURL,
+      videoId: videoId ?? this.videoId,
       isFinished: isFinished ?? this.isFinished,
     );
   }
@@ -32,6 +36,7 @@ class EducationContent {
       'title': title,
       'videoDuration': videoDuration,
       'videoURL': videoURL,
+      'videoId': videoId,
       'isFinished': isFinished,
     };
   }
@@ -41,6 +46,7 @@ class EducationContent {
       title: map['title'] as String,
       videoDuration: map['videoDuration'] as String,
       videoURL: map['videoURL'] as String,
+      videoId: map['videoId'] as String,
       isFinished: map['isFinished'] as bool,
     );
   }
@@ -52,7 +58,7 @@ class EducationContent {
 
   @override
   String toString() {
-    return 'EducationContent(title: $title, videoDuration: $videoDuration, videoURL: $videoURL, isFinished: $isFinished)';
+    return 'EducationContent(title: $title, videoDuration: $videoDuration, videoURL: $videoURL, videoId: $videoId, isFinished: $isFinished)';
   }
 
   @override
@@ -62,6 +68,7 @@ class EducationContent {
     return other.title == title &&
         other.videoDuration == videoDuration &&
         other.videoURL == videoURL &&
+        other.videoId == videoId &&
         other.isFinished == isFinished;
   }
 
@@ -70,6 +77,7 @@ class EducationContent {
     return title.hashCode ^
         videoDuration.hashCode ^
         videoURL.hashCode ^
+        videoId.hashCode ^
         isFinished.hashCode;
   }
 }

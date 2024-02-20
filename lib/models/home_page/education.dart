@@ -10,6 +10,7 @@ import 'package:tobetomobileapp/models/home_page/educationlist_content.dart';
 class Education {
   final String eduTitle;
   final String eduId;
+  final String documentId;
   final String eduThumbnailUrl;
   final DateTime startDate;
   final DateTime endDate;
@@ -19,6 +20,7 @@ class Education {
   Education({
     required this.eduTitle,
     required this.eduId,
+    required this.documentId,
     required this.eduThumbnailUrl,
     required this.startDate,
     required this.endDate,
@@ -30,6 +32,7 @@ class Education {
   Education copyWith({
     String? eduTitle,
     String? eduId,
+    String? documentId,
     String? eduThumbnailUrl,
     DateTime? startDate,
     DateTime? endDate,
@@ -40,6 +43,7 @@ class Education {
     return Education(
       eduTitle: eduTitle ?? this.eduTitle,
       eduId: eduId ?? this.eduId,
+      documentId: documentId ?? this.documentId,
       eduThumbnailUrl: eduThumbnailUrl ?? this.eduThumbnailUrl,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
@@ -53,6 +57,7 @@ class Education {
     return <String, dynamic>{
       'eduTitle': eduTitle,
       'eduId': eduId,
+      'documentId': documentId,
       'eduThumbnailUrl': eduThumbnailUrl,
       'startDate': startDate.millisecondsSinceEpoch,
       'endDate': endDate.millisecondsSinceEpoch,
@@ -66,6 +71,7 @@ class Education {
     return Education(
       eduTitle: map['eduTitle'] as String,
       eduId: map['eduId'] as String,
+      documentId: map['documentId'] as String,
       eduThumbnailUrl: map['eduThumbnailUrl'] as String,
       startDate: DateTime.fromMillisecondsSinceEpoch(map['startDate'] as int),
       endDate: DateTime.fromMillisecondsSinceEpoch(map['endDate'] as int),
@@ -86,7 +92,7 @@ class Education {
 
   @override
   String toString() {
-    return 'Education(eduTitle: $eduTitle, eduId: $eduId, eduThumbnailUrl: $eduThumbnailUrl, startDate: $startDate, endDate: $endDate, content: $content, isActive: $isActive, isFinished: $isFinished)';
+    return 'Education(eduTitle: $eduTitle, eduId: $eduId, documentId: $documentId, eduThumbnailUrl: $eduThumbnailUrl, startDate: $startDate, endDate: $endDate, content: $content, isActive: $isActive, isFinished: $isFinished)';
   }
 
   @override
@@ -95,6 +101,7 @@ class Education {
 
     return other.eduTitle == eduTitle &&
         other.eduId == eduId &&
+        other.documentId == documentId &&
         other.eduThumbnailUrl == eduThumbnailUrl &&
         other.startDate == startDate &&
         other.endDate == endDate &&
@@ -107,6 +114,7 @@ class Education {
   int get hashCode {
     return eduTitle.hashCode ^
         eduId.hashCode ^
+        documentId.hashCode ^
         eduThumbnailUrl.hashCode ^
         startDate.hashCode ^
         endDate.hashCode ^

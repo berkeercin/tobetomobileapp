@@ -7,21 +7,25 @@ import 'package:tobetomobileapp/models/home_page/education_content.dart';
 
 class EducationContentList {
   final String contentTitle;
+  final String contentId;
   final bool isModule;
   final List<EducationContent> subContent;
   EducationContentList({
     required this.contentTitle,
+    required this.contentId,
     required this.isModule,
     required this.subContent,
   });
 
   EducationContentList copyWith({
     String? contentTitle,
+    String? contentId,
     bool? isModule,
     List<EducationContent>? subContent,
   }) {
     return EducationContentList(
       contentTitle: contentTitle ?? this.contentTitle,
+      contentId: contentId ?? this.contentId,
       isModule: isModule ?? this.isModule,
       subContent: subContent ?? this.subContent,
     );
@@ -30,6 +34,7 @@ class EducationContentList {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'contentTitle': contentTitle,
+      'contentId': contentId,
       'isModule': isModule,
       'subContent': subContent.map((x) => x.toMap()).toList(),
     };
@@ -38,6 +43,7 @@ class EducationContentList {
   factory EducationContentList.fromMap(Map<String, dynamic> map) {
     return EducationContentList(
       contentTitle: map['contentTitle'] as String,
+      contentId: map['contentId'] as String,
       isModule: map['isModule'] as bool,
       subContent: List<EducationContent>.from(
         (map['subContent'] as List<int>).map<EducationContent>(
@@ -53,19 +59,25 @@ class EducationContentList {
       EducationContentList.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'EducationContent(contentTitle: $contentTitle, isModule: $isModule, subContent: $subContent)';
+  String toString() {
+    return 'EducationContentList(contentTitle: $contentTitle, contentId: $contentId, isModule: $isModule, subContent: $subContent)';
+  }
 
   @override
   bool operator ==(covariant EducationContentList other) {
     if (identical(this, other)) return true;
 
     return other.contentTitle == contentTitle &&
+        other.contentId == contentId &&
         other.isModule == isModule &&
         listEquals(other.subContent, subContent);
   }
 
   @override
-  int get hashCode =>
-      contentTitle.hashCode ^ isModule.hashCode ^ subContent.hashCode;
+  int get hashCode {
+    return contentTitle.hashCode ^
+        contentId.hashCode ^
+        isModule.hashCode ^
+        subContent.hashCode;
+  }
 }

@@ -230,8 +230,10 @@ class _EduScreenState extends State<EduScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EduDetails(
-                                      education:
-                                          widget.educationList[index - 1]),
+                                    contentId: "0",
+                                    documentId: widget
+                                        .educationList[index - 1].documentId,
+                                  ),
                                 ));
                           },
                           child: const Text("Eğitime Git"),

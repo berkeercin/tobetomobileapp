@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/blocs/calendar/calendar_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
+import 'package:tobetomobileapp/blocs/educontent/educontent_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/firebase_options.dart';
@@ -45,6 +46,9 @@ void main() async {
       ),
       BlocProvider(
         create: (context) => CatalogBloc(userRepostory: userRepostory),
+      ),
+      BlocProvider(
+        create: (context) => EduContentBloc(homeRepository),
       )
     ],
     child: MaterialApp(
