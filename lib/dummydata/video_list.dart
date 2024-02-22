@@ -15,6 +15,7 @@ List<Education> dummyEduList = [
     isFinished: true,
     content: [
       EducationContentList(
+          isFinished: false,
           contentTitle: "",
           isModule: false,
           contentId: "1",
@@ -40,6 +41,7 @@ List<Education> dummyEduList = [
     isFinished: false,
     content: [
       EducationContentList(
+          isFinished: false,
           contentId: "2",
           contentTitle: "Eğitimlere Nasıl Katılırım",
           isModule: true,

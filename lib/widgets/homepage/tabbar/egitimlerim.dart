@@ -3,11 +3,28 @@ import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/models/home_page/education.dart';
+import 'package:tobetomobileapp/repositories/home_repository.dart';
+import 'package:tobetomobileapp/screens/edu_details.dart';
 import 'package:tobetomobileapp/screens/edu_screen.dart';
 
 class Egitimlerim extends StatelessWidget {
-  const Egitimlerim({Key? key, required this.videoList}) : super(key: key);
-  final List<Education> videoList;
+  const Egitimlerim({Key? key, required this.eduList}) : super(key: key);
+  final List<Education> eduList;
+
+  void checkPercentage(Education education) {
+    int total = 0;
+    int completed = 0;
+    education.content.forEach((element) {
+      if (element.isFinished) {
+        completed++;
+      }
+      total++;
+    });
+    if (total == completed && total != 0) {
+      HomeRepository().addUsertoFinishedEducation(education.documentId);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,9 +32,9 @@ class Egitimlerim extends StatelessWidget {
       width: 400,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: videoList.length + 1,
+        itemCount: eduList.length + 1,
         itemBuilder: ((context, index) {
-          if (videoList.isEmpty) {
+          if (eduList.isEmpty) {
             return Column(
               children: [
                 Image.asset(
@@ -31,15 +48,14 @@ class Egitimlerim extends StatelessWidget {
               ],
             );
           } else {
-            print(index);
-            if (index > videoList.length - 1) {
+            // print(index);
+            if (index > eduList.length - 1 && eduList.isNotEmpty) {
               return InkWell(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            EduScreen(educationList: videoList),
+                        builder: (context) => EduScreen(educationList: eduList),
                       ));
                 },
                 child: Column(
@@ -55,20 +71,63 @@ class Egitimlerim extends StatelessWidget {
                 ),
               );
             } else {
+              checkPercentage(eduList[index]);
               Color statusColor = Colors.red;
               IconData statusIconData = Iconsax.clock;
               String statusText = "Süresü doldu";
-              if (videoList[index].isActive) {
+              bool isActive = false;
+              Duration remainingDuration =
+                  eduList[index].endDate.difference(DateTime.now());
+              int remainingDays = remainingDuration.inDays;
+              int remainingHours = remainingDuration.inHours;
+              int remainingMinutes = remainingDuration.inMinutes;
+              Widget remaining = Container();
+              if (remainingDays <= 30 && remainingDays > 0) {
+                String statusMessage =
+                    "Bitmesine son $remainingDays gün kaldı!";
+              } else if (remainingDays == 0 &&
+                  remainingHours > -1 &&
+                  remainingMinutes > -1) {
+                String statusMessage = "";
+
+                if (remainingHours >= 0) {
+                  statusMessage = "Bitmesine son $remainingHours saat kaldı";
+                  if (remainingHours >= 0) {
+                    statusMessage =
+                        "Bitmesine son $remainingMinutes dakika kaldı";
+                  }
+                }
+                remaining = Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.grey),
+                      child: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Text(
+                          statusMessage,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
+              if (eduList[index].isActive) {
+                isActive = true;
                 statusColor = Colors.orange;
                 statusText = "Devam ediyor";
-                if (videoList[index].isFinished) {
+                if (eduList[index - 1].isFinished) {
                   statusColor = Colors.green;
                   statusIconData = Iconsax.tick_circle;
-                  statusText = "Tamamlandı";
+                  statusText = "Eğitim Tamamlandı";
                 } else {
                   statusIconData = Iconsax.info_circle;
                 }
-              } else if (videoList[index].isFinished) {
+              } else if (eduList[index].isFinished) {
                 statusColor = Colors.green;
                 statusIconData = Iconsax.lock;
                 statusText = "Eğitim Tamamlandı";
@@ -85,7 +144,7 @@ class Egitimlerim extends StatelessWidget {
                   child: Card(
                     elevation: 20,
                     child: SizedBox(
-                      height: 250,
+                      height: 350,
                       width: 350,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -105,7 +164,7 @@ class Egitimlerim extends StatelessWidget {
                                     ),
                                   ),
                                   child: Image.network(
-                                    videoList[index].eduThumbnailUrl,
+                                    eduList[index].eduThumbnailUrl,
                                     fit: BoxFit.fitWidth,
                                   ),
                                 ),
@@ -146,20 +205,45 @@ class Egitimlerim extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  videoList[index].eduTitle,
+                                  eduList[index].eduTitle,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(DateFormat("dd.MM.yyyy")
-                                    .format(videoList[index].startDate))
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(DateFormat("dd.MM.yyyy")
+                                        .format(eduList[index].startDate)),
+                                    Spacer(),
+                                    remaining
+                                  ],
+                                )
                               ],
                             ),
                           ),
                           const Spacer(),
                           FloatingActionButton.small(
-                            heroTag: Key(videoList[index].eduId),
-                            onPressed: () {},
-                            child: const Text("Eğitime Git"),
+                            backgroundColor:
+                                isActive ? statusColor : Colors.grey,
+                            heroTag: Key("${eduList[index].eduId}"),
+                            onPressed: () {
+                              if (isActive) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EduDetails(
+                                        contentId: "0",
+                                        documentId:
+                                            eduList[index - 1].documentId,
+                                      ),
+                                    ));
+                              }
+                            },
+                            child: Text(isActive
+                                ? "Eğitime Git"
+                                : "Eğitimin Süresi Doldu"),
                           ),
                         ],
                       ),

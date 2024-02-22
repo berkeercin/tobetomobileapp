@@ -98,12 +98,12 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
                             ));
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(state.education.content[widget.arrayIndex]
                                   .subContent[index].isFinished
                               ? Iconsax.tick_circle
-                              : null),
+                              : Icons.circle_outlined),
                           Text(state.education.content[widget.arrayIndex]
                               .subContent[index].title)
                         ],

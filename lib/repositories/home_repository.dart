@@ -96,6 +96,11 @@ class HomeRepository {
               String contentId = content['contentId'];
               bool isModule = content['isModule'];
               List subContent = content['subContent'];
+              bool isContentFinished = false;
+              List finishedUseList = content["finishedUsers"];
+              if (finishedUseList.contains(user)) {
+                isContentFinished = true;
+              }
               List<EducationContent> eduSubContent_ = [];
               for (var element in subContent) {
                 bool isFinished = false;
@@ -111,6 +116,7 @@ class HomeRepository {
                     isFinished: isFinished));
               }
               eduContentList.add(EducationContentList(
+                  isFinished: isContentFinished,
                   contentId: contentId,
                   contentTitle: contentTitle,
                   isModule: isModule,
@@ -165,66 +171,48 @@ class HomeRepository {
 
     // Update the document with the modified content
     await docRef.update({'content': updatedContent});
-
-    // final snapshot = await _firebaseFireStore.collection("educationList").get();
-    // snapshot.docs.forEach((element) async {
-    //   if (element.id == documentId) {
-    //     var document = element.data();
-    //     // print(
-    //     //     "!'^'!^!'^'!^!'^'!^'!^'!^!'EQWSQERQWRWREQWR" + document.toString());
-    //     var content = document['content'];
-    //     List content_ = content;
-    //     content_.forEach((element) async {
-    //       if (element['contentId'] == contentId) {
-    //         var subContent = element['subContent'];
-    //         List subContent_ = subContent;
-    //         subContent_.forEach((element) async {
-    //           if (element['videoId'] == videoId) {
-    //             var finishedUsers = element['finishedUsers'];
-    //             List finishedUsers_ = finishedUsers;
-    //             finishedUsers_ = finishedUsers_.toSet().toList();
-    //             await _firebaseFireStore
-    //                 .collection('educationList')
-    //                 .doc(documentId)
-    //                 .update({
-    //               'content': FieldValue.arrayRemove([
-    //                 {
-    //                   'contentId': contentId,
-    //                   'subContent': [
-    //                     {
-    //                       'videoId': videoId,
-    //                       'finishedUsers':
-    //                           FieldValue.arrayRemove(element['finishedUsers'])
-    //                     }
-    //                   ]
-    //                 }
-    //               ]),
-    //             });
-
-    //             await _firebaseFireStore
-    //                 .collection('educationList')
-    //                 .doc(documentId)
-    //                 .update({
-    //               'content': FieldValue.arrayUnion([
-    //                 {
-    //                   'contentId': contentId,
-    //                   'subContent': [
-    //                     {'videoId': videoId, 'finishedUsers': finishedUsers_}
-    //                   ]
-    //                 }
-    //               ]),
-    //             });
-    //             print(finishedUsers_);
-    //           }
-    //         });
-    //         // print(subContent);
-    //       }
-    //     });
-    //   }
-    // });
   }
 
-  void addUsertoFinishedContent(String documentId, String contentId) {}
+  void addUsertoFinishedContent(String documentId, String contentId) async {
+    final docRef =
+        _firebaseFireStore.collection('educationList').doc(documentId);
+
+// Get the current value of 'content' field
+    final docSnapshot = await docRef.get();
+    final currentContent = docSnapshot.data()?['content'] ?? [];
+
+// Find the content that needs to be updated
+    final updatedContent = currentContent.map((content) {
+      if (content['contentId'] == contentId) {
+        // Check if the user already exists in finishedUsers
+        final finishedUsers = List<String>.from(content['finishedUsers']);
+        if (!finishedUsers.contains(_firebaseAuth.currentUser?.uid)) {
+          finishedUsers.add(_firebaseAuth.currentUser!.uid);
+        }
+        return {...content, 'finishedUsers': finishedUsers};
+      }
+      return content;
+    }).toList();
+
+// Update the document with the modified content
+    await docRef.update({'content': updatedContent});
+  }
+
+  void addUsertoFinishedEducation(String documentId) async {
+    final docRef =
+        _firebaseFireStore.collection('educationList').doc(documentId);
+
+// Get the current value of 'content' field
+    final docSnapshot = await docRef.get();
+    final finishedUsers = List<String>.from(docSnapshot['finishedUsers']);
+    if (!finishedUsers.contains(_firebaseAuth.currentUser?.uid)) {
+      finishedUsers.add(_firebaseAuth.currentUser!.uid);
+    }
+
+// Update the document with the modified content
+    await docRef.update({'finishedUsers': finishedUsers});
+  }
+
   Future<List<Education>> loadEducations() async {
     List<Education> eduList = [];
     final snapshot = await _firebaseFireStore.collection("educationList").get();
@@ -258,8 +246,14 @@ class HomeRepository {
           }
           List<EducationContentList> eduContentList = [];
           for (var content in educationContent) {
+            bool isContentFinished = false;
+
             String contentTitle = content['contentTitle'];
             String contentId = content['contentId'];
+            List finishedUseList = content["finishedUsers"];
+            if (finishedUseList.contains(user)) {
+              isContentFinished = true;
+            }
             bool isModule = content['isModule'];
             List subContent = content['subContent'];
             List<EducationContent> eduSubContent_ = [];
@@ -277,6 +271,7 @@ class HomeRepository {
                   isFinished: isFinished));
             }
             eduContentList.add(EducationContentList(
+                isFinished: isContentFinished,
                 contentId: contentId,
                 contentTitle: contentTitle,
                 isModule: isModule,

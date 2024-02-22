@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:tobetomobileapp/models/home_page/education.dart';
+import 'package:tobetomobileapp/repositories/home_repository.dart';
 import 'package:tobetomobileapp/screens/edu_details.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
@@ -39,6 +40,20 @@ class _EduScreenState extends State<EduScreen> {
     }
   }
 
+  void checkPercentage(Education education) {
+    int total = 0;
+    int completed = 0;
+    education.content.forEach((element) {
+      if (element.isFinished) {
+        completed++;
+      }
+      total++;
+    });
+    if (total == completed && total != 0) {
+      HomeRepository().addUsertoFinishedEducation(education.documentId);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,9 +87,11 @@ class _EduScreenState extends State<EduScreen> {
             );
           } else if (index > 0 && index < widget.educationList.length + 1) {
             // print(index);
+            checkPercentage(widget.educationList[index - 1]);
             Color statusColor = Colors.red;
             IconData statusIconData = Iconsax.clock;
             String statusText = "Süresü doldu";
+            bool isActive = false;
             Duration remainingDuration = widget.educationList[index - 1].endDate
                 .difference(DateTime.now());
             int remainingDays = remainingDuration.inDays;
@@ -115,12 +132,13 @@ class _EduScreenState extends State<EduScreen> {
               );
             }
             if (widget.educationList[index - 1].isActive) {
+              isActive = true;
               statusColor = Colors.orange;
               statusText = "Devam ediyor";
               if (widget.educationList[index - 1].isFinished) {
                 statusColor = Colors.green;
                 statusIconData = Iconsax.tick_circle;
-                statusText = "Tamamlandı";
+                statusText = "Eğitim Tamamlandı";
               } else {
                 statusIconData = Iconsax.info_circle;
               }
@@ -223,20 +241,25 @@ class _EduScreenState extends State<EduScreen> {
                         ),
                         const Spacer(),
                         FloatingActionButton.small(
+                          backgroundColor: isActive ? statusColor : Colors.grey,
                           heroTag:
                               Key("${widget.educationList[index - 1].eduId}"),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EduDetails(
-                                    contentId: "0",
-                                    documentId: widget
-                                        .educationList[index - 1].documentId,
-                                  ),
-                                ));
+                            if (isActive) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EduDetails(
+                                      contentId: "0",
+                                      documentId: widget
+                                          .educationList[index - 1].documentId,
+                                    ),
+                                  ));
+                            }
                           },
-                          child: const Text("Eğitime Git"),
+                          child: Text(isActive
+                              ? "Eğitime Git"
+                              : "Eğitimin Süresi Doldu"),
                         ),
                       ],
                     ),

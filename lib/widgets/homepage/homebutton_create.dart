@@ -35,7 +35,7 @@ class _HomeButtonCreatorState extends State<HomeButtonCreator> {
     applicationsList: [],
   );
   Widget container2 = Egitimlerim(
-    videoList: [],
+    eduList: [],
   );
   Widget container3 = const Duyurular(
     newsList: [],
@@ -63,7 +63,7 @@ class _HomeButtonCreatorState extends State<HomeButtonCreator> {
               } else if (selectedButton == 2) {
                 widget.onPressed(
                     Egitimlerim(
-                      videoList: widget.pagecontent.educationList,
+                      eduList: widget.pagecontent.educationList,
                     ),
                     selectedButton);
               } else if (selectedButton == 3) {

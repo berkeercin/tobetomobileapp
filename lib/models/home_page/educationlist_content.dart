@@ -9,11 +9,13 @@ class EducationContentList {
   final String contentTitle;
   final String contentId;
   final bool isModule;
+  final bool isFinished;
   final List<EducationContent> subContent;
   EducationContentList({
     required this.contentTitle,
     required this.contentId,
     required this.isModule,
+    required this.isFinished,
     required this.subContent,
   });
 
@@ -21,12 +23,14 @@ class EducationContentList {
     String? contentTitle,
     String? contentId,
     bool? isModule,
+    bool? isFinished,
     List<EducationContent>? subContent,
   }) {
     return EducationContentList(
       contentTitle: contentTitle ?? this.contentTitle,
       contentId: contentId ?? this.contentId,
       isModule: isModule ?? this.isModule,
+      isFinished: isFinished ?? this.isFinished,
       subContent: subContent ?? this.subContent,
     );
   }
@@ -36,6 +40,7 @@ class EducationContentList {
       'contentTitle': contentTitle,
       'contentId': contentId,
       'isModule': isModule,
+      'isFinished': isFinished,
       'subContent': subContent.map((x) => x.toMap()).toList(),
     };
   }
@@ -45,6 +50,7 @@ class EducationContentList {
       contentTitle: map['contentTitle'] as String,
       contentId: map['contentId'] as String,
       isModule: map['isModule'] as bool,
+      isFinished: map['isFinished'] as bool,
       subContent: List<EducationContent>.from(
         (map['subContent'] as List<int>).map<EducationContent>(
           (x) => EducationContent.fromMap(x as Map<String, dynamic>),
@@ -60,7 +66,7 @@ class EducationContentList {
 
   @override
   String toString() {
-    return 'EducationContentList(contentTitle: $contentTitle, contentId: $contentId, isModule: $isModule, subContent: $subContent)';
+    return 'EducationContentList(contentTitle: $contentTitle, contentId: $contentId, isModule: $isModule, isFinished: $isFinished, subContent: $subContent)';
   }
 
   @override
@@ -70,6 +76,7 @@ class EducationContentList {
     return other.contentTitle == contentTitle &&
         other.contentId == contentId &&
         other.isModule == isModule &&
+        other.isFinished == isFinished &&
         listEquals(other.subContent, subContent);
   }
 
@@ -78,6 +85,7 @@ class EducationContentList {
     return contentTitle.hashCode ^
         contentId.hashCode ^
         isModule.hashCode ^
+        isFinished.hashCode ^
         subContent.hashCode;
   }
 }
