@@ -34,14 +34,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<LoginUser>(_loginUser);
-    on<ReturnLoginScreen>(_loginPage);
+    on<LogOutUser>(_logOutUser);
     on<SignUpUser>(_signUpUser);
   }
 
   void _signUpUser(SignUpUser event, Emitter<AuthState> emit) async {
     try {
-      await userRepostory.signUpUser(event.name, event.surname,
-          event.email, event.password);
+      await userRepostory.signUpUser(
+          event.name, event.surname, event.email, event.password);
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(event.context)
           .showSnackBar(SnackBar(content: Text(e.message!)));
@@ -62,8 +62,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  void _loginPage(ReturnLoginScreen event, Emitter<AuthState> emit) async {
+  void _logOutUser(LogOutUser event, Emitter<AuthState> emit) async {
     await userRepostory.logoutUser();
-    emit(LogIn());
+    emit(CheckUserLoginData());
   }
 }

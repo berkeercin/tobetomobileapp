@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class MyIcons extends StatelessWidget {
   final Color color;

@@ -5,8 +5,8 @@ import 'package:tobetomobileapp/models/home_page/application.dart';
 TobetoColor tobetoColor = TobetoColor();
 // List<Application> applicationsList = applicationData;
 
-class Basvurularim extends StatelessWidget {
-  Basvurularim({Key? key, required this.applicationsList}) : super(key: key);
+class ApplicationsTab extends StatelessWidget {
+  const ApplicationsTab({super.key, required this.applicationsList});
   final List<Application> applicationsList;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class Basvurularim extends StatelessWidget {
       child: Row(
         children: applicationsList.isEmpty
             ? [noApplicationFound()]
-            : applicationsList.map((e) {
-                return loadAppliaction(context, e);
+            : applicationsList.map((a) {
+                return loadAppliaction(context, a);
               }).toList(),
       ),
     );

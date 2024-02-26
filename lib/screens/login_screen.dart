@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
+import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
+import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
@@ -24,17 +26,24 @@ class _LoginScreenState extends State<LoginScreen> {
   late String assetImage;
   late Color textColor;
   late Color backgroundColor;
+  bool isRefreshed = false;
   MyIconsax iconsax = MyIconsax();
   final constText = TobetoText();
+
+  void refreshPage() {
+    context.read<HomeBloc>().add(RefreshPage());
+    isRefreshed = true;
+  }
 
   @override
   Widget build(BuildContext context) {
     darkLightTheme(context);
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if(state is CheckUserLoginData) {}
+        if (state is CheckUserLoginData) {}
 
         if (state is LoadedUser) {
+          refreshPage();
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -46,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-         
           if (state is LogIn) {
             return Scaffold(
               body: Container(

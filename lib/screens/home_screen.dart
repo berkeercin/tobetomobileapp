@@ -19,7 +19,7 @@ import 'package:tobetomobileapp/widgets/homepage/home_exam.dart';
 import 'package:tobetomobileapp/widgets/homepage/home_toptext.dart';
 import 'package:tobetomobileapp/widgets/homepage/homebutton_create.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 import 'package:tobetomobileapp/widgets/homepage/gradient_boxes.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget menu = Container();
   late String assetImage;
   late Brightness brightness;
+  bool isRefreshed = false;
   Color textColor = Colors.white;
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       containerColor = backgroundColor;
     }
 
-    menu = Basvurularim(applicationsList: pageContent.applicationList);
+    menu = ApplicationsTab(applicationsList: pageContent.applicationList);
   }
 
   void updateMenu(Widget newMenu, int id) {
@@ -82,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void refreshPage() {
     context.read<HomeBloc>().add(RefreshPage());
+    isRefreshed = true;
   }
 
   @override
@@ -95,7 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 newsList: state.pageContent.newsList,
                 surveyList: state.pageContent.surveyList,
                 educationList: state.pageContent.educationList);
-            menu = Basvurularim(applicationsList: pageContent.applicationList);
+            menu =
+                ApplicationsTab(applicationsList: pageContent.applicationList);
           });
         }
       },
@@ -125,6 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
               if (state is LoadedPage) {
+                if (!isRefreshed) {
+                  refreshPage();
+                }
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(

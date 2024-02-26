@@ -5,10 +5,10 @@ import 'package:tobetomobileapp/models/home_page/news.dart';
 import 'package:tobetomobileapp/models/home_page/page_content.dart';
 import 'package:tobetomobileapp/models/home_page/survey.dart';
 import 'package:tobetomobileapp/models/home_page/education.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/anketlerim.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/duyurular.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/egitimlerim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/surveystab.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/newstab.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/educationstab.dart';
 
 class HomeButtonCreator extends StatefulWidget {
   const HomeButtonCreator(
@@ -31,16 +31,16 @@ class HomeButtonCreator extends StatefulWidget {
 }
 
 class _HomeButtonCreatorState extends State<HomeButtonCreator> {
-  Widget container1 = Basvurularim(
+  Widget container1 = ApplicationsTab(
     applicationsList: [],
   );
-  Widget container2 = Egitimlerim(
+  Widget container2 = EducationsTab(
     eduList: [],
   );
-  Widget container3 = const Duyurular(
+  Widget container3 = const NewsTab(
     newsList: [],
   );
-  Widget container4 = const Anketlerim(
+  Widget container4 = const SurveysTab(
     surveyList: [],
   );
 
@@ -57,22 +57,21 @@ class _HomeButtonCreatorState extends State<HomeButtonCreator> {
               selectedButton = widget.buttonId;
               if (selectedButton == 1) {
                 widget.onPressed(
-                    Basvurularim(
+                    ApplicationsTab(
                         applicationsList: widget.pagecontent.applicationList),
                     selectedButton);
               } else if (selectedButton == 2) {
                 widget.onPressed(
-                    Egitimlerim(
+                    EducationsTab(
                       eduList: widget.pagecontent.educationList,
                     ),
                     selectedButton);
               } else if (selectedButton == 3) {
-                widget.onPressed(
-                    Duyurular(newsList: widget.pagecontent.newsList),
+                widget.onPressed(NewsTab(newsList: widget.pagecontent.newsList),
                     selectedButton);
               } else if (selectedButton == 4) {
                 widget.onPressed(
-                    Anketlerim(surveyList: widget.pagecontent.surveyList),
+                    SurveysTab(surveyList: widget.pagecontent.surveyList),
                     selectedButton);
               } else {
                 widget.onPressed(Container(), 1);

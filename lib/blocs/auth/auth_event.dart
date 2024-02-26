@@ -18,13 +18,13 @@ class SignUpUser extends AuthEvent {
   final String surname;
   final String password;
   final String email;
-  SignUpUser(
-      {required this.context,
-      required this.email,
-      required this.name,
-      required this.password,
-      required this.surname,
-    });
+  SignUpUser({
+    required this.context,
+    required this.email,
+    required this.name,
+    required this.password,
+    required this.surname,
+  });
 }
 
-class ReturnLoginScreen extends AuthEvent {}
+class LogOutUser extends AuthEvent {}

@@ -15,9 +15,10 @@ class HomeRepository {
       {FirebaseFirestore? firebaseFirestore, FirebaseAuth? firebaseAuth})
       : _firebaseFireStore = firebaseFirestore ?? FirebaseFirestore.instance,
         _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
-  var user = FirebaseAuth.instance.currentUser?.uid;
 
   Future<List<News>> loadNews() async {
+    var user = FirebaseAuth.instance.currentUser?.uid;
+
     List<News> newsList = [];
     final snapshot = await _firebaseFireStore.collection("newsList").get();
     for (var doc in snapshot.docs) {
@@ -49,38 +50,40 @@ class HomeRepository {
     return [];
   }
 
-  Future<Education?> loadEducation(String documentId) async {
+  Future<Education> loadEducation(String documentId) async {
+    var user = FirebaseAuth.instance.currentUser?.uid;
+
     final snapshot = await _firebaseFireStore.collection("educationList").get();
-    Education education = Education(
-        eduTitle: "",
-        eduId: "",
-        documentId: "",
-        eduThumbnailUrl: "",
-        startDate: DateTime.now(),
-        endDate: DateTime.now(),
-        content: [],
-        isActive: true,
-        isFinished: false);
+    Education education_ = Education(
+      eduTitle: "",
+      eduId: "",
+      documentId: "",
+      eduThumbnailUrl: "",
+      startDate: DateTime.now(),
+      endDate: DateTime.now(),
+      content: [],
+      isActive: true,
+      isFinished: false,
+    );
+
+    if (snapshot.docs.isEmpty) {
+      return education_;
+    }
+
     for (var doc in snapshot.docs) {
       String docId = doc.id;
       if (docId == documentId) {
-        if ((doc.data().containsKey("activeUsers") &&
-            doc.data().containsKey("inactiveUsers"))) {
+        if (doc.data().containsKey("activeUsers") &&
+            doc.data().containsKey("inactiveUsers")) {
           var docData = doc.data();
           List activeUserList = doc.get("activeUsers");
           List inactiveUserList = doc.get("inactiveUsers");
-          List finishedUseList = doc.get("finishedUsers");
+          List finishedUserList = doc.get("finishedUsers");
           if (activeUserList.contains(user) ||
               inactiveUserList.contains(user) ||
-              finishedUseList.contains(user)) {
-            bool isActive = false;
-            bool isFinished = false;
-            if (activeUserList.contains(user)) {
-              isActive = true;
-            }
-            if (finishedUseList.contains(user)) {
-              isFinished = true;
-            }
+              finishedUserList.contains(user)) {
+            bool isActive = activeUserList.contains(user);
+            bool isFinished = finishedUserList.contains(user);
             Timestamp startDateTimestamp = docData['startDate'];
             DateTime startDateDateTime = startDateTimestamp.toDate().toLocal();
             Timestamp endDateTimestamp = docData['endDate'];
@@ -109,35 +112,40 @@ class HomeRepository {
                   isFinished = true;
                 }
                 eduSubContent_.add(EducationContent(
-                    videoId: element['videoId'],
-                    title: element['title'],
-                    videoDuration: element['videoDuration'],
-                    videoURL: element['videoURL'],
-                    isFinished: isFinished));
+                  videoId: element['videoId'],
+                  title: element['title'],
+                  videoDuration: element['videoDuration'],
+                  videoURL: element['videoURL'],
+                  isFinished: isFinished,
+                ));
               }
               eduContentList.add(EducationContentList(
-                  isFinished: isContentFinished,
-                  contentId: contentId,
-                  contentTitle: contentTitle,
-                  isModule: isModule,
-                  subContent: eduSubContent_));
+                isFinished: isContentFinished,
+                contentId: contentId,
+                contentTitle: contentTitle,
+                isModule: isModule,
+                subContent: eduSubContent_,
+              ));
             }
-            education = Education(
-                documentId: docId,
-                eduTitle: docData['eduTitle'],
-                eduId: docData['eduId'],
-                eduThumbnailUrl: docData['eduThumbnailUrl'],
-                startDate: startDateDateTime,
-                endDate: endDateDateTime,
-                isFinished: isFinished,
-                content: eduContentList,
-                isActive: isActive);
+            return Education(
+              documentId: docId,
+              eduTitle: docData['eduTitle'],
+              eduId: docData['eduId'],
+              eduThumbnailUrl: docData['eduThumbnailUrl'],
+              startDate: startDateDateTime,
+              endDate: endDateDateTime,
+              isFinished: isFinished,
+              content: eduContentList,
+              isActive: isActive,
+            );
           }
         }
-        return education;
       }
     }
+    // Return default education if no matching document is found
+    return education_;
   }
+
   // Future<EduContent
 
   void addUsertoFinishedVideo(
@@ -214,9 +222,12 @@ class HomeRepository {
   }
 
   Future<List<Education>> loadEducations() async {
+    var user = FirebaseAuth.instance.currentUser?.uid;
+
     List<Education> eduList = [];
     final snapshot = await _firebaseFireStore.collection("educationList").get();
     for (var doc in snapshot.docs) {
+      print(user);
       String docId = doc.id;
       if ((doc.data().containsKey("activeUsers") &&
           doc.data().containsKey("inactiveUsers"))) {
@@ -295,6 +306,8 @@ class HomeRepository {
 
   Future<List<Application>> loadApplcations() async {
     try {
+      var user = FirebaseAuth.instance.currentUser?.uid;
+
       // print("loadApplications running");
       List<Application> applicationList_ = [];
       final snapshot =

@@ -5,7 +5,7 @@ import 'package:tobetomobileapp/blocs/calendar/calendar_event.dart';
 import 'package:tobetomobileapp/blocs/calendar/calendar_state.dart';
 import 'package:tobetomobileapp/packages/cell_calendar/cell_calendar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);

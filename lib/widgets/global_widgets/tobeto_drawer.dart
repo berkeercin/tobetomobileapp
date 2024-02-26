@@ -7,6 +7,8 @@ import 'package:tobetomobileapp/blocs/calendar/calendar_bloc.dart';
 import 'package:tobetomobileapp/blocs/calendar/calendar_event.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
+import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
+import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/calendar_screen.dart';
 import 'package:tobetomobileapp/screens/catalog_screen.dart';
@@ -104,6 +106,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       children: [
                         TextButton(
                             onPressed: () {
+                              context.read<HomeBloc>().add(RefreshPage());
                               setState(() {
                                 Navigator.pushReplacement(
                                     context,
@@ -243,7 +246,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       ),
                       onPressed: () {
                         setState(() {
-                          context.read<AuthBloc>().add(ReturnLoginScreen());
+                          context.read<AuthBloc>().add(LogOutUser());
                         });
                       },
                       child: Text("Çıkış Yap",
@@ -260,7 +263,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
               ),
             );
           }
-          return Drawer(
+          return const Drawer(
             child: Center(child: Text("Bilinmedik durum!")),
           );
         },

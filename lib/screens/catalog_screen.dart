@@ -6,7 +6,7 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_state.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/dropdown_creator.dart';
-import 'package:tobetomobileapp/widgets/homepage/tabbar/basvurularim.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key? key}) : super(key: key);
