@@ -65,36 +65,6 @@ class EducationsTab extends StatelessWidget {
         if (eduList.isNotEmpty) showMore(context)
       ]),
     );
-
-    // return SizedBox(
-    //   height: 350,
-    //   width: 400,
-    //   child: ListView.builder(
-    //     scrollDirection: Axis.horizontal,
-    //     itemCount: eduList.length + 1,
-    //     itemBuilder: ((context, index) {
-    //       if (eduList.isEmpty) {
-    //         return Column(
-    //           children: [
-    //             Image.asset(
-    //               "assets/images/no-survey-found.png",
-    //               height: 250,
-    //             ),
-    //             const Text(
-    //               "Atanmış herhangi bir eğitiminiz bulunmamaktadır",
-    //               softWrap: true,
-    //             )
-    //           ],
-    //         );
-    //       } else {
-    //         // print(index);
-    // if (index > eduList.length - 1 && eduList.isNotEmpty) {
-
-    // } else {}
-    //       }
-    //     }),
-    //   ),
-    // );
   }
 
   void checkPercentage(Education education) {
@@ -117,21 +87,22 @@ class EducationsTab extends StatelessWidget {
     IconData statusIconData = Iconsax.clock;
     String statusText = "Süresü doldu";
     bool isActive = false;
+    String statusMessage = "";
     Duration remainingDuration = education.endDate.difference(DateTime.now());
     int remainingDays = remainingDuration.inDays;
     int remainingHours = remainingDuration.inHours;
     int remainingMinutes = remainingDuration.inMinutes;
     Widget remaining = Container();
     if (remainingDays <= 30 && remainingDays > 0) {
-      String statusMessage = "Bitmesine son $remainingDays gün kaldı!";
+      statusMessage = "Bitmesine son $remainingDays gün kaldı!";
     } else if (remainingDays == 0 &&
         remainingHours > -1 &&
         remainingMinutes > -1) {
-      String statusMessage = "";
+      statusMessage = "";
 
       if (remainingHours >= 0) {
         statusMessage = "Bitmesine son $remainingHours saat kaldı";
-        if (remainingHours >= 0) {
+        if (remainingHours <= 0) {
           statusMessage = "Bitmesine son $remainingMinutes dakika kaldı";
         }
       }

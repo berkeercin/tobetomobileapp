@@ -179,22 +179,6 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                               "Takvim",
                               style: drawerStyle,
                             )),
-                        const Divider(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Text(
-                                "Tobeto",
-                                style: drawerStyle,
-                              ),
-                              Icon(
-                                Icons.home_outlined,
-                                color: drawerStyle.color,
-                              )
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),

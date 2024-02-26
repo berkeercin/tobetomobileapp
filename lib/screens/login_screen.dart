@@ -57,159 +57,163 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state) {
           if (state is LogIn) {
             return Scaffold(
-              body: Container(
-                color: backgroundColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(45),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Theme.of(context).colorScheme.background),
-                        padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                        width: 500,
-                        height: 450,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Image.asset(
-                              assetImage,
-                              width: 150,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: textColor),
-                                    borderRadius: BorderRadius.circular(8)),
-                                height: 50,
-                                child: Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    MyIcons(
-                                        color: textColor,
-                                        icon: iconsax.usericon),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: TextField(
-                                        controller: emailController,
-                                        decoration: InputDecoration(
-                                            hintText: constText.email,
-                                            border: InputBorder.none,
-                                            hintStyle: TextStyle(
-                                              color: textColor.withOpacity(0.5),
-                                            )),
+              body: Center(
+                child: Container(
+                  color: backgroundColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(45),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Theme.of(context).colorScheme.background),
+                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+                          width: 500,
+                          height: 450,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Image.asset(
+                                assetImage,
+                                width: 150,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: textColor),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  height: 50,
+                                  child: Row(
+                                    children: [
+                                      const SizedBox(
+                                        width: 10,
                                       ),
-                                    )
-                                  ],
-                                )),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: textColor),
-                                    borderRadius: BorderRadius.circular(8)),
-                                height: 50,
-                                child: Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    MyIcons(
-                                        color: textColor,
-                                        icon: iconsax.passwordicon),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Expanded(
-                                      child: TextField(
-                                        controller: passwordController,
-                                        obscureText: isPasswordShown,
-                                        decoration: InputDecoration(
-                                            hintText:
-                                                constText.passwordHintText,
-                                            border: InputBorder.none,
-                                            hintStyle: TextStyle(
-                                                color: textColor
-                                                    .withOpacity(0.5))),
+                                      MyIcons(
+                                          color: textColor,
+                                          icon: iconsax.usericon),
+                                      const SizedBox(
+                                        width: 5,
                                       ),
-                                    ),
-                                    IconButton(
+                                      Expanded(
+                                        child: TextField(
+                                          controller: emailController,
+                                          decoration: InputDecoration(
+                                              hintText: constText.email,
+                                              border: InputBorder.none,
+                                              hintStyle: TextStyle(
+                                                color:
+                                                    textColor.withOpacity(0.5),
+                                              )),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: textColor),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  height: 50,
+                                  child: Row(
+                                    children: [
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      MyIcons(
+                                          color: textColor,
+                                          icon: iconsax.passwordicon),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Expanded(
+                                        child: TextField(
+                                          controller: passwordController,
+                                          obscureText: isPasswordShown,
+                                          decoration: InputDecoration(
+                                              hintText:
+                                                  constText.passwordHintText,
+                                              border: InputBorder.none,
+                                              hintStyle: TextStyle(
+                                                  color: textColor
+                                                      .withOpacity(0.5))),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            if (isPasswordShown) {
+                                              isPasswordShown = false;
+                                            } else {
+                                              isPasswordShown = true;
+                                            }
+                                          });
+                                        },
+                                        icon: Icon(isPasswordShown
+                                            ? iconsax.passVisibilityOffIcon
+                                            : iconsax.passVisibilityIcon),
+                                        color: textColor.withOpacity(0.5),
+                                      ),
+                                    ],
+                                  )),
+                              const Spacer(),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStatePropertyAll(textColor),
+                                      shape: MaterialStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
+                                      minimumSize:
+                                          const MaterialStatePropertyAll(
+                                              Size(300, 40))),
+                                  onPressed: () {
+                                    context.read<AuthBloc>().add(LoginUser(
+                                        context: context,
+                                        email: emailController.text,
+                                        password: passwordController.text));
+                                  },
+                                  child: Text(
+                                    constText.girisYap,
+                                    style: TextStyle(color: backgroundColor),
+                                  )),
+                              const Spacer(),
+                              Divider(color: textColor.withOpacity(.3)),
+                              TextButton(
+                                onPressed: () {},
+                                child: constText.parolamiUnuttum,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(constText.hesapYok),
+                                  TextButton(
                                       onPressed: () {
-                                        setState(() {
-                                          if (isPasswordShown) {
-                                            isPasswordShown = false;
-                                          } else {
-                                            isPasswordShown = true;
-                                          }
-                                        });
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SignupScreen(),
+                                            ));
                                       },
-                                      icon: Icon(isPasswordShown
-                                          ? iconsax.passVisibilityOffIcon
-                                          : iconsax.passVisibilityIcon),
-                                      color: textColor.withOpacity(0.5),
-                                    ),
-                                  ],
-                                )),
-                            const Spacer(),
-                            ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStatePropertyAll(textColor),
-                                    shape: MaterialStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8))),
-                                    minimumSize: const MaterialStatePropertyAll(
-                                        Size(300, 40))),
-                                onPressed: () {
-                                  context.read<AuthBloc>().add(LoginUser(
-                                      context: context,
-                                      email: emailController.text,
-                                      password: passwordController.text));
-                                },
-                                child: Text(
-                                  constText.girisYap,
-                                  style: TextStyle(color: backgroundColor),
-                                )),
-                            const Spacer(),
-                            Divider(color: textColor.withOpacity(.3)),
-                            TextButton(
-                              onPressed: () {},
-                              child: constText.parolamiUnuttum,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(constText.hesapYok),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignupScreen(),
-                                          ));
-                                    },
-                                    child: Text(constText.kayitol)),
-                              ],
-                            )
-                          ],
+                                      child: Text(constText.kayitol)),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               floatingActionButton: const SwingMethod(),

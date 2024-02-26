@@ -92,6 +92,7 @@ class _EduScreenState extends State<EduScreen> {
             IconData statusIconData = Iconsax.clock;
             String statusText = "Süresü doldu";
             bool isActive = false;
+            String statusMessage = "";
             Duration remainingDuration = widget.educationList[index - 1].endDate
                 .difference(DateTime.now());
             int remainingDays = remainingDuration.inDays;
@@ -99,15 +100,14 @@ class _EduScreenState extends State<EduScreen> {
             int remainingMinutes = remainingDuration.inMinutes;
             Widget remaining = Container();
             if (remainingDays <= 30 && remainingDays > 0) {
-              String statusMessage = "Bitmesine son $remainingDays gün kaldı!";
+              statusMessage = "Bitmesine son $remainingDays gün kaldı!";
             } else if (remainingDays == 0 &&
                 remainingHours > -1 &&
                 remainingMinutes > -1) {
-              String statusMessage = "";
-
+              statusMessage = "";
               if (remainingHours >= 0) {
                 statusMessage = "Bitmesine son $remainingHours saat kaldı";
-                if (remainingHours >= 0) {
+                if (remainingHours <= 0) {
                   statusMessage =
                       "Bitmesine son $remainingMinutes dakika kaldı";
                 }
