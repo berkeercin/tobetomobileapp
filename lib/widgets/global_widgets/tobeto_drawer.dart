@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
@@ -9,6 +10,8 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_event.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/calendar_screen.dart';
 import 'package:tobetomobileapp/screens/catalog_screen.dart';
@@ -18,7 +21,7 @@ import 'package:tobetomobileapp/screens/profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 
 class TobetoDrawer extends StatefulWidget {
-  const TobetoDrawer({Key? key}) : super(key: key);
+  const TobetoDrawer({super.key});
 
   @override
   _TobetoDrawerState createState() => _TobetoDrawerState();
@@ -34,20 +37,24 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
     late String assetImage;
     late Color textColor;
     late Color backgroundColor;
+    late Color colors;
+
     if (brightness == Brightness.dark) {
       setState(() {
         assetImage = 'assets/images/tobeto-logo.png';
         textColor = Colors.white;
         backgroundColor = Colors.black;
+        colors = Colors.white;
       });
     } else if (brightness == Brightness.light) {
       setState(() {
         assetImage = 'assets/images/tobeto-logo2.png';
         textColor = Colors.black;
         backgroundColor = Colors.white;
+        colors = color.iconColor;
       });
     }
-    TextStyle drawerStyle = TextStyle(color: textColor);
+    TextStyle drawerStyle = TextStyle(color: textColor, fontSize: 16);
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LogIn) {
@@ -83,20 +90,27 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 24),
                           child: Image(
+                            color: colors,
                             image: AssetImage(assetImage),
                             height: 120,
                             width: 200,
                           ),
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              Navigator.pop(context, true);
-                            });
-                          },
-                          icon: const Icon(Icons.close),
-                          iconSize: 32),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                Navigator.pop(context, true);
+                              });
+                            },
+                            icon: Icon(
+                              Iconsax.close_circle,
+                              color: TobetoColor().iconColor,
+                            ),
+                            iconSize: 36),
+                      ),
                     ],
                   ),
                   Padding(
@@ -159,7 +173,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CatalogScreen()));
+                                      builder: (context) => const CatalogScreen()));
                             },
                             child: Text(
                               "Katolog",
@@ -173,7 +187,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CalendarScreen()));
+                                      builder: (context) => const CalendarScreen()));
                             },
                             child: Text(
                               "Takvim",
@@ -197,7 +211,8 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                       });
                     },
                     child: Padding(
-                        padding: const EdgeInsets.only(left: 16, bottom: 20),
+                        padding: const EdgeInsets.only(
+                            left: 16, top: 20, bottom: 20),
                         child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(color: border, width: 2.0),
@@ -210,8 +225,10 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                      "${state.user.name} ${state.user.surname}"),
-                                  const Icon(Icons.person)
+                                    "${state.user.name} ${state.user.surname}",
+                                    style: drawerStyle,
+                                  ),
+                                  MyIconsax().usericon,
                                 ],
                               ),
                             ))),
@@ -222,9 +239,8 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         fixedSize: const Size(250, 20),
-                        backgroundColor: Colors.white,
+                        backgroundColor: color.buttonColor,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: color.cardColor),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
@@ -234,7 +250,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                         });
                       },
                       child: Text("Çıkış Yap",
-                          style: TextStyle(color: color.logoTextColor)),
+                          style: TextStyle(color: backgroundColor)),
                     ),
                   ),
                   const Spacer(),

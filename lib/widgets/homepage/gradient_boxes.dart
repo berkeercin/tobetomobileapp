@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tobetomobileapp/constants/global/text_const.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class GradientBoxes extends StatelessWidget {
   const GradientBoxes(
-      {super.key,
-      required this.boxButton,
-      required this.boxColorBegin,
-      required this.boxColorEnd,
-      required this.boxName});
-  final FloatingActionButton boxButton;
-  final Color boxColorBegin;
-  final Color boxColorEnd;
+      {super.key, required this.boxButton, required this.boxName});
+  final Widget boxButton;
+
   final String boxName;
   @override
   Widget build(BuildContext context) {
@@ -18,9 +15,8 @@ class GradientBoxes extends StatelessWidget {
       height: 175,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [boxColorBegin, boxColorEnd],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomLeft),
+          colors: [tobetoColor.reviewColor1, tobetoColor.reviewColor2],
+        ),
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30),
           bottomLeft: Radius.circular(30),
@@ -54,4 +50,16 @@ class GradientBoxes extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget boxButtonF(String key, Function() path) {
+  return FloatingActionButton(
+    backgroundColor: tobetoColor.iconColor.withOpacity(0.9),
+    heroTag: Key(key),
+    onPressed: path,
+    child: Text(
+      TobetoText().boxButtonText,
+      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    ),
+  );
 }

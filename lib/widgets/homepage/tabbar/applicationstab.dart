@@ -107,10 +107,10 @@ Widget loadAppliaction(BuildContext context, Application application) {
                               topLeft: Radius.circular(10)),
                           side: BorderSide(width: 0, color: applicationColor)),
                       child: Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         child: Text(
                           applicationText,
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: const TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       )),
                 ),

@@ -27,8 +27,8 @@ class ReviewsBoxesButtons extends StatelessWidget {
             bottomRight: Radius.circular(30),
           ),
           gradient: LinearGradient(colors: [
-            colorTab.iconColor,
-            colorTab.box2EndColor,
+            colorTab.reviewColor1,
+            colorTab.reviewColor2,
           ])),
       child: Padding(
         padding: const EdgeInsets.only(right: 20, left: 20),

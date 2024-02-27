@@ -8,7 +8,7 @@ import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/contant_text.dart';
 
 class ContactInfo extends StatefulWidget {
-  ContactInfo({Key? key}) : super(key: key);
+  const ContactInfo({super.key});
 
   @override
   State<ContactInfo> createState() => _ContactInfoState();
@@ -71,16 +71,16 @@ class _ContactInfoState extends State<ContactInfo> {
                   ),
                 ),
               ),
-              ContantText(boldText: "Firma Adı:", text: "TOBETO"),
-              ContantText(
+              const ContantText(boldText: "Firma Adı:", text: "TOBETO"),
+              const ContantText(
                   boldText: "Firma Unvanı:",
                   text:
                       "Avez Elektronik İletişim Eğitim \nDanışmanlığı Ticaret Anonim Şirketi"),
-              ContantText(boldText: "Vergi Dairesi:", text: "Beykoz"),
-              ContantText(boldText: "Vergi No:", text: "1050250859"),
-              ContantText(boldText: "Telefon:", text: "(0216) 331 48 00"),
-              ContantText(boldText: "E-Posta:", text: "info@tobeto.com"),
-              ContantText(
+              const ContantText(boldText: "Vergi Dairesi:", text: "Beykoz"),
+              const ContantText(boldText: "Vergi No:", text: "1050250859"),
+              const ContantText(boldText: "Telefon:", text: "(0216) 331 48 00"),
+              const ContantText(boldText: "E-Posta:", text: "info@tobeto.com"),
+              const ContantText(
                   boldText: "Adres:",
                   text:
                       "Kavacık,\nRüzgarlıbahçe Mah. Çampınarı Sk.\nNo:4 Smart Plaza  \nB Blok Kat:3 34805, \nBeykoz/İstanbul"),
@@ -93,8 +93,8 @@ class _ContactInfoState extends State<ContactInfo> {
                   ),
                 ),
               ),
-              ContantText(boldText: "Telefon:", text: "(0216) 969 22 40"),
-              ContantText(
+              const ContantText(boldText: "Telefon:", text: "(0216) 969 22 40"),
+              const ContantText(
                   boldText: "E-Posta:", text: "istanbulkodluyor@tobeto.com"),
               Center(
                 child: SizedBox(

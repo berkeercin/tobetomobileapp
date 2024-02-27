@@ -9,7 +9,7 @@ import 'package:tobetomobileapp/widgets/global_widgets/dropdown_creator.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class CatalogScreen extends StatefulWidget {
-  const CatalogScreen({Key? key}) : super(key: key);
+  const CatalogScreen({super.key});
 
   @override
   _CatalogScreenState createState() => _CatalogScreenState();
@@ -38,7 +38,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
   String? eduType;
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     darkLightTheme(context);
   }
@@ -74,7 +73,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
             Padding(
               padding: const EdgeInsets.only(bottom: 2, right: 16),
               child: InkWell(
-                child: Icon(Icons.refresh),
+                child: const Icon(Icons.refresh),
                 onTap: () {
                   context
                       .read<CatalogBloc>()

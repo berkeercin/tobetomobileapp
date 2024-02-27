@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/dummydata/survey_list.dart';
 import 'package:tobetomobileapp/models/home_page/survey.dart';
 
 class SurveysTab extends StatelessWidget {

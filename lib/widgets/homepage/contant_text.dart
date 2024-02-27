@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
 class ContantText extends StatelessWidget {
-  const ContantText({Key? key, required this.boldText, required this.text})
-      : super(key: key);
+  const ContantText({super.key, required this.boldText, required this.text});
 
   final String boldText;
   final String text;

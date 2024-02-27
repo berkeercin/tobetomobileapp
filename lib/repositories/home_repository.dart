@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tobetomobileapp/dummydata/video_list.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/models/home_page/educationlist_content.dart';
 import 'package:tobetomobileapp/models/home_page/education_content.dart';

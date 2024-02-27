@@ -4,13 +4,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_bloc.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_event.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_state.dart';
-import 'package:tobetomobileapp/models/home_page/education_content.dart';
 import 'package:tobetomobileapp/screens/video_screen.dart';
 
 class EduModuleDetails extends StatefulWidget {
   const EduModuleDetails(
-      {Key? key, required this.arrayIndex, required this.documentId})
-      : super(key: key);
+      {super.key, required this.arrayIndex, required this.documentId});
   final int arrayIndex;
   final String documentId;
   @override
@@ -22,7 +20,6 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _eduContentBloc = context.read<EduContentBloc>();
     _eduContentBloc.add(ReloadPage());
@@ -30,7 +27,6 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _eduContentBloc.add(ReloadPage());
   }
@@ -44,9 +40,9 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
           if (state is Initialize) {
             return Scaffold(
               appBar: AppBar(
-                title: Text("Yükleniyor"),
+                title: const Text("Yükleniyor"),
               ),
-              body: Center(
+              body: const Center(
                   child: Column(
                 children: [
                   Text("Safya yükleniyor"),

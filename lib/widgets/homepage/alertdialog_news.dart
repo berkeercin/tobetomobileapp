@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewsAlertDialog extends StatelessWidget {
-  const NewsAlertDialog({Key? key, required this.content}) : super(key: key);
+  const NewsAlertDialog({super.key, required this.content});
   final String content;
   @override
   Widget build(BuildContext context) {

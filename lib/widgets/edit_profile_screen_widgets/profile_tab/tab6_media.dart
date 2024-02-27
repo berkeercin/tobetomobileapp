@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_size.dart';
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_social_dropdown.dart';
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_button.dart';
-import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textField.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textfield.dart';
 
 class ProfileTabMedia extends StatelessWidget {
   const ProfileTabMedia({super.key});

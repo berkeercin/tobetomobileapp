@@ -3,11 +3,10 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 
 class CreateTobetoDropdown extends StatefulWidget {
   const CreateTobetoDropdown(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.dropdownList,
-      required this.onChoose})
-      : super(key: key);
+      required this.onChoose});
   final String title;
   final List<String> dropdownList;
   final Function(List<String>) onChoose;

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class ProfileTextField extends StatelessWidget {
   const ProfileTextField(
-      {Key? key, required this.profileLabelText, required this.myKeyboardType})
-      : super(key: key);
+      {super.key,
+      required this.profileLabelText,
+      required this.myKeyboardType});
 
   final String profileLabelText;
   final TextInputType myKeyboardType;
@@ -18,17 +19,16 @@ class ProfileTextField extends StatelessWidget {
         keyboardType: myKeyboardType,
         controller: TextEditingController(),
         decoration: InputDecoration(
-          enabledBorder:
-              const OutlineInputBorder(borderSide: BorderSide(color: Colors.black38)),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black38)),
           filled: true,
           labelText: profileLabelText,
           labelStyle: const TextStyle(
             fontSize: 16,
-            //color: TobetoColor().logoTextColor,
           ),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
-            borderSide:  BorderSide(
+            borderSide: BorderSide(
               width: 1.0,
             ),
           ),

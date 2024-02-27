@@ -9,7 +9,7 @@ TextStyle styleBold = TextStyle(
 class ReviewsText {
   Text topText1 = Text(
     "Yetkinliklerini ",
-    style: TextStyle(color: color.iconColor, fontSize: 30),
+    style: TextStyle(color: color.reviewColor1, fontSize: 30),
   );
   Text topText2 = Text(
     "ücretsiz ölç, ",
@@ -17,7 +17,7 @@ class ReviewsText {
   );
   Text topText3 = Text(
     "bilgilerini ",
-    style: TextStyle(color: color.iconColor, fontSize: 30),
+    style: TextStyle(color: color.reviewColor1, fontSize: 30),
   );
   Text topText4 = Text(
     " test et. ",
@@ -42,13 +42,22 @@ class ReviewsText {
   Text box4Metin = const Text(
       "Sertifika alabilmen için, eğitim yolculuğunun sonunda teknik yetkinliklerin ve kod bilgin ölçülür.\n4400+ soru | 30+ programlama dili | 4 zorluk seviyesi\n *Türkiye Ar-Ge Merkezi tarafından tasarlanmıştır.",
       style: TextStyle(fontSize: 15, color: Colors.white));
-  Text b1Baslik = Text("Front End", style: style);
-  Text b2Baslik = Text("Back End", style: style);
-  Text b3Baslik = Text("Full Stack", style: style);
-  Text b4Baslik = Text("Microsoft SQL Server", style: style);
-  Text b5Baslik = Text("Masaüstü Programlama", style: style);
+  Text b1Baslik =
+      Text("Front End", style: style.copyWith(fontWeight: FontWeight.bold));
+
+  Text b2Baslik =
+      Text("Back End", style: style.copyWith(fontWeight: FontWeight.bold));
+
+  Text b3Baslik =
+      Text("Full Stack", style: style.copyWith(fontWeight: FontWeight.bold));
+
+  Text b4Baslik = Text("Microsoft SQL Server",
+      style: style.copyWith(fontWeight: FontWeight.bold));
+  Text b5Baslik = Text("Masaüstü Programlama",
+      style: style.copyWith(fontWeight: FontWeight.bold));
+
   Text body1 = Text("Aboneliğe özel ",
-      style: TextStyle(color: color.cardColor, fontSize: 30));
+      style: TextStyle(color: color.reviewColor1, fontSize: 30));
   Text body2 = Text(
     "değerlendirme araçları için  ",
     style: TextStyle(color: color.textColorText, fontSize: 30),

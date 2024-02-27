@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 
 class ProfileDate extends StatefulWidget {
-  const ProfileDate({Key? key}) : super(key: key);
+  const ProfileDate({super.key});
 
   @override
   State<ProfileDate> createState() => _ProfileDateState();

@@ -3,7 +3,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/socialmedia.dart';
 
 class SocialDropDown extends StatefulWidget {
-  const SocialDropDown({Key? key}) : super(key: key);
+  const SocialDropDown({super.key});
 
   @override
   State<SocialDropDown> createState() => _SocialDropDownState();

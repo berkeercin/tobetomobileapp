@@ -3,7 +3,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/profile_drop_city.dart';
 
 class CityDropDown extends StatefulWidget {
-  const CityDropDown({Key? key}) : super(key: key);
+  const CityDropDown({super.key});
 
   @override
   State<CityDropDown> createState() => _CityDropDownState();

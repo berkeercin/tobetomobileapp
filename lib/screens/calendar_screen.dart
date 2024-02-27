@@ -15,10 +15,7 @@ class CalendarScreen extends StatefulWidget {
 }
 
 final today = DateTime.now();
-const eventTextStyle = TextStyle(
-  fontSize: 9,
-  color: Colors.white,
-);
+//
 
 class _CalendarScreenState extends State<CalendarScreen> {
   late String assetImage;
@@ -31,7 +28,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     brightness = MediaQuery.of(context).platformBrightness;
 
@@ -40,10 +36,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
       textColor = Colors.white;
       backgroundColor = Colors.black;
       containerColor = Colors.grey.withOpacity(0.1);
-      istanbulKodluyorImage = 'assets/images/istanbul-kodluyor-dark.png';
     } else {
       assetImage = 'assets/images/tobeto-logo.png';
-      istanbulKodluyorImage = 'assets/images/istanbul-kodluyor-light.png';
       textColor = Colors.black;
       backgroundColor = Colors.white;
       containerColor = backgroundColor;
@@ -100,7 +94,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               Text(labels[dayIndex],
                                   style: TextStyle(
                                       fontSize: 18,
-                                      color: tobetoColor.cardColor,
+                                      color: tobetoColor.reviewColor2,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center),
                             ],
@@ -122,7 +116,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 TextButton(
                                   child: Text(
                                     "Bugün",
@@ -132,7 +126,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  // icon: const Icon(Icons.calendar_today),
                                   onPressed: () {
                                     cellCalendarPageController.animateToDate(
                                       DateTime.now(),
@@ -157,8 +150,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           showDialog(
                               context: context,
                               builder: (_) => AlertDialog(
-                                    backgroundColor:
-                                        tobetoColor.cardColor.withOpacity(0.89),
+                                    backgroundColor: tobetoColor.reviewColor2
+                                        .withOpacity(0.89),
                                     title: Text(
                                         style:
                                             TextStyle(color: backgroundColor),
@@ -201,7 +194,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
               );
             } else {
-              return Text("data");
+              return const Text("data");
             }
           },
         ),

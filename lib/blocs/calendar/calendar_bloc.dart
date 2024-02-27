@@ -60,7 +60,7 @@ class CalendarBloc extends Bloc<CalendarBlocEvent, CalendarBlocState> {
           eventName: element['eventName'],
           eventDate: eventTime_,
           eventBackgroundColor: color,
-          eventTextStyle: TextStyle());
+          eventTextStyle: const TextStyle());
       // CatalogItem item = CatalogItem.fromMap(element.data());
       calendarEvents.add(calendarEvent);
     }

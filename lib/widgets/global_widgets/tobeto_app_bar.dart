@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_state.dart';
-import 'package:tobetomobileapp/screens/login_screen.dart';
+import 'package:tobetomobileapp/constants/global/images_const.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
 
 class TobetoAppBar extends StatelessWidget {
@@ -11,11 +12,14 @@ class TobetoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late String logo;
+    late Color color;
     MyImages myImages = MyImages();
     if (brightness == Brightness.dark) {
       logo = myImages.darkThemeLogo;
+      color = Colors.white;
     } else {
       logo = myImages.lightThemeLogo;
+      color = TobetoColor().iconColor;
     }
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -35,6 +39,7 @@ class TobetoAppBar extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 48),
                   child: Image.asset(
+                    color: color,
                     logo,
                     width: 150,
                   ),
@@ -43,7 +48,7 @@ class TobetoAppBar extends StatelessWidget {
             ],
           );
         } else {
-          return Text("Bilinmeyen Hata");
+          return const Text("Bilinmeyen Hata");
         }
       },
     );

@@ -9,7 +9,7 @@ import 'package:tobetomobileapp/widgets/reviews_page/reviews_boxes_5.dart';
 import 'package:tobetomobileapp/widgets/reviews_page/reviews_boxes_buttons.dart';
 
 class ReviewsScreen extends StatefulWidget {
-  const ReviewsScreen({Key? key}) : super(key: key);
+  const ReviewsScreen({super.key});
 
   @override
   _ReviewsScreenState createState() => _ReviewsScreenState();
@@ -59,7 +59,6 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           children: [
             sizedBox,
             SizedBox(
-                // width: 200,
                 child: Column(
               children: [
                 reviewText.topText1,
@@ -69,13 +68,12 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
               ],
             )),
             sizedBox,
-            // Box1(reviewText: reviewText, colorTab: colorTab),
             ReviewsBoxesButtons(
               baslik: reviewText.box1Baslik,
               metin: reviewText.box1Metin,
               reviewButton: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: color.cardColor,
+                    backgroundColor: color.reviewColor2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -99,7 +97,6 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
             ReviewsBoxes5(baslik: reviewText.b4Baslik),
             ReviewsBoxes5(baslik: reviewText.b5Baslik),
             SizedBox(
-                // width: 200,
                 child: Column(
               children: [
                 reviewText.body1,

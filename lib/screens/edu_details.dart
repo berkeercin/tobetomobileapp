@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_bloc.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_event.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_state.dart';
-import 'package:tobetomobileapp/dummydata/profilepage/education.dart';
-import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/models/home_page/educationlist_content.dart';
 import 'package:tobetomobileapp/repositories/home_repository.dart';
 import 'package:tobetomobileapp/screens/edu_module_details.dart';
@@ -24,7 +22,6 @@ class _EduDetailsState extends State<EduDetails> {
   int sizeOf = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _eduContentBloc = context.read<EduContentBloc>();
     _eduContentBloc.add(ReloadPage());
@@ -32,7 +29,6 @@ class _EduDetailsState extends State<EduDetails> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _eduContentBloc.add(ReloadPage());
   }
@@ -156,7 +152,7 @@ class _EduDetailsState extends State<EduDetails> {
                             ),
                           );
                         } else {
-                          return Center(
+                          return const Center(
                             child: Column(
                               children: [
                                 CircularProgressIndicator(),

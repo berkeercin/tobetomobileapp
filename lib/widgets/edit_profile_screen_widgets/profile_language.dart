@@ -3,7 +3,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/language.dart';
 
 class LanguageDropDown extends StatefulWidget {
-  const LanguageDropDown({Key? key}) : super(key: key);
+  const LanguageDropDown({super.key});
 
   @override
   State<LanguageDropDown> createState() => _LanguageDropDownState();

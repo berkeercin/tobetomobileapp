@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/dummydata/video_list.dart';
-import 'package:tobetomobileapp/models/home_page/application.dart';
-import 'package:tobetomobileapp/models/home_page/news.dart';
 import 'package:tobetomobileapp/models/home_page/page_content.dart';
-import 'package:tobetomobileapp/models/home_page/survey.dart';
-import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/surveystab.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/newstab.dart';
@@ -12,14 +7,13 @@ import 'package:tobetomobileapp/widgets/homepage/tabbar/educationstab.dart';
 
 class HomeButtonCreator extends StatefulWidget {
   const HomeButtonCreator(
-      {Key? key,
+      {super.key,
       required this.name,
       required this.buttonId,
       required this.textColor,
       required this.selectedButton,
       required this.onPressed,
-      required this.pagecontent})
-      : super(key: key);
+      required this.pagecontent});
   final String name;
   final int buttonId;
   final Color textColor;
@@ -31,10 +25,10 @@ class HomeButtonCreator extends StatefulWidget {
 }
 
 class _HomeButtonCreatorState extends State<HomeButtonCreator> {
-  Widget container1 = ApplicationsTab(
+  Widget container1 = const ApplicationsTab(
     applicationsList: [],
   );
-  Widget container2 = EducationsTab(
+  Widget container2 = const EducationsTab(
     eduList: [],
   );
   Widget container3 = const NewsTab(

@@ -7,18 +7,16 @@ import 'package:tobetomobileapp/blocs/educontent/educontent_bloc.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_event.dart';
 import 'package:tobetomobileapp/models/home_page/education_content.dart';
 import 'package:tobetomobileapp/repositories/home_repository.dart';
-import 'package:tobetomobileapp/screens/edu_module_details.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoScreen extends StatefulWidget {
   const VideoScreen(
-      {Key? key,
+      {super.key,
       required this.eduContent,
       required this.arrayIndex,
       required this.contentId,
       required this.documentId,
-      required this.videoId})
-      : super(key: key);
+      required this.videoId});
   final EducationContent eduContent;
   final int arrayIndex;
   final String contentId;
@@ -30,16 +28,7 @@ class VideoScreen extends StatefulWidget {
 
 void closePage(BuildContext context, int arrayIndex, String documentId,
     String contentId, String videoId, VideoPlayerController controller) async {
-  // Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => EduModuleDetails(
-  //         arrayIndex: arrayIndex,
-  //         documentId: documentId,
-  //       ),
-  //     ));
   HomeRepository().addUsertoFinishedVideo(documentId, contentId, videoId);
-  // await Future.delayed(Duration(seconds: 2));
   controller.removeListener(() {});
   controller.dispose();
   context.read<EduContentBloc>().add(ReloadPage());
@@ -47,7 +36,6 @@ void closePage(BuildContext context, int arrayIndex, String documentId,
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  //  late FlickManager flickManager;
   late VideoPlayerController _controller;
   List<DeviceOrientation> previousOrientations = [];
   double speed = 1;
@@ -79,19 +67,14 @@ class _VideoScreenState extends State<VideoScreen> {
               });
             });
           }
-          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-          // setState(() {});
         });
     } catch (e) {
       print(e);
     }
-    // print(widget.eduContent.videoURL);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    // isPlaying = false;
     _controller.removeListener(() {});
     _controller.dispose();
     SystemChrome.setPreferredOrientations(previousOrientations);
@@ -100,18 +83,6 @@ class _VideoScreenState extends State<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // bool isPlaying = false;
-    // if (_controller.value.isPlaying) {
-    //   setState(() {
-    //     isPlaying = true;
-    //   });
-    // }
-    // if (_controller.value.isCompleted) {
-    //   setState(() {
-    //     isPlaying = false;
-    //   });
-    //   print("complated");
-    // }
     return Scaffold(
       body: PopScope(
         onPopInvoked: (didPop) {
@@ -152,11 +123,11 @@ class _VideoScreenState extends State<VideoScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Iconsax.arrow_left,
                           color: Colors.white,
                         )),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       onPressed: () {
                         setState(() {
@@ -206,7 +177,7 @@ class _VideoScreenState extends State<VideoScreen> {
                       },
                       child: Text(
                         speedTitle,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     )
                   ],

@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_state.dart';
-import 'package:tobetomobileapp/dummydata/news_list.dart';
 import 'package:tobetomobileapp/models/home_page/application.dart';
 import 'package:tobetomobileapp/models/home_page/news.dart';
 import 'package:tobetomobileapp/models/home_page/page_content.dart';

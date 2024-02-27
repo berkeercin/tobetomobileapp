@@ -8,11 +8,11 @@ class LessonsBoxAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: TobetoColor().cardColor.withOpacity(0.8),
+      backgroundColor: TobetoColor().reviewColor2.withOpacity(0.8),
       title: lessonName,
       content: const Column(
         children: [
-           SizedBox(
+          SizedBox(
             height: 50,
           ),
           Text(

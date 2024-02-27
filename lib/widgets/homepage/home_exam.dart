@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 
 class HomeExam extends StatelessWidget {
-  HomeExam({super.key});
+  const HomeExam({super.key});
 
   @override
   Widget build(BuildContext context) {

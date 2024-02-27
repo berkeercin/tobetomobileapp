@@ -7,7 +7,7 @@ import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key, required this.user}) : super(key: key);
+  const ProfileScreen({super.key, required this.user});
   final UserData user;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -75,11 +75,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditProfileScreen(),
+                            builder: (context) => const EditProfileScreen(),
                           ));
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   InkWell(
@@ -171,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Icon(Icons.calendar_month),
+                                  const Icon(Icons.calendar_month),
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -287,11 +287,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Hakkımnda"),
+                            const Text("Hakkımnda"),
                             Divider(
                               color: textColor,
                             ),
-                            Text(
+                            const Text(
                               "Hakkımda bilgisi bulunamadı.",
                               softWrap: true,
                               style: TextStyle(fontSize: 18),
@@ -320,18 +320,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Yetkinliklerim"),
+                        const Text("Yetkinliklerim"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Henüz bir yetkinlik eklemedin.")
+                        const Text("Henüz bir yetkinlik eklemedin.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -349,18 +349,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Yabancı Dillerim"),
+                        const Text("Yabancı Dillerim"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Herhangi bir yabancı dil verisi bulunamadı.")
+                        const Text("Herhangi bir yabancı dil verisi bulunamadı.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -378,18 +378,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Sertifikalarım"),
+                        const Text("Sertifikalarım"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Henüz bir sertifika yüklemedin.")
+                        const Text("Henüz bir sertifika yüklemedin.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -407,18 +407,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Medya Hesaplarım"),
+                        const Text("Medya Hesaplarım"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Henüz bir hesap eklemedin.")
+                        const Text("Henüz bir hesap eklemedin.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -436,18 +436,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Tobeto İşte Başarı Modelim"),
+                        const Text("Tobeto İşte Başarı Modelim"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Raporu görmek için sınava girmelisiniz.")
+                        const Text("Raporu görmek için sınava girmelisiniz.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -465,7 +465,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Tobeto Seviye Testlerim"),
+                        const Text("Tobeto Seviye Testlerim"),
                         Divider(
                           color: textColor,
                         ),
@@ -510,7 +510,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -527,7 +527,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Yetkinlik Rozetlerim"),
+                        const Text("Yetkinlik Rozetlerim"),
                         Divider(
                           color: textColor,
                         ),
@@ -561,7 +561,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -579,18 +579,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Aktivite Haritam"),
+                        const Text("Aktivite Haritam"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Herhangi bir aktiviteniz bulunamadı.")
+                        const Text("Herhangi bir aktiviteniz bulunamadı.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
@@ -608,18 +608,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Eğitim Hayatım ve Deneyimlerim"),
+                        const Text("Eğitim Hayatım ve Deneyimlerim"),
                         Divider(
                           color: textColor,
                         ),
-                        Text("Herhangi bir eğitim verisi bulunamadı.")
+                        const Text("Herhangi bir eğitim verisi bulunamadı.")
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             TobetoFooter(

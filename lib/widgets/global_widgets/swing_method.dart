@@ -54,7 +54,7 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
     return Swing(
       button: SpeedDial(
         shape: const CircleBorder(),
-        backgroundColor: color.logoTextColor, //animasyon rengi
+        backgroundColor: color.iconColor, //animasyon rengi
         foregroundColor: Colors.white,
         elevation: 20,
         overlayOpacity: 0,
@@ -85,7 +85,7 @@ class FABwithoutAnimation extends StatelessWidget {
     return SpeedDial(
       isOpenOnStart: true,
       shape: const CircleBorder(),
-      backgroundColor: color.logoTextColor,
+      backgroundColor: color.iconColor,
       foregroundColor: Colors.white,
       elevation: 20,
       overlayOpacity: 0,
@@ -95,8 +95,8 @@ class FABwithoutAnimation extends StatelessWidget {
       childPadding: const EdgeInsets.all(8),
       children: [
         SpeedDialChild(
-          backgroundColor: color.logoTextColor,
-          child: Icon(
+          backgroundColor: color.iconColor,
+          child: const Icon(
             Iconsax.message,
             color: Colors.white,
           ),
@@ -104,7 +104,7 @@ class FABwithoutAnimation extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ContactForm(),
+                  builder: (context) => const ContactForm(),
                 ));
           },
         ),

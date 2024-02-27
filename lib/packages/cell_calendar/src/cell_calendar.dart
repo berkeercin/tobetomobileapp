@@ -18,12 +18,12 @@ final currentDateProvider = StateProvider((ref) => DateTime.now());
 ///
 /// Expected to be used in full screen
 class CellCalendar extends HookConsumerWidget {
-  CellCalendar({
+  const CellCalendar({super.key, 
     this.cellCalendarPageController,
     this.events = const [],
     this.onPageChanged,
     this.onCellTapped,
-    this.todayMarkColor = Colors.orangeAccent,
+    this.todayMarkColor = Colors.cyan,
     this.todayTextColor = Colors.black,
     this.daysOfTheWeekBuilder,
     this.monthYearLabelBuilder,
@@ -132,7 +132,7 @@ class _CalendarPageView extends HookConsumerWidget {
                 onPageChanged!(
                   currentFirstDate,
                   currentFirstDate.add(
-                    Duration(days: 41),
+                    const Duration(days: 41),
                   ),
                 );
               }

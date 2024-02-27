@@ -52,7 +52,7 @@ class DaysRow extends StatelessWidget {
 ///
 /// Its height is circulated by [MeasureSize] and notified by [CellHeightController]
 class _DayCell extends HookConsumerWidget {
-  _DayCell({
+  const _DayCell({
     required this.date,
     required this.visiblePageDate,
     required this.dateTextStyle,
@@ -147,7 +147,7 @@ class _TodayLabel extends StatelessWidget {
         .copyWith(fontWeight: FontWeight.w500);
     final textStyle = caption.merge(dateTextStyle);
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       height: 20,
       width: 20,
       decoration: BoxDecoration(

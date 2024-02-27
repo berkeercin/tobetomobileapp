@@ -8,7 +8,7 @@ import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 
 class ContactForm extends StatefulWidget {
-  ContactForm({Key? key}) : super(key: key);
+  const ContactForm({super.key});
 
   @override
   State<ContactForm> createState() => _ContactFormState();
@@ -84,19 +84,19 @@ class _ContactFormState extends State<ContactForm> {
               ContactTextF(
                 controllerAdd: nameController,
                 text: "Adınız Soyadınız",
-                icon: Icon(Iconsax.user),
+                icon: const Icon(Iconsax.user),
               ),
               ContactTextF(
                 controllerAdd: emailController,
                 text: "E-Mail",
-                icon: Icon(Iconsax.direct_right),
+                icon: const Icon(Iconsax.direct_right),
               ),
               ContactTextF(
                 controllerAdd: messageController,
                 text: "Mesajınız",
-                icon: Icon(Iconsax.message_add),
+                icon: const Icon(Iconsax.message_add),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Center(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.height / 3,

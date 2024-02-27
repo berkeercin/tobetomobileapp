@@ -4,11 +4,10 @@ import 'package:tobetomobileapp/screens/contact_info.dart';
 
 class TobetoFooter extends StatelessWidget {
   const TobetoFooter(
-      {Key? key,
+      {super.key,
       required this.assetImage,
       required this.backgroundColor,
-      required this.textColor})
-      : super(key: key);
+      required this.textColor});
   final String assetImage;
   final Color backgroundColor;
   final Color textColor;
@@ -20,7 +19,7 @@ class TobetoFooter extends StatelessWidget {
         children: [
           Container(
             height: 120,
-            color: tobetoColor.logoTextColor,
+            color: tobetoColor.iconColor,
             child: Column(children: [
               Column(
                 children: [
@@ -41,7 +40,7 @@ class TobetoFooter extends StatelessWidget {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ContactInfo(),
+                                  builder: (context) => const ContactInfo(),
                                 ));
                           },
                           child: Text("Bize Ulaşın",

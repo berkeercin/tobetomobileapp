@@ -10,7 +10,7 @@ import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 
 class EduScreen extends StatefulWidget {
-  const EduScreen({Key? key, required this.educationList}) : super(key: key);
+  const EduScreen({super.key, required this.educationList});
   final List<Education> educationList;
   @override
   _EduScreenState createState() => _EduScreenState();

@@ -3,7 +3,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profilepage/yetkinlik.dart';
 
 class YetkinlikDropDown extends StatefulWidget {
-  const YetkinlikDropDown({Key? key}) : super(key: key);
+  const YetkinlikDropDown({super.key});
 
   @override
   State<YetkinlikDropDown> createState() => _YetkinlikDropDownState();

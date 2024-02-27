@@ -5,12 +5,8 @@ import 'package:tobetomobileapp/blocs/home/home_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_state.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/functions/homepage/boxes_alert.dart';
-import 'package:tobetomobileapp/models/home_page/application.dart';
-import 'package:tobetomobileapp/models/home_page/news.dart';
 import 'package:tobetomobileapp/models/home_page/page_content.dart';
-import 'package:tobetomobileapp/models/home_page/survey.dart';
 import 'package:tobetomobileapp/models/user.dart';
-import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/screens/reviews_screen.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
@@ -54,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Access context-dependent values or do context-dependent initialization here
     brightness = MediaQuery.of(context).platformBrightness;
 
     if (brightness == Brightness.dark) {
@@ -88,6 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void pagePathFunc(Widget widget) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widget,
+          ));
+    }
+
     return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is LoadedPage) {
@@ -162,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   const EdgeInsets.only(left: 32, right: 32),
                               child: Column(
                                 children: [
-                                  HomeToptext(),
+                                  const HomeToptext(),
                                   Row(
                                     children: [
                                       HomeButtonCreator(
@@ -231,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         color: containerColor,
                         width: double.infinity,
-                        child: HomeExam(),
+                        child: const HomeExam(),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -241,78 +244,34 @@ class _HomeScreenState extends State<HomeScreen> {
                             verticalDirection: VerticalDirection.up,
                             children: [
                               GradientBoxes(
-                                  boxName: constText.boxText1,
-                                  boxButton: FloatingActionButton(
-                                    backgroundColor:
-                                        tobetoColor.cardColor.withOpacity(0.70),
-                                    heroTag: const Key("start1"),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const EditProfileScreen()));
-                                    },
-                                    child: Text(
-                                      constText.boxButtonText,
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  boxColorBegin: tobetoColor.box1BeginColor,
-                                  boxColorEnd: tobetoColor.box1EndColor),
+                                boxName: constText.boxText1,
+                                boxButton: boxButtonF("start1", () {
+                                  pagePathFunc(const EditProfileScreen());
+                                }),
+                              ),
                               //2
                               const SizedBox(
                                 width: 10,
                               ),
                               GradientBoxes(
-                                  boxName: constText.boxText2,
-                                  boxButton: FloatingActionButton(
-                                    backgroundColor:
-                                        tobetoColor.cardColor.withOpacity(0.70),
-                                    heroTag: const Key("start2"),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ReviewsScreen()));
-                                    },
-                                    child: Text(
-                                      constText.boxButtonText,
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  boxColorBegin: tobetoColor.box2BeginColor,
-                                  boxColorEnd: tobetoColor.box2EndColor),
+                                boxName: constText.boxText2,
+                                boxButton: boxButtonF("start2", () {
+                                  pagePathFunc(const ReviewsScreen());
+                                }),
+                              ),
                               //3
                               const SizedBox(
                                 width: 10,
                               ),
 
                               GradientBoxes(
-                                  boxName: constText.boxText3,
-                                  boxButton: FloatingActionButton(
-                                    backgroundColor:
-                                        tobetoColor.cardColor.withOpacity(0.70),
-                                    heroTag: const Key("start3"),
-                                    onPressed: () {
-                                      const BoxesAlert(
-                                        errorMes: "404 Sayfa Bulunamadı",
-                                      ).errormessage(context);
-                                    },
-                                    child: Text(
-                                      constText.boxButtonText,
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  boxColorBegin: tobetoColor.box3BeginColor,
-                                  boxColorEnd: tobetoColor.box3EndColor),
+                                boxName: constText.boxText3,
+                                boxButton: boxButtonF("start3", () {
+                                  const BoxesAlert(
+                                    errorMes: "404 Sayfa Bulunamadı",
+                                  ).errormessage(context);
+                                }),
+                              ),
                               const SizedBox(
                                 width: 10,
                               ),

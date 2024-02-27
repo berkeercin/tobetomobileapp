@@ -17,11 +17,11 @@ class MyIcons extends StatelessWidget {
 }
 
 class MyIconsax {
-  final usericon = const Icon(Iconsax.user);
-  final passwordicon = const Icon(Iconsax.lock4);
+  final usericon = Icon(Iconsax.user, color: tobetoColor.iconColor);
+  final passwordicon = Icon(Iconsax.lock4, color: tobetoColor.iconColor);
   final IconData passVisibilityIcon = Iconsax.eye;
   final IconData passVisibilityOffIcon = Iconsax.eye_slash;
-  final emailIcon = Icon(Iconsax.sms);
+  final emailIcon = Icon(Iconsax.sms, color: tobetoColor.iconColor);
   final examtimer =
       Icon(size: 25, Iconsax.timer_pause, color: tobetoColor.iconColor);
   final examtick =
@@ -70,5 +70,15 @@ class MyIconsax {
     size: 25,
     Iconsax.calendar_edit,
     color: tobetoColor.iconColor,
+  );
+  final next = Icon(
+    size: 44,
+    Iconsax.direct_right,
+    color: tobetoColor.reviewColor2,
+  );
+  final lesson = Icon(
+    Iconsax.receipt_text,
+    color: tobetoColor.reviewColor2,
+    size: 44,
   );
 }

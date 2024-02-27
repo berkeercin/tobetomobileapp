@@ -42,10 +42,13 @@ class EducationsTab extends StatelessWidget {
         children: [
           Icon(
             Icons.arrow_circle_right_sharp,
-            color: TobetoColor().cardColor,
+            color: TobetoColor().buttonColor,
             size: 50,
           ),
-          const Text("Daha Fazla Göster")
+          const Text(
+            "Daha Fazla Göster",
+            style: TextStyle(fontSize: 12),
+          )
         ],
       ),
     );
@@ -114,10 +117,10 @@ class EducationsTab extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16), color: Colors.grey),
             child: Padding(
-              padding: EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
               child: Text(
                 statusMessage,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -186,10 +189,10 @@ class EducationsTab extends StatelessWidget {
                               borderRadius: BorderRadius.circular(16),
                               color: statusColor),
                           child: Padding(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             child: Text(
                               statusText,
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
@@ -216,14 +219,14 @@ class EducationsTab extends StatelessWidget {
                         education.eduTitle,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         children: [
                           Text(DateFormat("dd.MM.yyyy")
                               .format(education.startDate)),
-                          Spacer(),
+                          const Spacer(),
                           remaining
                         ],
                       )

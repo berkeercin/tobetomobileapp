@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_bloc.dart';
 import 'package:tobetomobileapp/blocs/auth/auth_event.dart';
 import 'package:tobetomobileapp/constants/global/text_const.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
+import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
+import 'package:tobetomobileapp/screens/reset_passw_screen.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -15,6 +18,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   late Color backgroundColor;
   late String assetImage;
+  late Color textFColor;
   late Color textColor;
   bool isPasswordShown = true;
   final TextEditingController passwordController = TextEditingController();
@@ -24,9 +28,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final size30 = const SizedBox(height: 30);
-  final size10 = const SizedBox(height: 10);
+  final size10 = const SizedBox(height: 12);
   final iconsax = MyIconsax();
   final constText = TobetoText();
+  final color = TobetoColor();
 
   @override
   void didChangeDependencies() {
@@ -49,116 +54,117 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: backgroundColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(45),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).colorScheme.background),
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                  width: MediaQuery.of(context).size.height / 2,
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      size30,
-                      Image.asset(
-                        assetImage,
-                        width: 150,
-                      ),
-                      size30,
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 3,
-                            child: textBox(
-                                textColor,
-                                constText.name,
-                                iconsax.usericon,
-                                nameController,
-                                null,
-                                setBoolShown),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 3,
-                            child: textBox(
-                                textColor,
-                                constText.surname,
-                                iconsax.usericon,
-                                surnameController,
-                                null,
-                                null),
-                          )
-                        ],
-                      ),
-                      size10,
-                      textBox(textColor, constText.email, iconsax.emailIcon,
-                          emailController, null, null),
-                      size10,
-                      textBox(
-                          textColor,
-                          constText.passwordHintText,
-                          iconsax.passwordicon,
-                          passwordController,
-                          isPasswordShown,
-                          setBoolShown),
-                      size10,
-                      textBox(
-                          textColor,
-                          "Şifreyi tekrarla",
-                          iconsax.passwordicon,
-                          passwordConfirmController,
-                          isPasswordShown,
-                          setBoolShown),
-                      size10,
-                      const Spacer(),
-                      buttonCreate(
-                          context,
-                          textColor,
-                          backgroundColor,
-                          emailController,
-                          passwordController,
-                          passwordConfirmController,
-                          nameController,
-                          surnameController),
-                      const Spacer(),
-                      Divider(color: textColor.withOpacity(.3)),
-                      TextButton(
-                        onPressed: () {},
-                        child: constText.parolamiUnuttum,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            constText.hesapVar,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                constText.girisYap,
-                                style: TextStyle(fontSize: 16),
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(right: 30, left: 30, bottom: 100),
+          child: Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 175),
+                Image.asset(
+                  "assets/images/tobeto-logo.png",
+                  width: 200,
+                  color: textFColor,
                 ),
-              )
-            ],
+                size30,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2.5,
+                      child: textBox(
+                          textFColor,
+                          constText.name,
+                          MyIcons(color: textFColor, icon: iconsax.usericon),
+                          nameController,
+                          null,
+                          setBoolShown),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 2.5,
+                      child: textBox(
+                          textFColor,
+                          constText.surname,
+                          MyIcons(color: textFColor, icon: iconsax.usericon),
+                          surnameController,
+                          null,
+                          null),
+                    )
+                  ],
+                ),
+                size10,
+                textBox(
+                    textFColor,
+                    constText.email,
+                    MyIcons(
+                      color: textFColor,
+                      icon: iconsax.emailIcon,
+                    ),
+                    emailController,
+                    null,
+                    null),
+                size10,
+                textBox(
+                    textFColor,
+                    constText.passwordHintText,
+                    MyIcons(color: textFColor, icon: iconsax.passwordicon),
+                    passwordController,
+                    isPasswordShown,
+                    setBoolShown),
+                size10,
+                textBox(
+                    textFColor,
+                    "Şifreyi tekrarla",
+                    MyIcons(color: textFColor, icon: iconsax.passwordicon),
+                    passwordConfirmController,
+                    isPasswordShown,
+                    setBoolShown),
+                size30,
+                buttonCreate(
+                    context,
+                    textColor,
+                    backgroundColor,
+                    emailController,
+                    passwordController,
+                    passwordConfirmController,
+                    nameController,
+                    surnameController),
+                const SizedBox(height: 25),
+                Divider(color: textColor.withOpacity(.3)),
+                const SizedBox(height: 15),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ResetPassword(),
+                        ));
+                  },
+                  child: constText.resetPassword,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      constText.account,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          constText.loginText,
+                          style:
+                              TextStyle(fontSize: 16, color: color.cardColor),
+                        )),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -172,12 +178,14 @@ class _SignupScreenState extends State<SignupScreen> {
         assetImage = DarkThemeStyle().darkThemeImage;
         textColor = DarkThemeStyle().darkTextColor;
         backgroundColor = DarkThemeStyle().darkBackgroundColor;
+        textFColor = Colors.white;
       });
     } else if (brightness == Brightness.light) {
       setState(() {
         assetImage = LightThemeStyle().lightThemeImage;
         textColor = LightThemeStyle().lightTextColor;
         backgroundColor = LightThemeStyle().lightBackgroundColor;
+        textFColor = TobetoColor().iconColor;
       });
     }
   }
@@ -186,7 +194,7 @@ class _SignupScreenState extends State<SignupScreen> {
 Widget textBox(
     Color color,
     String hintText,
-    Icon icon,
+    MyIcons icon,
     TextEditingController controller,
     bool? isShown,
     Function(bool item, String name)? buttonFunc) {
@@ -198,21 +206,15 @@ Widget textBox(
         height: 50,
         child: Row(
           children: [
-            const SizedBox(
-              width: 10,
-            ),
-            MyIcons(color: color, icon: icon),
-            const SizedBox(
-              width: 5,
-            ),
             Expanded(
               child: TextField(
                 controller: controller,
                 decoration: InputDecoration(
+                    icon: icon,
                     hintText: hintText,
                     border: InputBorder.none,
                     hintStyle: TextStyle(
-                      color: color.withOpacity(0.5),
+                      color: color.withOpacity(0.7),
                     )),
               ),
             )
@@ -226,21 +228,15 @@ Widget textBox(
         height: 50,
         child: Row(
           children: [
-            const SizedBox(
-              width: 10,
-            ),
-            MyIcons(color: color, icon: MyIconsax().passwordicon),
-            const SizedBox(
-              width: 5,
-            ),
             Expanded(
               child: TextField(
                 controller: controller,
                 obscureText: isShown,
                 decoration: InputDecoration(
+                    icon: icon,
                     hintText: hintText,
                     border: InputBorder.none,
-                    hintStyle: TextStyle(color: color.withOpacity(0.5))),
+                    hintStyle: TextStyle(color: color.withOpacity(0.7))),
               ),
             ),
             IconButton(
@@ -254,7 +250,7 @@ Widget textBox(
               icon: Icon(isShown
                   ? MyIconsax().passVisibilityOffIcon
                   : MyIconsax().passVisibilityIcon),
-              color: color.withOpacity(0.5),
+              color: color.withOpacity(0.7),
             )
           ],
         ));
@@ -270,15 +266,16 @@ Widget buttonCreate(
     TextEditingController passwordConfirm,
     TextEditingController name,
     TextEditingController surname) {
+  final mySize = MediaQuery.of(context).size.width;
+
   return ElevatedButton(
       style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(textColor),
+          backgroundColor: MaterialStatePropertyAll(color.cardColor),
           shape: MaterialStatePropertyAll(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-          minimumSize: const MaterialStatePropertyAll(Size(300, 40))),
+          minimumSize: MaterialStatePropertyAll(Size(mySize, 45))),
       onPressed: () {
-        if (
-            email.text == "" ||
+        if (email.text == "" ||
             password.text == "" ||
             passwordConfirm.text == "" ||
             name.text == "" ||
@@ -290,16 +287,16 @@ Widget buttonCreate(
               content: Text("Girdiğiniz parola ve parola tekrarı uyuşmuyor!")));
         } else {
           context.read<AuthBloc>().add(SignUpUser(
-              context: context,
-              email: email.text,
-              name: name.text,
-              password: password.text,
-              surname: surname.text,
-            ));
+                context: context,
+                email: email.text,
+                name: name.text,
+                password: password.text,
+                surname: surname.text,
+              ));
         }
       },
       child: Text(
-        TobetoText().kayitol,
+        TobetoText().signupText,
         style: TextStyle(color: backgroundColor, fontSize: 18),
       ));
 }

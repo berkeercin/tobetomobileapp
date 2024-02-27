@@ -5,7 +5,7 @@ import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_chec
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_date.dart';
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_citydropdown.dart';
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_button.dart';
-import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textField.dart';
+import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profilepage_textfield.dart';
 
 class ProfileTabExperiences extends StatelessWidget {
   const ProfileTabExperiences({super.key});

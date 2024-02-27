@@ -21,7 +21,7 @@ class _TopTextWidgetState extends State<TopTextWidget> {
           Text(
             "TOBETO",
             style: TextStyle(
-              color: TobetoColor().logoTextColor,
+              color: TobetoColor().iconColor,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
