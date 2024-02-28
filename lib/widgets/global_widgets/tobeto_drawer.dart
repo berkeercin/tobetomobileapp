@@ -33,7 +33,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
   Color border = Colors.grey.withOpacity(0.3);
   @override
   Widget build(BuildContext context) {
-    var brightness = View.of(context).platformDispatcher.platformBrightness;
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     late String assetImage;
     late Color textColor;
     late Color backgroundColor;
@@ -67,7 +67,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-    //      print(state);
+          //      print(state);
           if (state is LoadedUser) {
             return Drawer(
               backgroundColor: backgroundColor,
@@ -173,7 +173,8 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const CatalogScreen()));
+                                      builder: (context) =>
+                                          const CatalogScreen()));
                             },
                             child: Text(
                               "Katolog",
@@ -187,7 +188,8 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const CalendarScreen()));
+                                      builder: (context) =>
+                                          const CalendarScreen()));
                             },
                             child: Text(
                               "Takvim",

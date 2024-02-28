@@ -56,7 +56,7 @@ class _FABwithAnimationState extends State<FABwithAnimation> {
         shape: const CircleBorder(),
         backgroundColor: color.iconColor, //animasyon rengi
         foregroundColor: Colors.white,
-        elevation: 20,
+        elevation: 0,
         overlayOpacity: 0,
         onOpen: () {
           setState(() {

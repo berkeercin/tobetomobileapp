@@ -49,7 +49,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return BlocListener<CalendarBloc, CalendarBlocState>(
       listener: (context, state) {},
       child: Scaffold(
-        appBar: AppBar(flexibleSpace: TobetoAppBar(brightness: brightness)),
+        appBar: const TobetoAppBarV2(),
         body: BlocBuilder<CalendarBloc, CalendarBlocState>(
           builder: (context, state) {
             if (state is InitializePage) {

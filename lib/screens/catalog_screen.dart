@@ -67,21 +67,8 @@ class _CatalogScreenState extends State<CatalogScreen> {
     return BlocListener<CatalogBloc, CatalogState>(
       listener: (context, state) {},
       child: Scaffold(
-        appBar: AppBar(
-          flexibleSpace: TobetoAppBar(brightness: brightness),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 2, right: 16),
-              child: InkWell(
-                child: const Icon(Icons.refresh),
-                onTap: () {
-                  context
-                      .read<CatalogBloc>()
-                      .add(LoadCatalog(brightness, null));
-                },
-              ),
-            )
-          ],
+        appBar: const TobetoAppBarV2(
+          title: "CatalogScreen",
         ),
         body: BlocBuilder<CatalogBloc, CatalogState>(
           builder: (context, state) {

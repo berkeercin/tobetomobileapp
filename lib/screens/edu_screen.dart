@@ -58,10 +58,7 @@ class _EduScreenState extends State<EduScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
-      appBar: AppBar(
-        flexibleSpace: TobetoAppBar(brightness: brightness),
-      ),
-      drawer: const TobetoDrawer(),
+      appBar: const TobetoAppBarV2(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: ListView.builder(
@@ -197,7 +194,8 @@ class _EduScreenState extends State<EduScreen> {
                                     padding: const EdgeInsets.all(10),
                                     child: Text(
                                       statusText,
-                                      style: const TextStyle(color: Colors.white),
+                                      style:
+                                          const TextStyle(color: Colors.white),
                                     ),
                                   ),
                                 ),

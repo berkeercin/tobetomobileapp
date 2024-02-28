@@ -2,17 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
-class ContactTextF extends StatelessWidget {
+class ContactTextF extends StatefulWidget {
   const ContactTextF(
       {super.key,
+      this.isMultiLine,
       required this.text,
       required this.icon,
       required this.controllerAdd});
   final String text;
   final TextEditingController controllerAdd;
   final Icon icon;
+  final bool? isMultiLine;
+
+  @override
+  State<ContactTextF> createState() => _ContactTextFState();
+}
+
+class _ContactTextFState extends State<ContactTextF> {
   @override
   Widget build(BuildContext context) {
+    bool isMultiLine = false;
+    if (widget.isMultiLine == true) {
+      setState(() {
+        isMultiLine = true;
+      });
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -25,14 +39,17 @@ class ContactTextF extends StatelessWidget {
               color: tobetoColor.iconColor,
             )),
         child: TextField(
-          controller: controllerAdd,
+          maxLines: isMultiLine ? 3 : null,
+          controller: widget.controllerAdd,
           decoration: InputDecoration(
               border: InputBorder.none,
               iconColor: TobetoColor().box3EndColor,
-              hintText: text,
-              hintStyle: TextStyle(color: TobetoColor().textColorText),
+              hintText: widget.text,
+              hintStyle: TextStyle(
+                color: TobetoColor().textColorText,
+              ),
               icon: Icon(
-                icon.icon,
+                widget.icon.icon,
                 color: TobetoColor().box3EndColor,
               )),
         ),

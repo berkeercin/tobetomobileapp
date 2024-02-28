@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_tab/tab1_person_info.dart';
@@ -48,7 +49,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       length: 8,
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: TobetoAppBar(brightness: brightness),
+          title: TobetoAppBarTitle(brightness: brightness),
+          centerTitle: true,
+          // leadingWidth: 20,
+          automaticallyImplyLeading: false,
           bottom: TabBar(tabs: [
             Tab(icon: iconsax.usericons),
             Tab(icon: iconsax.kurumIcon),

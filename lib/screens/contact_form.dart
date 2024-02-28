@@ -53,74 +53,75 @@ class _ContactFormState extends State<ContactForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
-      appBar: AppBar(
-        flexibleSpace: TobetoAppBar(brightness: brightness),
-      ),
+      appBar: const TobetoAppBarV2(),
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
-        child: Container(
-          height: MediaQuery.of(context).size.height / 2,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                style: BorderStyle.solid,
-                color: TobetoColor().box3EndColor,
-              )),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Text(
-                  "İLETİŞİM FORMU",
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: textColor,
-                  ),
-                ),
-              ),
-              ContactTextF(
-                controllerAdd: nameController,
-                text: "Adınız Soyadınız",
-                icon: const Icon(Iconsax.user),
-              ),
-              ContactTextF(
-                controllerAdd: emailController,
-                text: "E-Mail",
-                icon: const Icon(Iconsax.direct_right),
-              ),
-              ContactTextF(
-                controllerAdd: messageController,
-                text: "Mesajınız",
-                icon: const Icon(Iconsax.message_add),
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.height / 3,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          TobetoColor().textColorText),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pop(context, true);
-                      });
-                    },
-                    child: Text(
-                      "Mesaj Bırakın",
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: TobetoColor().box3EndColor,
-                          fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+          child: Container(
+            height: MediaQuery.of(context).size.height / 1.5,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  style: BorderStyle.solid,
+                  color: TobetoColor().box3EndColor,
+                )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "İLETİŞİM FORMU",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: textColor,
                     ),
                   ),
                 ),
-              ),
-            ],
+                ContactTextF(
+                  controllerAdd: nameController,
+                  text: "Adınız Soyadınız",
+                  icon: const Icon(Iconsax.user),
+                ),
+                ContactTextF(
+                  controllerAdd: emailController,
+                  text: "E-Mail",
+                  icon: const Icon(Iconsax.direct_right),
+                ),
+                ContactTextF(
+                  controllerAdd: messageController,
+                  isMultiLine: true,
+                  text: "\nMesajınız",
+                  icon: const Icon(Iconsax.message_add),
+                ),
+                const SizedBox(height: 30),
+                Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.height / 3,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            TobetoColor().textColorText),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          Navigator.pop(context, true);
+                        });
+                      },
+                      child: Text(
+                        "Mesaj Bırakın",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: TobetoColor().box3EndColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

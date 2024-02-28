@@ -37,7 +37,7 @@ class TobetoFooter extends StatelessWidget {
                             borderRadius: BorderRadius.circular(16)),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const ContactInfo(),

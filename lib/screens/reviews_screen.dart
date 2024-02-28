@@ -47,9 +47,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
     );
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
-      appBar: AppBar(
-        flexibleSpace: TobetoAppBar(brightness: brightness),
-      ),
+      appBar: const TobetoAppBarV2(),
       drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

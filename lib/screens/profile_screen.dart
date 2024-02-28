@@ -4,6 +4,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/dummydata/profile_data.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
+import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late String assetImage;
   String footerImage = "assets/images/tobeto-logo.png";
+  late Brightness brightness_;
   late Color textColor;
   late Color backgroundColor;
   @override
@@ -31,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void updateColorList() {
     Brightness brightness = Theme.of(context).brightness;
+    brightness_ = brightness;
     setState(() {
       assetImage = brightness == Brightness.dark
           ? 'assets/images/tobeto-logo.png'
@@ -44,17 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image(
-            image: AssetImage(assetImage),
-            height: 120,
-            width: 200,
-          ),
-        ],
-      )),
+      appBar: const TobetoAppBarV2(),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -353,7 +346,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Divider(
                           color: textColor,
                         ),
-                        const Text("Herhangi bir yabancı dil verisi bulunamadı.")
+                        const Text(
+                            "Herhangi bir yabancı dil verisi bulunamadı.")
                       ],
                     ),
                   ),

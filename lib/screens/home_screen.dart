@@ -107,9 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         backgroundColor: backgroundColor.withOpacity(0.95),
-        appBar: AppBar(
-          flexibleSpace: TobetoAppBar(brightness: brightness),
-        ),
+        appBar: const TobetoAppBarV2(title: "HomePage"),
         drawer: const TobetoDrawer(),
         floatingActionButton: const SwingMethod(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
