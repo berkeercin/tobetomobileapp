@@ -13,7 +13,8 @@ class TobetoColor {
   final iconColor = const Color.fromRGBO(217, 100, 254, 1);
   final textColorbox = Colors.white;
   final textColorText = const Color.fromRGBO(94, 182, 202, 1);
-  final buttonColor = const Color.fromRGBO(0, 210, 155, 1);
+  //final buttonColor =  const Color.fromRGBO(0, 210, 155, 1);
+  final buttonColor = const Color.fromRGBO(94, 182, 202, 1);
   final reviewColor2 = const Color.fromRGBO(94, 182, 202, 1);
   final reviewColor1 = const Color.fromRGBO(227, 166, 254, 1);
 }

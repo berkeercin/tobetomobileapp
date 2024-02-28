@@ -5,7 +5,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/widgets/contact_textfield.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class ContactForm extends StatefulWidget {
   const ContactForm({super.key});
@@ -20,7 +20,7 @@ class _ContactFormState extends State<ContactForm> {
   Color textColor = Colors.white;
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
-  final iconsax = MyIconsax();
+  final iconsax = TobetoIcons();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final messageController = TextEditingController();
@@ -54,7 +54,6 @@ class _ContactFormState extends State<ContactForm> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: const TobetoAppBarV2(),
-      drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
@@ -71,7 +70,8 @@ class _ContactFormState extends State<ContactForm> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50),
                   child: Text(
                     "İLETİŞİM FORMU",
                     style: TextStyle(
@@ -103,7 +103,7 @@ class _ContactFormState extends State<ContactForm> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            TobetoColor().textColorText),
+                            tobetoColor.buttonColor),
                       ),
                       onPressed: () {
                         setState(() {
@@ -114,7 +114,7 @@ class _ContactFormState extends State<ContactForm> {
                         "Mesaj Bırakın",
                         style: TextStyle(
                             fontSize: 18,
-                            color: TobetoColor().box3EndColor,
+                            color: backgroundColor,
                             fontWeight: FontWeight.bold),
                       ),
                     ),

@@ -15,8 +15,9 @@ class GradientBoxes extends StatelessWidget {
       height: 175,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [tobetoColor.reviewColor1, tobetoColor.reviewColor2],
-        ),
+            colors: [tobetoColor.reviewColor1, tobetoColor.reviewColor2],
+            begin: Alignment.topLeft,
+            end: Alignment.topRight),
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30),
           bottomLeft: Radius.circular(30),

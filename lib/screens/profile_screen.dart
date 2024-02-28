@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/dummydata/profile_data.dart';
 import 'package:tobetomobileapp/models/user.dart';
 import 'package:tobetomobileapp/screens/edit_profile_screen.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -20,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late Brightness brightness_;
   late Color textColor;
   late Color backgroundColor;
+  final icons = TobetoIcons();
   @override
   void initState() {
     super.initState();
@@ -60,9 +64,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                    child: const Icon(
-                      Icons.edit_square,
+                    child: Icon(
+                      Iconsax.edit,
                       size: 30,
+                      color: tobetoColor.iconColor,
                     ),
                     onTap: () {
                       Navigator.push(
@@ -76,9 +81,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 15,
                   ),
                   InkWell(
-                    child: const Icon(
-                      Icons.share,
+                    child: Icon(
+                      Iconsax.share,
                       size: 30,
+                      color: tobetoColor.iconColor,
                     ),
                     onTap: () {},
                   ),
@@ -98,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(16),
                                 topRight: Radius.circular(16)),
-                            color: TobetoColor().logoTextColor),
+                            color: TobetoColor().reviewColor1),
                         height: 125,
                         width: 400,
                         child: Row(
@@ -134,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.person),
+                                  icons.usericons,
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -145,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Text(
                                         "Ad Soyad",
                                         style: TextStyle(
-                                            fontSize: 12, color: textColor),
+                                            fontSize: 14, color: textColor),
                                       ),
                                       Text(
                                         "${widget.user.name} ${widget.user.surname}",
@@ -164,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.calendar_month),
+                                  icons.calendar2,
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -175,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Text(
                                         "Doğum Tarihi",
                                         style: TextStyle(
-                                            fontSize: 12, color: textColor),
+                                            fontSize: 14, color: textColor),
                                       ),
                                       Text(
                                         "Doğum tarihi sistemde belirtilmemiş.",
@@ -194,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.mail),
+                                  icons.emailIcon2,
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -205,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Text(
                                         "E-Posta Adresi",
                                         style: TextStyle(
-                                            fontSize: 12, color: textColor),
+                                            fontSize: 14, color: textColor),
                                       ),
                                       Text(
                                         "E-Posta adresi sistemde belirtilmemiş.",
@@ -225,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.chat_bubble),
+                                  icons.tel,
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -236,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Text(
                                         "Telefon Numarası",
                                         style: TextStyle(
-                                            fontSize: 12, color: textColor),
+                                            fontSize: 14, color: textColor),
                                       ),
                                       Text(
                                         "Telefon numarası sistemde belirtilmemiş.",

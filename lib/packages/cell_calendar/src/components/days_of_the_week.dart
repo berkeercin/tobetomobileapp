@@ -2,7 +2,7 @@ import 'package:tobetomobileapp/packages/cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 
 /// Default days of the week
-const List<String> _DaysOfTheWeek = [
+const List<String> _daysOfTheWeek = [
   'Sun',
   'Mon',
   'Tue',
@@ -12,7 +12,7 @@ const List<String> _DaysOfTheWeek = [
   'Sat'
 ];
 
-/// Show the row of text from [_DaysOfTheWeek]
+/// Show the row of text from [_daysOfTheWeek]
 class DaysOfTheWeek extends StatelessWidget {
   const DaysOfTheWeek(this.daysOfTheWeekBuilder, {super.key});
 
@@ -22,7 +22,7 @@ class DaysOfTheWeek extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Text(
-        _DaysOfTheWeek[index],
+        _daysOfTheWeek[index],
         textAlign: TextAlign.center,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),

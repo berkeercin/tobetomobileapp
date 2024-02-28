@@ -29,7 +29,7 @@ class ReviewsBoxesButtons extends StatelessWidget {
           gradient: LinearGradient(colors: [
             colorTab.reviewColor1,
             colorTab.reviewColor2,
-          ])),
+          ], begin: Alignment.topLeft, end: Alignment.topRight)),
       child: Padding(
         padding: const EdgeInsets.only(right: 20, left: 20),
         child: Column(

@@ -32,8 +32,9 @@ class _TobetoAppBarTitleState extends State<TobetoAppBarTitle> {
         Navigator.pop(context);
       },
       icon: Icon(
-        Iconsax.arrow_left,
+        Iconsax.arrow_circle_left,
         color: iconColor,
+        size: 35,
       ),
     );
     if (widget.title != null) {
@@ -46,6 +47,7 @@ class _TobetoAppBarTitleState extends State<TobetoAppBarTitle> {
               icon: Icon(
                 Icons.menu,
                 color: iconColor,
+                size: 35,
               ));
         });
       }
@@ -59,7 +61,7 @@ class _TobetoAppBarTitleState extends State<TobetoAppBarTitle> {
       color = Colors.white;
     } else {
       logo = myImages.lightThemeLogo;
-      color = TobetoColor().iconColor;
+      color = TobetoColor().reviewColor1;
     }
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -113,12 +115,20 @@ class TobetoAppBarV2 extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _TobetoAppBarV2State extends State<TobetoAppBarV2> {
+  late String logo;
+  late Color color;
+  MyImages myImages = MyImages();
+
   @override
   Widget build(BuildContext context) {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
-    // TODO: implement build
-    // throw UnimplementedError();
-
+    if (brightness == Brightness.dark) {
+      logo = myImages.darkThemeLogo;
+      color = Colors.white;
+    } else {
+      logo = myImages.lightThemeLogo;
+      color = TobetoColor().reviewColor1;
+    }
     return AppBar(
       title: TobetoAppBarTitle(
         brightness: brightness,
@@ -129,7 +139,11 @@ class _TobetoAppBarV2State extends State<TobetoAppBarV2> {
           Padding(
             padding: const EdgeInsets.only(bottom: 2, right: 16),
             child: InkWell(
-              child: const Icon(Icons.refresh),
+              child: Icon(
+                Iconsax.refresh,
+                color: color,
+                size: 26,
+              ),
               onTap: () {
                 context.read<CatalogBloc>().add(LoadCatalog(brightness, null));
               },
@@ -137,13 +151,6 @@ class _TobetoAppBarV2State extends State<TobetoAppBarV2> {
           )
       ],
       automaticallyImplyLeading: false,
-      // leading: Padding(
-      //     padding: const EdgeInsets.only(left: 12.0),
-      //     child: IconButton(
-      //         onPressed: () {
-      //           Navigator.pop(context);
-      //         },
-      //         icon: Icon(Iconsax.arrow_left_1))),
     );
   }
 

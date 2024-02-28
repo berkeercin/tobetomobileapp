@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late Color textFColor;
   late Color backgroundColor;
   bool isRefreshed = false;
-  MyIconsax iconsax = MyIconsax();
+  TobetoIcons iconsax = TobetoIcons();
   final constText = TobetoText();
   SizedBox sizedbox = const SizedBox(height: 20);
   void refreshPage() {
@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStatePropertyAll(color.cardColor),
+                                  MaterialStatePropertyAll(color.buttonColor),
                               shape: MaterialStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8))),
@@ -203,13 +203,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const SignupScreen(),
+                                      builder: (context) =>
+                                          const SignupScreen(),
                                     ));
                               },
                               child: Text(
                                 constText.signupText,
                                 style: TextStyle(
-                                    fontSize: 16, color: color.cardColor),
+                                    fontSize: 16, color: color.buttonColor),
                               )),
                         ],
                       )
@@ -276,5 +277,3 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 }
-
-

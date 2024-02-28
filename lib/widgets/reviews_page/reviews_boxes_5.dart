@@ -9,7 +9,7 @@ class ReviewsBoxes5 extends StatelessWidget {
     required this.baslik,
   });
   final Text baslik;
-  final icons = MyIconsax();
+  final icons = TobetoIcons();
   @override
   Widget build(BuildContext context) {
     var sizedBox = const SizedBox(
@@ -27,13 +27,16 @@ class ReviewsBoxes5 extends StatelessWidget {
             color: color.reviewColor1,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(right: 10, left: 10),
+            padding: const EdgeInsets.only(right: 10, left: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 icons.lesson,
-                baslik,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: baslik,
+                ),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(

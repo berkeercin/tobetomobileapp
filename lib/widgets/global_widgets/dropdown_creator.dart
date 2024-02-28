@@ -57,7 +57,7 @@ class _CreateTobetoDropdownState extends State<CreateTobetoDropdown> {
             value: value,
             child: Text(
               value,
-              style: TextStyle(color: tobetoColor.cardColor),
+              style: TextStyle(color: tobetoColor.buttonColor),
             ),
           );
         }).toList(),

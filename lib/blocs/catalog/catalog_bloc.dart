@@ -62,7 +62,6 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
           CatalogRepository(brightness: event.brightness);
       catalogItems.clear();
       await loadCatalogItems();
-      print(catalogItems.length);
       filteredCatalogArray = catalogRepository.loadFilteredCatalogItems(
           event.category,
           event.eduTitle,

@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late String istanbulKodluyorImage;
   PageContent pageContent = PageContent(
       applicationList: [], newsList: [], surveyList: [], educationList: []);
-  final iconsax = MyIconsax();
+  final iconsax = TobetoIcons();
   final constText = TobetoText();
   @override
   void initState() {

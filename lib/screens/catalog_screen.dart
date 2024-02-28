@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_state.dart';
@@ -103,6 +104,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               child: Center(
                                   child: Container(
                                 decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
                                     color: backgroundColor.withOpacity(.5)),
                                 child: SizedBox(
                                   height:
@@ -156,7 +158,17 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                                 .text));
                                                   }
                                                 },
-                                                child: const Icon(Icons.search),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10.0),
+                                                  child: Icon(
+                                                    Iconsax.search_normal,
+                                                    size: 26,
+                                                    color:
+                                                        tobetoColor.buttonColor,
+                                                  ),
+                                                ),
                                               )
                                             ],
                                           ),
@@ -174,7 +186,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                           width: MediaQuery.of(context).size.width / 1.2,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: tobetoColor.iconColor),
+                                backgroundColor: tobetoColor.buttonColor),
                             onPressed: () {
                               setState(() {
                                 category = null;
@@ -240,8 +252,8 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                   1.2,
                                               child: ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        tobetoColor.iconColor),
+                                                    backgroundColor: tobetoColor
+                                                        .buttonColor),
                                                 onPressed: () {
                                                   context
                                                       .read<CatalogBloc>()
@@ -260,8 +272,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                                 child: Text(
                                                   "Filtrele",
                                                   style: TextStyle(
-                                                      color: tobetoColor
-                                                          .cardColor),
+                                                      color: backgroundColor),
                                                 ),
                                               ))
                                         ],
@@ -273,7 +284,8 @@ class _CatalogScreenState extends State<CatalogScreen> {
                             },
                             child: Text(
                               "Filtrele",
-                              style: TextStyle(color: tobetoColor.cardColor),
+                              style: TextStyle(
+                                  color: backgroundColor, fontSize: 18),
                             ),
                           ),
                         ),

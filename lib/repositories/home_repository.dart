@@ -226,7 +226,6 @@ class HomeRepository {
     List<Education> eduList = [];
     final snapshot = await _firebaseFireStore.collection("educationList").get();
     for (var doc in snapshot.docs) {
-      print(user);
       String docId = doc.id;
       if ((doc.data().containsKey("activeUsers") &&
           doc.data().containsKey("inactiveUsers"))) {
@@ -330,7 +329,6 @@ class HomeRepository {
             }
             if (element['applicationTitle'] == null ||
                 element['applicationStatus'] == null) {
-              print("null!");
             }
             var item = Application(
                 applicationTitle: element['applicationTitle'],
@@ -343,7 +341,6 @@ class HomeRepository {
 
       return applicationList_;
     } catch (e) {
-      print(e);
       return [];
     }
   }

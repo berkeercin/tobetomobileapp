@@ -28,7 +28,7 @@ class HomeExam extends StatelessWidget {
                         style: TextStyle(fontSize: 16),
                       ),
                       const Spacer(),
-                      MyIconsax().examtick,
+                      TobetoIcons().examtick,
                     ],
                   ),
                   const SizedBox(
@@ -43,7 +43,7 @@ class HomeExam extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      MyIconsax().examtimer,
+                      TobetoIcons().examtimer,
                       const Text(
                         " 45 Dakika",
                         style: TextStyle(

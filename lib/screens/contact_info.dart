@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/contact_form.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/contant_text.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class ContactInfo extends StatefulWidget {
   const ContactInfo({super.key});
@@ -20,7 +19,7 @@ class _ContactInfoState extends State<ContactInfo> {
   Color textColor = Colors.white;
   Color backgroundColor = Colors.black;
   late Color containerColor = Colors.black;
-  final iconsax = MyIconsax();
+  final iconsax = TobetoIcons();
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -50,7 +49,6 @@ class _ContactInfoState extends State<ContactInfo> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: const TobetoAppBarV2(),
-      drawer: const TobetoDrawer(),
       floatingActionButton: const SwingMethod(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
@@ -100,7 +98,7 @@ class _ContactInfoState extends State<ContactInfo> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          TobetoColor().textColorText),
+                          tobetoColor.buttonColor),
                     ),
                     onPressed: () {
                       setState(() {
@@ -115,7 +113,7 @@ class _ContactInfoState extends State<ContactInfo> {
                       "Mesaj Bırakın",
                       style: TextStyle(
                           fontSize: 18,
-                          color: TobetoColor().box3EndColor,
+                          color: backgroundColor,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

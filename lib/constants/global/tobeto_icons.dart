@@ -16,7 +16,7 @@ class MyIcons extends StatelessWidget {
   }
 }
 
-class MyIconsax {
+class TobetoIcons {
   final usericon = Icon(Iconsax.user, color: tobetoColor.iconColor);
   final passwordicon = Icon(Iconsax.lock4, color: tobetoColor.iconColor);
   final IconData passVisibilityIcon = Iconsax.eye;
@@ -72,13 +72,31 @@ class MyIconsax {
     color: tobetoColor.iconColor,
   );
   final next = Icon(
-    size: 44,
+    size: 38,
     Iconsax.direct_right,
     color: tobetoColor.reviewColor2,
   );
   final lesson = Icon(
     Iconsax.receipt_text,
     color: tobetoColor.reviewColor2,
-    size: 44,
+    size: 40,
   );
+  final tel = Icon(
+    size: 30,
+    Iconsax.call,
+    color: tobetoColor.iconColor,
+  );
+  final calendar2 = Icon(
+    size: 30,
+    Iconsax.calendar_edit,
+    color: tobetoColor.iconColor,
+  );
+  final emailIcon2 = Icon(
+    Iconsax.sms,
+    color: tobetoColor.iconColor,
+    size: 30,
+  );
+  final IconData eduFinish = Iconsax.tick_square;
+  final IconData eduStart = Iconsax.play;
+  final IconData eduComp = Iconsax.medal_star;
 }

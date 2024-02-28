@@ -10,8 +10,6 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_bloc.dart';
 import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/blocs/home/home_bloc.dart';
 import 'package:tobetomobileapp/blocs/home/home_event.dart';
-import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
-import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/constants/reviews/reviews_text.dart';
 import 'package:tobetomobileapp/screens/calendar_screen.dart';
 import 'package:tobetomobileapp/screens/catalog_screen.dart';
@@ -107,7 +105,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                             },
                             icon: Icon(
                               Iconsax.close_circle,
-                              color: TobetoColor().iconColor,
+                              color: colors,
                             ),
                             iconSize: 36),
                       ),
@@ -230,7 +228,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
                                     "${state.user.name} ${state.user.surname}",
                                     style: drawerStyle,
                                   ),
-                                  MyIconsax().usericon,
+                                  Icon(Iconsax.user, color: colors, size: 26),
                                 ],
                               ),
                             ))),

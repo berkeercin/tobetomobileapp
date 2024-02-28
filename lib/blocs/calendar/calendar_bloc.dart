@@ -55,7 +55,6 @@ class CalendarBloc extends Bloc<CalendarBlocEvent, CalendarBlocState> {
         //mentor
         color = Colors.teal;
       }
-      print(eventTime_);
       CalendarEvent calendarEvent = CalendarEvent(
           eventName: element['eventName'],
           eventDate: eventTime_,

@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailController = TextEditingController();
   final size30 = const SizedBox(height: 30);
   final size14 = const SizedBox(height: 14);
-  final iconsax = MyIconsax();
+  final iconsax = TobetoIcons();
   final constText = TobetoText();
   final color = TobetoColor();
 
@@ -159,8 +159,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                           child: Text(
                             constText.loginText,
-                            style:
-                                TextStyle(fontSize: 16, color: color.cardColor),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: color.buttonColor,
+                                fontWeight: FontWeight.bold),
                           )),
                     ],
                   ),
@@ -202,9 +204,14 @@ Widget textBox(
     Function(bool item, String name)? buttonFunc) {
   if (isShown == null) {
     return Container(
+        padding: const EdgeInsets.only(left: 8),
         decoration: BoxDecoration(
-            border: Border.all(color: color),
-            borderRadius: BorderRadius.circular(8)),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              width: 2,
+              style: BorderStyle.solid,
+              color: color,
+            )),
         height: 50,
         child: Row(
           children: [
@@ -224,9 +231,14 @@ Widget textBox(
         ));
   } else {
     return Container(
+        padding: const EdgeInsets.only(left: 8),
         decoration: BoxDecoration(
-            border: Border.all(color: color),
-            borderRadius: BorderRadius.circular(8)),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              width: 2,
+              style: BorderStyle.solid,
+              color: color,
+            )),
         height: 50,
         child: Row(
           children: [
@@ -241,18 +253,21 @@ Widget textBox(
                     hintStyle: TextStyle(color: color.withOpacity(0.7))),
               ),
             ),
-            IconButton(
-              onPressed: () {
-                if (isShown) {
-                  buttonFunc!(false, hintText);
-                } else {
-                  buttonFunc!(true, hintText);
-                }
-              },
-              icon: Icon(isShown
-                  ? MyIconsax().passVisibilityOffIcon
-                  : MyIconsax().passVisibilityIcon),
-              color: color.withOpacity(0.7),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                onPressed: () {
+                  if (isShown) {
+                    buttonFunc!(false, hintText);
+                  } else {
+                    buttonFunc!(true, hintText);
+                  }
+                },
+                icon: Icon(isShown
+                    ? TobetoIcons().passVisibilityOffIcon
+                    : TobetoIcons().passVisibilityIcon),
+                color: color.withOpacity(0.7),
+              ),
             )
           ],
         ));
@@ -272,7 +287,7 @@ Widget buttonCreate(
 
   return ElevatedButton(
       style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(color.cardColor),
+          backgroundColor: MaterialStatePropertyAll(color.buttonColor),
           shape: MaterialStatePropertyAll(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
           minimumSize: MaterialStatePropertyAll(Size(mySize, 45))),

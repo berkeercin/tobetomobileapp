@@ -26,8 +26,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             .collection("users")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get();
-        UserData _user = UserData.fromFireStore(userFromDb);
-        emit(LoadedUser(user: _user));
+        UserData user_ = UserData.fromFireStore(userFromDb);
+        emit(LoadedUser(user: user_));
       } else {
         emit(LogIn());
       }
@@ -54,8 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (userData[0] == "success") {
       final userFromDb =
           await _firebaseFireStore.collection("users").doc(userData[1]).get();
-      UserData _user = UserData.fromFireStore(userFromDb);
-      emit(LoadedUser(user: _user));
+      UserData user_ = UserData.fromFireStore(userFromDb);
+      emit(LoadedUser(user: user_));
     } else {
       ScaffoldMessenger.of(event.context)
           .showSnackBar(SnackBar(content: Text(userData[1]!)));

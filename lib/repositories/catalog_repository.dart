@@ -34,7 +34,6 @@ class CatalogRepository {
       String? filter, List<CatalogItem> catalogItem) {
     darkLightTheme();
     List<Widget> catalogItemWidgets = [];
-    print("test");
     List<String> categories_ = [];
     List<String> educations_ = [];
     List<String> eduLevel_ = [];
@@ -45,7 +44,6 @@ class CatalogRepository {
     List<String> status_ = [];
     List<CatalogItem> catalogItems = [];
     for (var element in catalogItem) {
-      print("this element: " + element.toString());
       if (filter == null || filter == "") {
         categories_.add(element.category);
         educations_.add(element.title);

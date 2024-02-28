@@ -4,7 +4,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_bloc.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_event.dart';
 import 'package:tobetomobileapp/blocs/educontent/educontent_state.dart';
+import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
 import 'package:tobetomobileapp/screens/video_screen.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class EduModuleDetails extends StatefulWidget {
   const EduModuleDetails(
@@ -56,14 +58,20 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
               appBar: AppBar(
                   actions: [
                     IconButton(
-                        onPressed: () {
-                          context.read<EduContentBloc>().add(ReloadPage());
-                        },
-                        icon: const Icon(Icons.refresh))
+                      onPressed: () {
+                        context.read<EduContentBloc>().add(ReloadPage());
+                      },
+                      icon: const Icon(
+                        Iconsax.refresh,
+                        size: 26,
+                      ),
+                    )
                   ],
                   title: Text(
                     state.education.content[widget.arrayIndex].contentTitle,
                     textAlign: TextAlign.center,
+                    style:
+                        TextStyle(color: tobetoColor.buttonColor, fontSize: 20),
                   )),
               body: ListView.builder(
                 itemCount: state
@@ -93,16 +101,27 @@ class _EduModuleDetailsState extends State<EduModuleDetails> {
                                       .subContent[index]),
                             ));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(state.education.content[widget.arrayIndex]
-                                  .subContent[index].isFinished
-                              ? Iconsax.tick_circle
-                              : Icons.circle_outlined),
-                          Text(state.education.content[widget.arrayIndex]
-                              .subContent[index].title)
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              state.education.content[widget.arrayIndex]
+                                      .subContent[index].isFinished
+                                  ? TobetoIcons().eduFinish
+                                  : TobetoIcons().eduStart,
+                              color: tobetoColor.iconColor,
+                              size: 30,
+                            ),
+                            Text(
+                              state.education.content[widget.arrayIndex]
+                                  .subContent[index].title,
+                              style: TextStyle(
+                                  color: tobetoColor.buttonColor, fontSize: 18),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );

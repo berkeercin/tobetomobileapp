@@ -4,9 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:tobetomobileapp/models/home_page/education.dart';
 import 'package:tobetomobileapp/repositories/home_repository.dart';
 import 'package:tobetomobileapp/screens/edu_details.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
-import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/tobeto_footer.dart';
 
 class EduScreen extends StatefulWidget {
@@ -59,8 +57,6 @@ class _EduScreenState extends State<EduScreen> {
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: const TobetoAppBarV2(),
-      floatingActionButton: const SwingMethod(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: widget.educationList.length + 2,
@@ -78,7 +74,7 @@ class _EduScreenState extends State<EduScreen> {
                 child: Text(
                   "Eğitimlerim",
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  style: TextStyle(fontSize: 26, color: Colors.white),
                 ),
               ),
             );
@@ -221,15 +217,20 @@ class _EduScreenState extends State<EduScreen> {
                               Text(
                                 widget.educationList[index - 1].eduTitle,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                    fontSize: 17, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 15,
                               ),
                               Row(
                                 children: [
-                                  Text(DateFormat("dd.MM.yyyy").format(widget
-                                      .educationList[index - 1].startDate)),
+                                  Text(
+                                    DateFormat("dd.MM.yyyy").format(widget
+                                        .educationList[index - 1].startDate),
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   const Spacer(),
                                   remaining
                                 ],
