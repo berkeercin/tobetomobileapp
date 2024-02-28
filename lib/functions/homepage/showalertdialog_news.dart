@@ -14,7 +14,7 @@ class ShowAlertDialogNews {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(title),
-          content: Text(content),
+          content: SingleChildScrollView(child: Text(content)),
           actions: <Widget>[
             TextButton(
               child: const Text("Onayla"),

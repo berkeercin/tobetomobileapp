@@ -28,6 +28,15 @@ class UserRepostory {
     });
   }
 
+  Future<String?> resetPassword(String email) async {
+    try {
+      await firebaseAuthInstance.sendPasswordResetEmail(email: email);
+      return "Success";
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
   logoutUser() {
     firebaseAuthInstance.signOut();
   }

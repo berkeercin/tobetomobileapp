@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
+import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 
@@ -25,7 +28,7 @@ class _ResetPasswordState extends State<ResetPassword> {
     darkLightTheme(context);
   }
 
-  final passController = TextEditingController();
+  final mailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +59,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
                     child: TextField(
-                      controller: passController,
+                      controller: mailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         icon: Icon(
@@ -70,44 +73,51 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            backgroundColor:
-                                TobetoColor().cardColor.withOpacity(0.8),
-                            title: const Text(
-                              textAlign: TextAlign.center,
-                              "E-posta Gönderildi",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            content: const Text(
-                              textAlign: TextAlign.center,
-                              "Parola yenileme bağlantısı\ne-posta adresinize gönderildi.",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text(
-                                  "Tamam",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                    onPressed: () async {
+                      String? message = await UserRepostory()
+                          .resetPassword(mailController.text);
+                      if (message == "Success") {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor:
+                                  TobetoColor().cardColor.withOpacity(0.8),
+                              title: const Text(
+                                textAlign: TextAlign.center,
+                                "E-posta Gönderildi",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          );
-                        },
-                      );
+                              content: const Text(
+                                textAlign: TextAlign.center,
+                                "Parola yenileme bağlantısı\ne-posta adresinize gönderildi.",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    "Tamam",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(message!)));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.minPositive, 50),
