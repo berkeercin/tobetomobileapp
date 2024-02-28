@@ -36,13 +36,20 @@ class TobetoAppBar extends StatelessWidget {
                         builder: (context) => HomeScreen(user: state.user),
                       ));
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 48),
-                  child: Image.asset(
-                    color: color,
-                    logo,
-                    width: 150,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 25,
+                    ),
+                    Center(
+                      child: Image.asset(
+                        color: color,
+                        logo,
+                        width: 150,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
