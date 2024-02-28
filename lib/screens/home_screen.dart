@@ -22,7 +22,7 @@ import 'package:tobetomobileapp/widgets/global_widgets/tobeto_drawer.dart';
 import 'package:tobetomobileapp/widgets/homepage/toptext_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.user}) : super(key: key);
+  const HomeScreen({super.key, required this.user});
   final UserData user;
   @override
   _HomeScreenState createState() => _HomeScreenState();

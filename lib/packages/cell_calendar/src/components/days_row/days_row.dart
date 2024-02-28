@@ -10,7 +10,7 @@ final cellHeightProvider = StateProvider<double?>((ref) => null);
 /// Show the row of [_DayCell] cells with events
 class DaysRow extends StatelessWidget {
   const DaysRow({
-    Key? key,
+    super.key,
     required this.visiblePageDate,
     required this.dates,
     required this.dateTextStyle,
@@ -18,7 +18,7 @@ class DaysRow extends StatelessWidget {
     required this.todayMarkColor,
     required this.todayTextColor,
     required this.events,
-  }) : super(key: key);
+  });
 
   final List<DateTime> dates;
   final DateTime visiblePageDate;
@@ -127,12 +127,11 @@ class _DayCell extends HookConsumerWidget {
 
 class _TodayLabel extends StatelessWidget {
   const _TodayLabel({
-    Key? key,
     required this.date,
     required this.dateTextStyle,
     required this.todayMarkColor,
     required this.todayTextColor,
-  }) : super(key: key);
+  });
 
   final DateTime date;
   final TextStyle? dateTextStyle;
@@ -169,11 +168,10 @@ class _TodayLabel extends StatelessWidget {
 
 class _DayLabel extends StatelessWidget {
   const _DayLabel({
-    Key? key,
     required this.date,
     required this.visiblePageDate,
     required this.dateTextStyle,
-  }) : super(key: key);
+  });
 
   final DateTime date;
   final DateTime visiblePageDate;

@@ -67,7 +67,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          print(state);
+    //      print(state);
           if (state is LoadedUser) {
             return Drawer(
               backgroundColor: backgroundColor,

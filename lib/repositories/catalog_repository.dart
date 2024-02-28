@@ -46,7 +46,6 @@ class CatalogRepository {
     List<CatalogItem> catalogItems = [];
     for (var element in catalogItem) {
       print("this element: " + element.toString());
-      // print("this filter: " + filter);
       if (filter == null || filter == "") {
         categories_.add(element.category);
         educations_.add(element.title);

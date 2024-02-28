@@ -11,7 +11,7 @@ import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_tab/
 import 'package:tobetomobileapp/widgets/edit_profile_screen_widgets/profile_tab/tab8_settings.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
+  const EditProfileScreen({super.key});
 
   @override
   _EditProfileScreenState createState() => _EditProfileScreenState();

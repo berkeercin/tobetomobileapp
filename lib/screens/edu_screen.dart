@@ -121,10 +121,10 @@ class _EduScreenState extends State<EduScreen> {
                         borderRadius: BorderRadius.circular(16),
                         color: Colors.grey),
                     child: Padding(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       child: Text(
                         statusMessage,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -194,10 +194,10 @@ class _EduScreenState extends State<EduScreen> {
                                       borderRadius: BorderRadius.circular(16),
                                       color: statusColor),
                                   child: Padding(
-                                    padding: EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10),
                                     child: Text(
                                       statusText,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -225,14 +225,14 @@ class _EduScreenState extends State<EduScreen> {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               Row(
                                 children: [
                                   Text(DateFormat("dd.MM.yyyy").format(widget
                                       .educationList[index - 1].startDate)),
-                                  Spacer(),
+                                  const Spacer(),
                                   remaining
                                 ],
                               )

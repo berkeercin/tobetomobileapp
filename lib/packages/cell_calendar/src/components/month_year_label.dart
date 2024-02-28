@@ -6,8 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class MonthYearLabel extends HookConsumerWidget {
   const MonthYearLabel(
     this.monthYearLabelBuilder, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final MonthYearBuilder? monthYearLabelBuilder;
 
@@ -18,10 +18,10 @@ class MonthYearLabel extends HookConsumerWidget {
     final yearLabel = currentDateTime.year.toString();
     return monthYearLabelBuilder?.call(currentDateTime) ??
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
           child: Text(
             monthLabel + " " + yearLabel,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         );
   }

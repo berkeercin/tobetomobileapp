@@ -18,7 +18,7 @@ const _eventLabelHeight = _eventLabelContentHeight + _eventLabelBottomMargin;
 ///
 /// Shows accurate number of [_EventLabel] by the height of the parent cell
 class EventLabels extends HookConsumerWidget {
-  EventLabels({
+  const EventLabels({super.key, 
     required this.date,
     required this.events,
   });
@@ -60,7 +60,7 @@ class EventLabels extends HookConsumerWidget {
     final hasEnoughSpace = _hasEnoughSpace(cellHeight, eventsOnTheDay.length);
     final maxIndex = _maxIndex(cellHeight, eventsOnTheDay.length);
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: eventsOnTheDay.length,
       itemBuilder: (context, index) {
@@ -75,14 +75,14 @@ class EventLabels extends HookConsumerWidget {
               _EventLabel(
                 eventsOnTheDay[index],
               ),
-              Icon(
+              const Icon(
                 Icons.more_horiz,
                 size: 13,
               )
             ],
           );
         } else {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
       },
     );
@@ -91,14 +91,14 @@ class EventLabels extends HookConsumerWidget {
 
 /// label to show [CalendarEvent]
 class _EventLabel extends StatelessWidget {
-  _EventLabel(this.event);
+  const _EventLabel(this.event);
 
   final CalendarEvent event;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 4, bottom: 3),
+      margin: const EdgeInsets.only(right: 4, bottom: 3),
       height: 20,
       // width: double.infinity,
       color: event.eventBackgroundColor,

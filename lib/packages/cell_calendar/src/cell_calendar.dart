@@ -68,7 +68,6 @@ class CellCalendar extends HookConsumerWidget {
 
 class _CalendarPageView extends HookConsumerWidget {
   const _CalendarPageView({
-    Key? key,
     required this.cellCalendarPageController,
     required this.daysOfTheWeekBuilder,
     required this.monthYearLabelBuilder,
@@ -78,7 +77,7 @@ class _CalendarPageView extends HookConsumerWidget {
     required this.onCellTapped,
     required this.todayMarkColor,
     required this.todayTextColor,
-  }) : super(key: key);
+  });
   final CellCalendarPageController? cellCalendarPageController;
 
   /// Builder to show days of the week labels
@@ -149,7 +148,6 @@ class _CalendarPageView extends HookConsumerWidget {
 /// Wrapped with [CalendarMonthController]
 class _CalendarPage extends StatelessWidget {
   const _CalendarPage({
-    Key? key,
     required this.visiblePageDate,
     required this.daysOfTheWeekBuilder,
     required this.dateTextStyle,
@@ -157,7 +155,7 @@ class _CalendarPage extends StatelessWidget {
     required this.todayMarkColor,
     required this.todayTextColor,
     required this.events,
-  }) : super(key: key);
+  });
 
   final DateTime visiblePageDate;
   final DaysBuilder? daysOfTheWeekBuilder;

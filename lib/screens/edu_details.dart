@@ -9,8 +9,7 @@ import 'package:tobetomobileapp/screens/edu_module_details.dart';
 
 class EduDetails extends StatefulWidget {
   const EduDetails(
-      {Key? key, required this.documentId, required this.contentId})
-      : super(key: key);
+      {super.key, required this.documentId, required this.contentId});
   final String documentId;
   final String contentId;
   @override

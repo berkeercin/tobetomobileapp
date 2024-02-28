@@ -109,7 +109,7 @@ class _ContactInfoState extends State<ContactInfo> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ContactForm(),
+                              builder: (context) => const ContactForm(),
                             ));
                       });
                     },

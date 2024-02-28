@@ -28,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final size30 = const SizedBox(height: 30);
-  final size10 = const SizedBox(height: 12);
+  final size14 = const SizedBox(height: 14);
   final iconsax = MyIconsax();
   final constText = TobetoText();
   final color = TobetoColor();
@@ -56,114 +56,116 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(right: 30, left: 30, bottom: 100),
-          child: Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 175),
-                Image.asset(
-                  "assets/images/tobeto-logo.png",
-                  width: 200,
-                  color: textFColor,
-                ),
-                size30,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2.5,
-                      child: textBox(
-                          textFColor,
-                          constText.name,
-                          MyIcons(color: textFColor, icon: iconsax.usericon),
-                          nameController,
-                          null,
-                          setBoolShown),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2.5,
-                      child: textBox(
-                          textFColor,
-                          constText.surname,
-                          MyIcons(color: textFColor, icon: iconsax.usericon),
-                          surnameController,
-                          null,
-                          null),
-                    )
-                  ],
-                ),
-                size10,
-                textBox(
-                    textFColor,
-                    constText.email,
-                    MyIcons(
-                      color: textFColor,
-                      icon: iconsax.emailIcon,
-                    ),
-                    emailController,
-                    null,
-                    null),
-                size10,
-                textBox(
-                    textFColor,
-                    constText.passwordHintText,
-                    MyIcons(color: textFColor, icon: iconsax.passwordicon),
-                    passwordController,
-                    isPasswordShown,
-                    setBoolShown),
-                size10,
-                textBox(
-                    textFColor,
-                    "Şifreyi tekrarla",
-                    MyIcons(color: textFColor, icon: iconsax.passwordicon),
-                    passwordConfirmController,
-                    isPasswordShown,
-                    setBoolShown),
-                size30,
-                buttonCreate(
-                    context,
-                    textColor,
-                    backgroundColor,
-                    emailController,
-                    passwordController,
-                    passwordConfirmController,
-                    nameController,
-                    surnameController),
-                const SizedBox(height: 25),
-                Divider(color: textColor.withOpacity(.3)),
-                const SizedBox(height: 15),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ResetPassword(),
-                        ));
-                  },
-                  child: constText.resetPassword,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      constText.account,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          constText.loginText,
-                          style:
-                              TextStyle(fontSize: 16, color: color.cardColor),
-                        )),
-                  ],
-                ),
-              ],
+          padding: const EdgeInsets.only(right: 30, left: 30, bottom: 50),
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 175),
+                  Image.asset(
+                    "assets/images/tobeto-logo.png",
+                    width: 200,
+                    color: textFColor,
+                  ),
+                  size30,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        child: textBox(
+                            textFColor,
+                            constText.name,
+                            MyIcons(color: textFColor, icon: iconsax.usericon),
+                            nameController,
+                            null,
+                            setBoolShown),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        child: textBox(
+                            textFColor,
+                            constText.surname,
+                            MyIcons(color: textFColor, icon: iconsax.usericon),
+                            surnameController,
+                            null,
+                            null),
+                      )
+                    ],
+                  ),
+                  size14,
+                  textBox(
+                      textFColor,
+                      constText.email,
+                      MyIcons(
+                        color: textFColor,
+                        icon: iconsax.emailIcon,
+                      ),
+                      emailController,
+                      null,
+                      null),
+                  size14,
+                  textBox(
+                      textFColor,
+                      constText.passwordHintText,
+                      MyIcons(color: textFColor, icon: iconsax.passwordicon),
+                      passwordController,
+                      isPasswordShown,
+                      setBoolShown),
+                  size14,
+                  textBox(
+                      textFColor,
+                      "Şifreyi tekrarla",
+                      MyIcons(color: textFColor, icon: iconsax.passwordicon),
+                      passwordConfirmController,
+                      isPasswordShown,
+                      setBoolShown),
+                  size30,
+                  buttonCreate(
+                      context,
+                      textColor,
+                      backgroundColor,
+                      emailController,
+                      passwordController,
+                      passwordConfirmController,
+                      nameController,
+                      surnameController),
+                  const SizedBox(height: 25),
+                  Divider(color: textColor.withOpacity(.3)),
+                  const SizedBox(height: 15),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ResetPassword(),
+                          ));
+                    },
+                    child: constText.resetPassword,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        constText.account,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            constText.loginText,
+                            style:
+                                TextStyle(fontSize: 16, color: color.cardColor),
+                          )),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -16,7 +16,7 @@ import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
