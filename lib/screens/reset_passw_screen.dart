@@ -6,6 +6,7 @@ import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/repositories/user_repository.dart';
 import 'package:tobetomobileapp/screens/login_screen.dart';
 import 'package:tobetomobileapp/themes/dark_light_theme.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -31,6 +32,8 @@ class _ResetPasswordState extends State<ResetPassword> {
   final mailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final mySize = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -67,6 +70,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           color: textFColor,
                         ),
                         hintText: "E-posta giriniz.",
+                        hintStyle: TextStyle(color: textFColor),
                       ),
                     ),
                   ),
@@ -120,9 +124,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.minPositive, 50),
-                      backgroundColor: TobetoColor().cardColor,
-                    ),
+                        minimumSize: Size(mySize / 1.70, 50),
+                        backgroundColor: tobetoColor.buttonColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
                     child: Text(
                       "E-posta Gönder",
                       style: TextStyle(color: backgroundColor, fontSize: 15),

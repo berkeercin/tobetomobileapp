@@ -8,11 +8,13 @@ class ContactTextF extends StatefulWidget {
       this.isMultiLine,
       required this.text,
       required this.icon,
-      required this.controllerAdd});
+      required this.controllerAdd,
+      this.containerColor});
   final String text;
   final TextEditingController controllerAdd;
   final Icon icon;
   final bool? isMultiLine;
+  final Color? containerColor;
 
   @override
   State<ContactTextF> createState() => _ContactTextFState();
@@ -34,7 +36,7 @@ class _ContactTextFState extends State<ContactTextF> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              width: 1.5,
+              width: 2,
               style: BorderStyle.solid,
               color: tobetoColor.iconColor,
             )),
@@ -43,14 +45,13 @@ class _ContactTextFState extends State<ContactTextF> {
           controller: widget.controllerAdd,
           decoration: InputDecoration(
               border: InputBorder.none,
-              iconColor: TobetoColor().box3EndColor,
               hintText: widget.text,
               hintStyle: TextStyle(
                 color: TobetoColor().textColorText,
               ),
               icon: Icon(
                 widget.icon.icon,
-                color: TobetoColor().box3EndColor,
+                color: tobetoColor.iconColor,
               )),
         ),
       ),

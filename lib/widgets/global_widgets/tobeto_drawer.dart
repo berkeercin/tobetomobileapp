@@ -49,7 +49,7 @@ class _TobetoDrawerState extends State<TobetoDrawer> {
         assetImage = 'assets/images/tobeto-logo2.png';
         textColor = Colors.black;
         backgroundColor = Colors.white;
-        colors = color.iconColor;
+        colors = color.reviewColor1;
       });
     }
     TextStyle drawerStyle = TextStyle(color: textColor, fontSize: 16);

@@ -46,6 +46,8 @@ class _ContactInfoState extends State<ContactInfo> {
 
   @override
   Widget build(BuildContext context) {
+    final mySize = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: const TobetoAppBarV2(),
@@ -93,29 +95,28 @@ class _ContactInfoState extends State<ContactInfo> {
               const ContantText(
                   boldText: "E-Posta:", text: "istanbulkodluyor@tobeto.com"),
               Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.height / 3,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          tobetoColor.buttonColor),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushReplacement(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(mySize / 1.5, 50),
+                      backgroundColor: tobetoColor.buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  onPressed: () {
+                    setState(
+                      () {
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ContactForm(),
-                            ));
-                      });
-                    },
-                    child: Text(
-                      "Mesaj Bırakın",
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: backgroundColor,
-                          fontWeight: FontWeight.bold),
-                    ),
+                                builder: (context) => ContactForm()));
+                      },
+                    );
+                  },
+                  child: Text(
+                    "Mesaj Bırakın",
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: textColor,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

@@ -8,6 +8,7 @@ import 'package:tobetomobileapp/blocs/catalog/catalog_event.dart';
 import 'package:tobetomobileapp/constants/global/images_const.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/screens/home_screen.dart';
+import 'package:tobetomobileapp/widgets/homepage/tabbar/applicationstab.dart';
 
 class TobetoAppBarTitle extends StatefulWidget {
   const TobetoAppBarTitle({this.title, super.key, required this.brightness});
@@ -76,7 +77,7 @@ class _TobetoAppBarTitleState extends State<TobetoAppBarTitle> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomeScreen(user: state.user),
@@ -127,7 +128,7 @@ class _TobetoAppBarV2State extends State<TobetoAppBarV2> {
       color = Colors.white;
     } else {
       logo = myImages.lightThemeLogo;
-      color = TobetoColor().reviewColor1;
+      color = tobetoColor.reviewColor1;
     }
     return AppBar(
       title: TobetoAppBarTitle(

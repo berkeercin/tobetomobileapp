@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_colors.dart';
 import 'package:tobetomobileapp/constants/global/tobeto_icons.dart';
+import 'package:tobetomobileapp/themes/dark_light_theme.dart';
 import 'package:tobetomobileapp/widgets/contact_textfield.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/swing_method.dart';
 import 'package:tobetomobileapp/widgets/global_widgets/tobeto_app_bar.dart';
@@ -24,6 +25,7 @@ class _ContactFormState extends State<ContactForm> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final messageController = TextEditingController();
+  late Color textFColor;
 
   @override
   void didChangeDependencies() {
@@ -31,18 +33,23 @@ class _ContactFormState extends State<ContactForm> {
     brightness = MediaQuery.of(context).platformBrightness;
 
     if (brightness == Brightness.dark) {
-      assetImage = 'assets/images/tobeto-logo.png';
-      textColor = Colors.white;
-      backgroundColor = Colors.black;
-      containerColor = Colors.grey.withOpacity(0.1);
-    } else {
-      assetImage = 'assets/images/tobeto-logo.png';
-      textColor = Colors.black;
-      backgroundColor = Colors.white;
-      containerColor = backgroundColor;
+      setState(() {
+        assetImage = DarkThemeStyle().darkThemeImage;
+        textColor = DarkThemeStyle().darkTextColor;
+        backgroundColor = DarkThemeStyle().darkBackgroundColor;
+        textFColor = Colors.white;
+      });
+    } else if (brightness == Brightness.light) {
+      setState(() {
+        assetImage = LightThemeStyle().lightThemeImage;
+        textColor = LightThemeStyle().lightTextColor;
+        backgroundColor = LightThemeStyle().lightBackgroundColor;
+        textFColor = TobetoColor().iconColor;
+      });
     }
   }
 
+//TO DO : BURAya bak
   @override
   void initState() {
     super.initState();
@@ -51,6 +58,8 @@ class _ContactFormState extends State<ContactForm> {
 
   @override
   Widget build(BuildContext context) {
+    final mySize = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: backgroundColor.withOpacity(0.95),
       appBar: const TobetoAppBarV2(),
@@ -97,27 +106,23 @@ class _ContactFormState extends State<ContactForm> {
                   icon: const Icon(Iconsax.message_add),
                 ),
                 const SizedBox(height: 30),
-                Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.height / 3,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            tobetoColor.buttonColor),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          Navigator.pop(context, true);
-                        });
-                      },
-                      child: Text(
-                        "Mesaj Bırakın",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: backgroundColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(mySize / 1.5, 50),
+                      backgroundColor: tobetoColor.buttonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pop(context, true);
+                    });
+                  },
+                  child: Text(
+                    "Mesaj Bırakın",
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: textColor,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
