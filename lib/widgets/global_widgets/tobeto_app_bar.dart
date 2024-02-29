@@ -66,6 +66,30 @@ class _TobetoAppBarTitleState extends State<TobetoAppBarTitle> {
     }
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
+        if (state is LogIn) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              iconButton,
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 5.5,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Center(
+                  child: Image.asset(
+                    color: color,
+                    logo,
+                    width: 150,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
         if (state is LoadedUser) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.center,

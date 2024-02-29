@@ -94,6 +94,24 @@ class _EduScreenState extends State<EduScreen> {
             Widget remaining = Container();
             if (remainingDays <= 30 && remainingDays > 0) {
               statusMessage = "Bitmesine son $remainingDays gün kaldı!";
+              remaining = Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.grey),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Text(
+                        statusMessage,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              );
             } else if (remainingDays == 0 &&
                 remainingHours > -1 &&
                 remainingMinutes > -1) {

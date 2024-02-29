@@ -7,10 +7,15 @@ import 'package:tobetomobileapp/repositories/home_repository.dart';
 import 'package:tobetomobileapp/screens/edu_details.dart';
 import 'package:tobetomobileapp/screens/edu_screen.dart';
 
-class EducationsTab extends StatelessWidget {
+class EducationsTab extends StatefulWidget {
   const EducationsTab({super.key, required this.eduList});
   final List<Education> eduList;
 
+  @override
+  State<EducationsTab> createState() => _EducationsTabState();
+}
+
+class _EducationsTabState extends State<EducationsTab> {
   Widget noEducationFound(BuildContext context) {
     return Card(
       child: Column(
@@ -34,7 +39,7 @@ class EducationsTab extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EduScreen(educationList: eduList),
+              builder: (context) => EduScreen(educationList: widget.eduList),
             ));
       },
       child: Column(
@@ -59,13 +64,13 @@ class EducationsTab extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(children: [
-        if (eduList.isEmpty)
+        if (widget.eduList.isEmpty)
           noEducationFound(context)
         else
-          ...eduList.map((e) {
+          ...widget.eduList.map((e) {
             return loadEducations(context, e);
           }),
-        if (eduList.isNotEmpty) showMore(context)
+        if (widget.eduList.isNotEmpty) showMore(context)
       ]),
     );
   }
@@ -96,8 +101,26 @@ class EducationsTab extends StatelessWidget {
     int remainingHours = remainingDuration.inHours;
     int remainingMinutes = remainingDuration.inMinutes;
     Widget remaining = Container();
+    print(remainingDays);
     if (remainingDays <= 30 && remainingDays > 0) {
       statusMessage = "Bitmesine son $remainingDays gün kaldı!";
+      remaining = Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16), color: Colors.grey),
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Text(
+                statusMessage,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      );
     } else if (remainingDays == 0 &&
         remainingHours > -1 &&
         remainingMinutes > -1) {
@@ -109,6 +132,7 @@ class EducationsTab extends StatelessWidget {
           statusMessage = "Bitmesine son $remainingMinutes dakika kaldı";
         }
       }
+
       remaining = Padding(
         padding: const EdgeInsets.all(8.0),
         child: Align(
