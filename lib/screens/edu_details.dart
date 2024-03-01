@@ -85,104 +85,112 @@ class _EduDetailsState extends State<EduDetails> {
                 style: TextStyle(color: tobetoColor.buttonColor, fontSize: 20),
               )),
               body: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemCount: state.education.content.length,
                   itemBuilder: (context, index) {
-                    return FutureBuilder(
-                      future: countPercentage(state.education.content[index]),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          double doublePercentage = snapshot.data! / 100;
-                          Color progressColor = tobetoColor.cardColor;
-                          String progressText = "%${snapshot.data} tamamlandı";
-                          if (doublePercentage == 1.00) {
-                            progressColor = tobetoColor.cardColor;
-                            progressText = "Modül başarıyla tamamlandı!";
-                          }
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => EduModuleDetails(
-                                      arrayIndex: index,
-                                      documentId: widget.documentId,
-                                    ),
-                                  ));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color:
-                                      tobetoColor.reviewColor1.withOpacity(.6)),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 26.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      doublePercentage < 1.00
-                                          ? CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.white.withOpacity(.9),
-                                              child: Transform.scale(
-                                                scaleY: -1,
-                                                child: RotationTransition(
-                                                  turns:
-                                                      const AlwaysStoppedAnimation(
-                                                          180 / 360),
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation(
-                                                            progressColor),
-                                                    value: doublePercentage,
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FutureBuilder(
+                        future: countPercentage(state.education.content[index]),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            double doublePercentage = snapshot.data! / 100;
+                            Color progressColor = tobetoColor.cardColor;
+                            String progressText =
+                                "%${snapshot.data} tamamlandı";
+                            if (doublePercentage == 1.00) {
+                              progressColor = tobetoColor.cardColor;
+                              progressText = "Modül başarıyla tamamlandı!";
+                            }
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EduModuleDetails(
+                                        arrayIndex: index,
+                                        documentId: widget.documentId,
+                                      ),
+                                    ));
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: tobetoColor.reviewColor1
+                                        .withOpacity(.6)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 26.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        doublePercentage < 1.00
+                                            ? CircleAvatar(
+                                                backgroundColor: Colors.white
+                                                    .withOpacity(.9),
+                                                child: Transform.scale(
+                                                  scaleY: -1,
+                                                  child: RotationTransition(
+                                                    turns:
+                                                        const AlwaysStoppedAnimation(
+                                                            180 / 360),
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation(
+                                                              progressColor),
+                                                      value: doublePercentage,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          : Icon(TobetoIcons().eduComp,
-                                              color: progressColor, size: 46),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        state.education.content[index]
-                                            .contentTitle,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 16),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        progressText,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 16),
-                                      ),
-                                      const Spacer()
-                                    ],
+                                              )
+                                            : Icon(TobetoIcons().eduComp,
+                                                color: progressColor, size: 46),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          state.education.content[index]
+                                              .contentTitle,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          progressText,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16),
+                                        ),
+                                        const Spacer()
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        } else {
-                          return const Center(
-                            child: Column(
-                              children: [
-                                CircularProgressIndicator(),
-                                Text("Yükleniyor")
-                              ],
-                            ),
-                          );
-                        }
-                      },
+                            );
+                          } else {
+                            return const Center(
+                              child: Column(
+                                children: [
+                                  CircularProgressIndicator(),
+                                  Text("Yükleniyor")
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                      ),
                     );
                   },
                 ),
